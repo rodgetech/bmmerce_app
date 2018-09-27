@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements';
 import { formatDistance } from 'date-fns';
 import FastImage from 'react-native-fast-image'
 import Loader from '../../components/Loader';
-
+import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles'
 
 const numColumns = 2;
@@ -80,7 +80,7 @@ export default class Search extends React.Component {
           onPress={() => this.onSelectListing(item)}
           activeOpacity={0.8}
         >
-          <Text  style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: 15, paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
+          <Text  style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(13, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
             {formatDistance(item.createdAt, new Date(), {addSuffix: true})}
           </Text>
           <View style={styles.imageContainer}>
@@ -94,10 +94,10 @@ export default class Search extends React.Component {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark}} numberOfLines={1}>
+            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: 16, paddingTop: 6}}>
+            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 6}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </Text>
           </View>
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
       paddingLeft: 10,
       color: colors.dark,
-      fontSize: 16,
+      fontSize: moderateScale(15, 2.5),
       fontFamily: fonts.robotoCondensed,
   }
 });

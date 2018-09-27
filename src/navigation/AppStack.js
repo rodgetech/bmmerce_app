@@ -8,6 +8,7 @@ import { Platform, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import TabBar from '../components/TabBar';
 import { colors, fonts } from '../styles';
+import { moderateScale } from '../utils/scaling';
 
 import { 
     Home, 
@@ -64,7 +65,7 @@ const EngagementsTabStack =  createStackNavigator(
                 color: colors.dark,
                 fontFamily: fonts.robotoCondensed,
                 fontWeight: 'normal',
-                fontSize: 20
+                fontSize: moderateScale(17, 2.5)
             },
             headerTintColor: '#FFF',
         }
@@ -81,19 +82,11 @@ const MenuTabStack =  createStackNavigator(
     },
     {
         navigationOptions: {
-            title: "Account",
-            headerTitleAllowFontScaling: false,
             headerStyle: {
                 elevation: 0,
                 backgroundColor: '#FFF',
                 borderColor: '#e9eced',
                 borderBottomWidth: 1
-            },
-            headerTitleStyle: {
-                color: colors.dark, 
-                fontFamily: fonts.robotoCondensed,
-                fontWeight: 'normal',
-                fontSize: 20,
             },
             headerTintColor: '#FFF',
         }
@@ -156,7 +149,7 @@ const TabNavigation =   createBottomTabNavigator(
             allowFontScaling: false,
             labelStyle: {
                 fontFamily: fonts.robotoCondensed,
-                fontSize: 12,
+                fontSize: moderateScale(11, 2.5),
                 marginTop:-6, 
                 marginBottom: 6,
             },
@@ -281,7 +274,6 @@ const AppStack =  createStackNavigator(
             screen: AccountListings,
             navigationOptions: {
                 title: "Your Listings",
-                headerTitleAllowFontScaling: false,
                 header: (props) => <Header {...props} />,
                 headerStyle: {
                     elevation: 0,
@@ -293,7 +285,7 @@ const AppStack =  createStackNavigator(
                     color: colors.dark, 
                     fontFamily: fonts.robotoCondensed,
                     fontWeight: 'normal',
-                    fontSize: 20
+                    fontSize: moderateScale(17, 2.5)
                 },
                 headerTintColor: colors.dark,
             },
@@ -323,7 +315,6 @@ const AppStack =  createStackNavigator(
             navigationOptions: {
                 header: (props) => <Header {...props} />,
                 title: "Change Location",
-                headerTitleAllowFontScaling: false,
                 headerStyle: {
                     elevation: 0,
                     backgroundColor: '#FFF',
@@ -334,6 +325,7 @@ const AppStack =  createStackNavigator(
                     color: colors.dark, 
                     fontFamily: fonts.robotoCondensed,
                     fontWeight: 'normal',
+                    fontSize: moderateScale(17, 2.5)
                 },
                 headerTintColor: colors.dark,
             },

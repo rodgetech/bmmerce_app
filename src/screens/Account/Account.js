@@ -8,13 +8,67 @@ import {
   TouchableOpacity
 } from 'react-native';
 import FastImage from 'react-native-fast-image'
-import { Icon } from 'react-native-elements'
+import { Icon, Avatar } from 'react-native-elements'
 import { fonts, colors } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 
 export default class Account extends React.PureComponent {
 
+  state = {
+    account: {}
+  }
+
+  static navigationOptions = ({navigation}) => {
+    const { params } = navigation.state;
+    console.log("Something went wrong", params);
+    return {
+      headerRight: (
+        <Icon
+          name='settings'
+          type='octicon'
+          color={colors.green}
+          iconStyle={{marginRight: 14}}
+          containerStyle={{justifyContent: 'center'}}
+        />
+      ),
+      headerLeft: (
+        params &&      
+          <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14}}>
+              <FastImage
+                style={{height: 35, width: 35, borderRadius: 35/2}}
+                source={{
+                  uri: params.avatar || '',
+                  priority: FastImage.priority.normal
+                }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+              <Text style={{fontSize: moderateScale(17, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingLeft: 8}}>
+                {params.name}
+              </Text>
+          </View>
+      ),
+    }
+  };
+
   componentDidMount() {
     this.props.getAccount();
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.account !== this.props.account) {
+      let account = this.props.account;
+      this.props.navigation.setParams({
+        name: account.name,
+        avatar: account.avatar,
+      });
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.account !== prevState.account){
+      return { account: nextProps.account};
+    }
+    else return null;
   }
 
   signOut = async() => {
@@ -30,29 +84,10 @@ export default class Account extends React.PureComponent {
   render() {
     return (
       <View style={styles.container}>
-          <View style={styles.header}>
-            {this.props.account.avatar &&
-              <FastImage
-                style={{width: 60, height: 60, borderRadius: 30, marginRight: 20}}
-                source={{
-                  uri: this.props.account.avatar,
-                  priority: FastImage.priority.normal
-                }}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-            }
-            <Text 
-              style={{fontFamily: fonts.robotoCondensed, fontSize: 20, color: colors.dark}} 
-              numberOfLines={1}
-              allowFontScaling={false}
-            >
-              {this.props.account.name}
-            </Text>
-          </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.body}>
             <TouchableOpacity 
-              style={{paddingVertical:24, borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch"}}
+              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#F2F2F2", borderBottomWidth: 1, flexDirection: 'row'}}
               onPress={() => this.props.navigation.navigate('Post')}
             >
               <Icon
@@ -61,14 +96,13 @@ export default class Account extends React.PureComponent {
                 color={colors.altGreen}
               />
               <Text 
-                allowFontScaling={false}
                 style={styles.bodyLabel}
               >
                 Post Something
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical:24, borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
+              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#F2F2F2", borderBottomWidth: 1, flexDirection: 'row' }}
               onPress={() => this.props.navigation.navigate('AccountListings')}
             >
               <Icon
@@ -77,14 +111,13 @@ export default class Account extends React.PureComponent {
                 color={colors.altGreen}
               />
               <Text 
-                allowFontScaling={false}
                 style={styles.bodyLabel}
               >
                 Listings
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical:24, borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
+              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
               onPress={() => this.props.navigation.navigate('Engagements')}
             >
               <Icon
@@ -94,26 +127,12 @@ export default class Account extends React.PureComponent {
               />
               <Text 
                 style={styles.bodyLabel}
-                allowFontScaling={false}
               >
                 Engagements
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{paddingVertical:24, borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}>
-              <Icon
-                name='ios-settings'
-                type='ionicon'
-                color={colors.altGreen}
-              />
-              <Text 
-                allowFontScaling={false}
-                style={styles.bodyLabel}
-              >
-                Account Settings
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical: 24, alignSelf: "stretch"}}
+              style={{paddingVertical: 24, paddingHorizontal: 14, flexDirection: 'row'}}
               onPress={this.signOut}
             >
               <Icon
@@ -122,7 +141,6 @@ export default class Account extends React.PureComponent {
                   color={colors.altGreen}
                 />
               <Text 
-                allowFontScaling={false}
                 style={styles.bodyLabel}
               >
                 Sign Out
@@ -140,26 +158,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  header: {
-    paddingHorizontal: 20,
-    height: 100,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   body: {
-    flex: 2,
-    borderTopWidth: 1,
     borderColor: "#f7f7f7",
-    backgroundColor: colors.lightGray,
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   bodyLabel: {
     fontFamily: fonts.robotoCondensed,
-    fontSize: 16, 
-    textAlign: "center", 
-    color: colors.altDark
+    fontSize: moderateScale(15, 2.5), 
+    color: colors.altDark,
+    marginLeft: 20
   },
   footer: {
     paddingBottom: 20

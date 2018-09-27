@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import {
   LoginManager, 
   AccessToken,
@@ -19,6 +19,7 @@ import OneSignal from 'react-native-onesignal';
 import { connect } from 'react-redux';
 import { authOperations } from '../../modules/auth';
 import { fonts, colors } from '../../styles'
+import { moderateScale } from '../../utils/scaling';
 
 // GoogleSignin.configure();
 
@@ -120,20 +121,29 @@ class Auth extends React.Component {
     return (
       <View style={styles.container}>
         <Text 
-          style={{fontFamily: fonts.robotoCondensed,fontSize: 46, color: colors.green, textAlign: 'center'}}
+          style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(35, 2.5), color: colors.green, textAlign: 'center'}}
         >
           bmmerce
         </Text>
-        <Text 
-          style={{fontFamily: fonts.robotoCondensed,fontSize: 18, color: colors.dark, textAlign: 'center', paddingBottom: 60}}
-        >
-          Sell & buy stuff near you
-        </Text>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <Icon
+              name='shopping-bag'
+              type='font-awesome'
+              color='#CCC'
+              iconStyle={{marginRight: 10}}
+              size={20}
+            />
+          <Text 
+            style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(17, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 60}}
+          >
+            Sell & buy stuff near you
+          </Text>
+        </View>
         <Button 
           title="Continue with Facebook"
           icon={{name: 'logo-facebook', type: 'ionicon', color: '#FFF'}}
           onPress={this.facebookLogin}
-          titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 16, fontWeight: 'normal'}}
+          titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
           buttonStyle={{ backgroundColor: "#3B5998", marginTop: 20, paddingVertical: 6, elevation: 0}} 
         />
         {/* <Button 
@@ -146,7 +156,7 @@ class Auth extends React.Component {
         /> */}
         <View style={{marginTop: 28}}>
           <Text 
-            style={{fontFamily: fonts.robotoCondensed, color: colors.dark, textAlign: "center", fontSize: 18}}
+            style={{fontFamily: fonts.robotoCondensed, color: colors.dark, textAlign: "center", fontSize: moderateScale(16, 2.5)}}
           >
             Or continue with email
           </Text>
@@ -155,7 +165,7 @@ class Auth extends React.Component {
               <Button 
                 title="Sign up"
                 onPress={() => this.props.navigation.navigate('Register', {playerId: this.state.playerId})}
-                titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 16, fontWeight: 'normal'}}
+                titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
                 buttonStyle={{backgroundColor: colors.altGreen, marginTop: 20, paddingVertical: 6, elevation: 0}} 
               />
             </View>
@@ -163,7 +173,7 @@ class Auth extends React.Component {
               <Button 
                 title="Log in"
                 onPress={() => this.props.navigation.navigate('SignIn')}
-                titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 16, fontWeight: 'normal'}}
+                titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
                 buttonStyle={{backgroundColor: colors.altGreen, marginTop: 20, paddingVertical: 6, elevation: 0}} 
               />
             </View>

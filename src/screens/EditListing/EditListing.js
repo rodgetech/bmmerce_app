@@ -12,6 +12,7 @@ import FastImage from 'react-native-fast-image';
 import resizeImage from '../../utils/image';
 import ActivityLoader from '../../components/ActivityLoader';
 import { fonts, colors } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 
 export default class EditListing extends React.Component {
 
@@ -43,8 +44,8 @@ export default class EditListing extends React.Component {
                         name='md-camera'
                         type='ionicon'
                         color='#FFF'
-                        size={30}
-                        containerStyle={{marginRight: 18, marginTop: 8}}
+                        size={28}
+                        containerStyle={{marginRight: 18, marginTop: 4}}
                     />
                 ),
         }
@@ -223,7 +224,7 @@ export default class EditListing extends React.Component {
                             placeholder="Title"
                             underlineColorAndroid='transparent'
                             containerStyle={{marginBottom: 20, width: '100%'}}
-                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: 18, height: '100%'}}
+                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%'}}
                             inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                             onChangeText={(title) => this.setState({title})} 
                             value={this.state.title}
@@ -232,7 +233,7 @@ export default class EditListing extends React.Component {
                             placeholder="Price"
                             underlineColorAndroid='transparent'
                             containerStyle={{marginBottom: 20, width: '100%'}}
-                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.green, fontSize: 18, height: '100%'}}
+                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.green, fontSize: moderateScale(18, 2.5), height: '100%'}}
                             inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                             onChangeText={(price) => this.setState({price})} 
                             value={parseFloat(this.state.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
@@ -242,7 +243,7 @@ export default class EditListing extends React.Component {
                             placeholder="Description"
                             underlineColorAndroid='transparent'
                             containerStyle={{marginBottom: 20, width: '100%'}}
-                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: 18, height: '100%'}}
+                            inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%'}}
                             inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                             onChangeText={(description) => this.setState({description})} 
                             value={this.state.description}
@@ -250,8 +251,8 @@ export default class EditListing extends React.Component {
                         <Button 
                             title="Update Listing"
                             onPress={this.updateListing}
-                            buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 6,elevation: 0}}
-                            titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 18, fontWeight: 'normal'}}
+                            buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}}
+                            titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
                         />
                     </View>
                     <View style={{marginTop: 20, backgroundColor: colors.gray, justifyContent: 'flex-end', paddingVertical: 10}}>

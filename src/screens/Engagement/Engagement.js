@@ -11,6 +11,7 @@ import FastImage from 'react-native-fast-image'
 import io from 'socket.io-client';
 
 import { colors, fonts } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 
 let timeout = undefined;
 
@@ -36,7 +37,7 @@ export default class Engagement extends React.Component {
       headerRight: (
         params.listingImage && (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: fonts.sm, paddingRight: 8}}>
+          <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingRight: 8}}>
             ${parseFloat(params.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
           </Text>
           <FastImage
@@ -184,12 +185,12 @@ export default class Engagement extends React.Component {
           right: {
             color: "#FFF",
             fontFamily: fonts.robotoCondensed,
-            fontSize: 16
+            fontSize: moderateScale(15, 2.5)
           },
           left: {
               color: colors.dark,
               fontFamily: fonts.robotoCondensed,
-              fontSize: 16
+              fontSize: moderateScale(15, 2.5)
           }
         }}
       />
@@ -202,7 +203,7 @@ export default class Engagement extends React.Component {
         {...props}
         textStyle={{
           fontFamily: fonts.robotoCondensed,
-          fontSize: 16,
+          fontSize: moderateScale(15, 2.5),
           color: colors.green,
           fontWeight: 'normal',
           marginBottom: 14
@@ -224,7 +225,7 @@ export default class Engagement extends React.Component {
         placeholderTextColor={colors.grey}
         textInputStyle={{
           fontFamily: fonts.robotoCondensed,
-          fontSize: 16,
+          fontSize: moderateScale(15, 2.5),
         }}
       />
     );
@@ -266,7 +267,7 @@ export default class Engagement extends React.Component {
     const recipientName = navigation.getParam('recipientName', '');
     if (this.state.showIsTyping && this.state.appState === 'active') {
       return (
-          <Text style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 16, fontSize: 16, color: colors.green}}>
+          <Text style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 16, fontSize: moderateScale(15, 2.5), color: colors.green}}>
             {recipientName} is typing....
           </Text>
       );
@@ -296,7 +297,7 @@ export default class Engagement extends React.Component {
       <LoadEarlier
         {...props}
         textStyle={{
-          fontSize: 14,
+          fontSize: moderateScale(13, 2.5),
           fontFamily: fonts.robotoCondensed,
           color: colors.green
         }}

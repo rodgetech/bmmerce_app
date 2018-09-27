@@ -15,6 +15,7 @@ import {
   currentPosition
 } from '../../utils/geocode';
 import resizeImage from '../../utils/image';
+import { moderateScale } from '../../utils/scaling';
 
 export default class Post extends React.Component {
 
@@ -45,8 +46,8 @@ export default class Post extends React.Component {
             name='md-camera'
             type='ionicon'
             color='#FFF'
-            size={30}
-            containerStyle={{marginRight: 18, marginTop: 8}}
+            size={28}
+            containerStyle={{marginRight: 18, marginTop: 4}}
           />
         </TouchableOpacity>
       ),
@@ -87,7 +88,6 @@ export default class Post extends React.Component {
   }
 
   setImageFromCamera = async (image) => {
-    console.log("FRM CAMERS CREEN:", image);
     const resizedImage = await resizeImage(image, 1000, 1000, 85);
     this.setState({
       images: [
@@ -196,7 +196,7 @@ export default class Post extends React.Component {
                 underlineColorAndroid='transparent'
                 placeholder="Title"
                 containerStyle={{marginBottom: 20, width: '100%'}}
-                inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: 18, height: '100%', borderWidth: 0}}
+                inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%', borderWidth: 0}}
                 inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                 onChangeText={(title) => this.setState({title})}
                 value={this.state.title}
@@ -205,7 +205,7 @@ export default class Post extends React.Component {
                 placeholder="Price"
                 underlineColorAndroid='transparent'
                 containerStyle={{marginBottom: 20, width: '100%'}}
-                inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: 18, height: '100%'}}
+                inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%'}}
                 inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                 onChangeText={(price) => this.setState({price})} 
                 value={this.state.price}
@@ -215,16 +215,16 @@ export default class Post extends React.Component {
                 placeholder="Description"
                 underlineColorAndroid='transparent'
                 containerStyle={{marginBottom: 20, width: '100%'}}
-                inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: 18, height: '100%'}}
+                inputStyle={{fontFamily: fonts.robotoCondensed, paddingHorizontal: 0, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%'}}
                 inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                 onChangeText={(description) => this.setState({description})} 
                 value={this.state.description}
             />
             <Button 
               title="Post Listing"
-              titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 18, fontWeight: 'normal'}}
+              titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
               onPress={this.createListing}
-              buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 6, elevation: 0}} 
+              buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
               disabled={this.state.loading || this.state.images.length == 0}
             />
           </View>

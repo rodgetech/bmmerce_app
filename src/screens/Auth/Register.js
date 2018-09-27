@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import ActivityLoader from '../../components/ActivityLoader';
 import { authOperations } from '../../modules/auth';
 import { fonts, colors } from '../../styles';
-
+import { moderateScale } from '../../utils/scaling';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +50,8 @@ class Register extends React.Component {
       <View style={styles.container}>
         <ActivityLoader
           loading={this.props.registering} />
-        <Text 
-          allowFontScaling={false}
-          style={{fontFamily: fonts.robotoCondensed, fontSize: 30, color: colors.dark, textAlign: 'center', paddingBottom: 40}}
+        <Text
+          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 40}}
         >
           Sign up
         </Text>
@@ -62,7 +61,7 @@ class Register extends React.Component {
               underlineColorAndroid='transparent'
               placeholder="Full Name"
               containerStyle={{marginBottom: 20, width: '100%'}}
-              inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: 18, paddingVertical: 0}}
+              inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
               inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
               leftIcon={
                 <Icon
@@ -82,7 +81,7 @@ class Register extends React.Component {
             underlineColorAndroid='transparent'
             placeholder="Email"
             containerStyle={{marginBottom: 20, width: '100%'}}
-            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: 18, paddingVertical: 0}}
+            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
             inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
             leftIcon={
               <Icon
@@ -100,7 +99,7 @@ class Register extends React.Component {
             underlineColorAndroid='transparent'
             placeholder="Password"
             containerStyle={{marginBottom: 30, width: '100%'}}
-            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: 18, paddingVertical: 0}}
+            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
             inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
             leftIcon={
               <Icon
@@ -115,9 +114,9 @@ class Register extends React.Component {
           <Button 
             title="Create Account"
             onPress={this.register}
-            buttonStyle={{ backgroundColor: colors.altGreen, paddingVertical: 6, elevation: 0}} 
+            buttonStyle={{ backgroundColor: colors.altGreen, paddingVertical: 4, elevation: 0}} 
             disabled={!this.state.email || !this.state.email || !this.state.password}
-            titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: 18, fontWeight: 'normal'}}
+            titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
           />
         </View>
       </View>

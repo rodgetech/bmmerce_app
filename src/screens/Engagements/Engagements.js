@@ -9,6 +9,7 @@ import { ListItem, Badge } from 'react-native-elements';
 import FastImage from 'react-native-fast-image'
 import Loader from '../../components/Loader';
 import { colors, fonts } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 
 export default class Engagements extends React.PureComponent {
 
@@ -41,9 +42,8 @@ export default class Engagements extends React.PureComponent {
       <ListItem
         title={
           <View style={{marginBottom: 6}}>
-            <Text 
-              allowFontScaling={false}
-              style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark}}
+            <Text
+              style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
             >
               {item.recipient.name}
             </Text>
@@ -51,9 +51,8 @@ export default class Engagements extends React.PureComponent {
         }
         subtitle={
           <View>
-            <Text 
-              allowFontScaling={false}
-              style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.grey}}
+            <Text
+              style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.grey}}
             >
               {item.listing.title}
             </Text>
@@ -75,9 +74,8 @@ export default class Engagements extends React.PureComponent {
               <Badge
                 containerStyle={{ backgroundColor: colors.green, marginTop: 4}}
               >
-                <Text 
-                  allowFontScaling={false}
-                  style={{color: "#FFF", fontFamily: fonts.robotoCondensed, fontSize: 12}}>
+                <Text
+                  style={{color: "#FFF", fontFamily: fonts.robotoCondensed, fontSize: moderateScale(13, 2.5)}}>
                   {item.unreadMessagesCount}
                 </Text>
               </Badge>

@@ -3,14 +3,14 @@ import {
   StyleSheet, 
   View,
   ScrollView,
-  Text,
-  Dimensions
+  Text
 } from 'react-native';
+import { format } from 'date-fns';
 import { Button, Icon } from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
+import { moderateScale } from '../../utils/scaling';
 
 import { colors, fonts } from '../../styles';
-
 
 export default class ListingView extends React.PureComponent {
   state = {
@@ -25,9 +25,7 @@ export default class ListingView extends React.PureComponent {
       listing: this.props.navigation.state.params.listing
     }, () => {
       this.setState({loading: false})
-      console.log("SSDD", this.state.listing)
     })
-
   }
 
   onMessage = () => {
@@ -56,27 +54,27 @@ export default class ListingView extends React.PureComponent {
               <View style={{backgroundColor: '#FFF', justifyContent: 'center', paddingVertical: 20}}>
                 <View style={{backgroundColor: "#FFF", flexDirection: "row", paddingBottom: 12, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: "#F7F7F7"}}>
                   <View style={{flex: 2}}>
-                    <Text allowFontScaling={false} style={{ fontFamily: fonts.robotoCondensed, fontSize: 20, color: colors.dark}} numberOfLines={1}>
+                    <Text style={{ fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), color: colors.dark}} numberOfLines={1}>
                       {this.state.listing.title}
                     </Text>
                   </View>
                   <View style={{flex: 1}}>
-                    <Text allowFontScaling={false} style={{ fontFamily: fonts.robotoCondensed, fontSize: 20, color: "#1FB200", textAlign: "right"}}>
+                    <Text style={{ fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), color: "#1FB200", textAlign: "right"}}>
                       ${parseFloat(this.state.listing.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </Text>
                   </View>
                 </View>
                 {this.state.listing.description !== null && this.state.listing.description !== "" &&
                   <View style={{borderBottomWidth: 1, borderBottomColor: "#F7F7F7", paddingVertical: 12}}>
-                    <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: 18, paddingHorizontal: 12}} numberOfLines={1}>
+                    <Text style={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(15, 2.5), paddingHorizontal: 12}} numberOfLines={1}>
                       {this.state.listing.description}
                     </Text>
                   </View>
                 }
                 {this.state.listing.listedBy &&
-                  <View style={{flexDirection: 'row', paddingHorizontal: 12, paddingTop: 10, alignItems: 'center'}}>
+                  <View style={{flexDirection: 'row', paddingHorizontal: 12, paddingTop: 10}}>
                       <FastImage
-                        style={{width: 30, height: 30, borderRadius: 15, marginRight: 12}}
+                        style={{width: 35, height: 35, borderRadius: 35/2, marginRight: 12}}
                         source={{
                           uri: this.state.listing.listedBy.account.avatar,
                           priority: FastImage.priority.normal
@@ -84,14 +82,14 @@ export default class ListingView extends React.PureComponent {
                         resizeMode={FastImage.resizeMode.cover}
                       />
                       <View>
-                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark, marginVertical: 0}}>
+                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark, marginVertical: 0}}>
                           Listed by {this.state.listing.listedBy.account.name}
                         </Text>
-                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark, paddingTop: 2}}>
+                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark, paddingTop: 1}}>
                           In {`${this.state.listing.address}, ${this.state.listing.district}`}
                         </Text>
-                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark, paddingTop: 2}}>
-                          {this.state.listing.createdAt}
+                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.grey, paddingTop: 8}}>
+                          {format(this.state.listing.createdAt, 'EEEE, LLLL do yyyy')}
                         </Text>
                       </View>
                   </View>
@@ -102,10 +100,9 @@ export default class ListingView extends React.PureComponent {
           <View>
             <Button
               containerViewStyle={{width: '100%', marginLeft: 0, alignSelf: 'stretch'}}
-              buttonStyle={{backgroundColor: colors.green, paddingVertical: 2}}
-              titleProps={{allowFontScaling: false}}
+              buttonStyle={{backgroundColor: colors.green}}
               title='Message' 
-              titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: 20}}
+              titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: moderateScale(18, 2.5)}}
               icon={{name: 'md-text', type: 'ionicon', color: "#FFF", size: 20}}
               //onPress={() => this.setState({modalVisible: true})}
               onPress={

@@ -14,6 +14,7 @@ import { formatDistance } from 'date-fns';
 import {
   reverseGeocode,
 } from '../../utils/geocode';
+import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles'
 
 const numColumns = 2;
@@ -35,14 +36,15 @@ export default class Home extends React.PureComponent {
       headerRight: (
         <View style={styles.headerContainer}>
           <TouchableOpacity 
-            style={{alignSelf: 'stretch', justifyContent: 'center', width: 50}}
+            style={{alignSelf: 'stretch', justifyContent: 'center', marginRight: 10}}
             activeOpacity={0.4}
             onPress={() => navigation.navigate('Search')}
           >
             <Icon
               iconStyle={{elevation: 1}}
-              name='md-search'
-              type='ionicon'
+              name='search'
+              size={20}
+              type='octicon'
               color={colors.green}
             />
           </TouchableOpacity>
@@ -52,26 +54,28 @@ export default class Home extends React.PureComponent {
       headerLeft: (
         <View style={styles.headerContainer}>
           <TouchableOpacity 
-            style={{alignSelf: 'stretch', justifyContent: 'center', width: 40}}
+            style={{alignSelf: 'stretch', justifyContent: 'center', marginRight: 6, marginLeft: 10}}
             activeOpacity={0.4}
             onPress={() => navigation.navigate('Filter', {changeLocation: params.changeLocation})}
           >
             <Icon
               iconStyle={{elevation: 1}}
-              name='location-on'
+              name='location'
+              type='octicon'
               color={colors.green}
+              size={20}
             />
           </TouchableOpacity>
           <View style={{flex: 1}}>
             {params &&
               <Text 
-                allowFontScaling={false}
                 style={{
                   fontFamily: fonts.robotoCondensed, 
-                  fontSize: 18, 
-                  color: colors.dark, textAlign: 'right'
+                  fontSize: moderateScale(17, 2.5), 
+                  color: colors.dark
                 }} 
-                numberOfLines={1}>
+                numberOfLines={1}
+              >
                 {address}
               </Text>
             }
@@ -169,7 +173,7 @@ export default class Home extends React.PureComponent {
           onPress={() => this.onSelectListing(item)}
           activeOpacity={0.8}
         >
-          <Text  style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: 15, paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
+          <Text style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(13, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
             {formatDistance(item.createdAt, new Date(), {addSuffix: true})}
           </Text>
           <View style={styles.imageContainer}>
@@ -183,13 +187,13 @@ export default class Home extends React.PureComponent {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: 16, paddingTop: 1}}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 1}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </Text>
-            <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: 16, paddingTop: 4}} numberOfLines={1}>
+            <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2.5), paddingTop: 4}} numberOfLines={1}>
               Near {item.address}
             </Text>
             
@@ -200,7 +204,6 @@ export default class Home extends React.PureComponent {
   };
 
   handleLoadMore = () => {
-    console.log("LOAD MORE");
     this.setState({
       page: this.state.page + 1,
     }, 

@@ -9,6 +9,7 @@ import FastImage from 'react-native-fast-image'
 import { ListItem } from 'react-native-elements'
 import Loader from '../../components/Loader';
 import { fonts, colors } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 
 export default class AccountListings extends React.Component {
 
@@ -41,9 +42,8 @@ export default class AccountListings extends React.Component {
                                 containerStyle={{borderBottomWidth: 0}}
                                 title={
                                     <View style={{marginBottom: 6}}>
-                                        <Text 
-                                            allowFontScaling={false}
-                                            style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.dark}}
+                                        <Text
+                                            style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
                                         >
                                             {item.title}
                                         </Text>
@@ -51,9 +51,8 @@ export default class AccountListings extends React.Component {
                                 }
                                 subtitle={
                                     <View>
-                                      <Text 
-                                        allowFontScaling={false}
-                                        style={{fontFamily: fonts.robotoCondensed, fontSize: 16, color: colors.green}}
+                                      <Text
+                                        style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
                                       >
                                         ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                                       </Text>
