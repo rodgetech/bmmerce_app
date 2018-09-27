@@ -41,11 +41,9 @@ export default class Home extends React.PureComponent {
             onPress={() => navigation.navigate('Search')}
           >
             <Icon
-              iconStyle={{elevation: 1}}
-              name='search'
-              size={20}
-              type='octicon'
-              color={colors.green}
+              name='magnifying-glass'
+              type='entypo'
+              color={colors.dark}
             />
           </TouchableOpacity>
         </View>
@@ -54,32 +52,40 @@ export default class Home extends React.PureComponent {
       headerLeft: (
         <View style={styles.headerContainer}>
           <TouchableOpacity 
-            style={{alignSelf: 'stretch', justifyContent: 'center', marginRight: 6, marginLeft: 10}}
+            style={{flexDirection: 'row', justifyContent: 'center', marginLeft: 10}}
             activeOpacity={0.4}
             onPress={() => navigation.navigate('Filter', {changeLocation: params.changeLocation})}
           >
             <Icon
-              iconStyle={{elevation: 1}}
               name='location'
-              type='octicon'
-              color={colors.green}
-              size={20}
+              type='entypo'
+              color={colors.dark}
             />
-          </TouchableOpacity>
-          <View style={{flex: 1}}>
-            {params &&
+            {params ? 
               <Text 
                 style={{
                   fontFamily: fonts.robotoCondensed, 
                   fontSize: moderateScale(17, 2.5), 
-                  color: colors.dark
+                  color: colors.dark,
+                  marginLeft: 6
                 }} 
                 numberOfLines={1}
               >
                 {address}
               </Text>
+            :
+              <Text
+                style={{
+                  fontFamily: fonts.robotoCondensed, 
+                  fontSize: moderateScale(17, 2.5), 
+                  color: colors.dark,
+                  marginLeft: 6
+                }}   
+              >
+                ...
+              </Text>
             }
-          </View>
+          </TouchableOpacity>
         </View>
       ),
     }
@@ -108,7 +114,7 @@ export default class Home extends React.PureComponent {
       (error) => {
           return error
       }, {
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
           timeout: 10000
       },
     );

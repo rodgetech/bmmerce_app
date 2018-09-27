@@ -5,6 +5,7 @@ import {
 import { connect } from "react-redux";
 import engagementOperations from '../modules/engagements/operations';
 import {colors, fonts} from '../styles';
+import { moderateScale } from '../utils/scaling';
 
 class EngagementsTabIcon extends React.Component {
     
@@ -16,21 +17,20 @@ class EngagementsTabIcon extends React.Component {
         return (
             this.props.unreadCount > 0 ? 
                 <Text 
-                    allowFontScaling={false}
                     style={{
                         color: '#FFF',
                         position:'absolute',
-                        top:1,
-                        right:-12,
+                        top:2,
+                        right:-11,
                         margin: -1,
-                        minWidth:16,
-                        height:16,
+                        minWidth:15,
+                        height:15,
                         borderRadius: 4,
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor: colors.altGreen, 
                         textAlign: "center",  
-                        fontSize: 12,
+                        fontSize: moderateScale(10, 2.5),
                         fontFamily: fonts.robotoCondensed
                     }}
                 >

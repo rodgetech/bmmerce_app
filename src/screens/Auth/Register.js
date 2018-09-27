@@ -61,7 +61,7 @@ class Register extends React.Component {
               underlineColorAndroid='transparent'
               placeholder="Full Name"
               containerStyle={{marginBottom: 20, width: '100%'}}
-              inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
+              inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
               inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
               leftIcon={
                 <Icon
@@ -81,7 +81,7 @@ class Register extends React.Component {
             underlineColorAndroid='transparent'
             placeholder="Email"
             containerStyle={{marginBottom: 20, width: '100%'}}
-            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
+            inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
             inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
             leftIcon={
               <Icon
@@ -99,7 +99,7 @@ class Register extends React.Component {
             underlineColorAndroid='transparent'
             placeholder="Password"
             containerStyle={{marginBottom: 30, width: '100%'}}
-            inputStyle={{fontFamily: fonts.robotoCondensed, color: '#FFF', fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
+            inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(18, 2.5), paddingVertical: 0}}
             inputContainerStyle={{borderColor: '#CCC', borderBottomWidth: 1, borderRadius: 0, paddingVertical: 6}}
             leftIcon={
               <Icon

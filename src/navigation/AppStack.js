@@ -54,7 +54,6 @@ const EngagementsTabStack =  createStackNavigator(
     {
         navigationOptions: {
             title: "Engagements",
-            headerTitleAllowFontScaling: false,
             headerStyle: {
                 elevation: 0,
                 backgroundColor: '#FFF',
@@ -106,7 +105,7 @@ const TabNavigation =   createBottomTabNavigator(
             screen: Post,
             navigationOptions: ({navigation}) => ({
                 tabBarIcon: ({ tintColor }) => (
-                    <View >
+                    <View>
                       <Icon name="md-camera" size={23} color={tintColor} />
                     </View>
                 ),
@@ -141,15 +140,14 @@ const TabNavigation =   createBottomTabNavigator(
         animationEnabled: false,
         tabBarOptions: {
             activeTintColor: colors.green,
-            inactiveTintColor: '#787878',
+            inactiveTintColor: '#757575',
             activeBackgroundColor: '#FFF',
             inactiveBackgroundColor: '#FFF',
             showIcon: true,
             showLabel: true,
-            allowFontScaling: false,
             labelStyle: {
                 fontFamily: fonts.robotoCondensed,
-                fontSize: moderateScale(11, 2.5),
+                fontSize: moderateScale(12, 2.5),
                 marginTop:-6, 
                 marginBottom: 6,
             },
@@ -172,7 +170,7 @@ const TabNavigation =   createBottomTabNavigator(
         animationEnabled: false,
         tabBarOptions: {
             activeTintColor: '#FFF',
-            inactiveTintColor: '#BABABA',
+            inactiveTintColor: '#757575',
             activeBackgroundColor: colors.altGreen,
             showIcon: true,
             showLabel: false,

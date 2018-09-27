@@ -26,7 +26,7 @@ export default class Account extends React.PureComponent {
         <Icon
           name='settings'
           type='octicon'
-          color={colors.green}
+          color='#737373'
           iconStyle={{marginRight: 14}}
           containerStyle={{justifyContent: 'center'}}
         />

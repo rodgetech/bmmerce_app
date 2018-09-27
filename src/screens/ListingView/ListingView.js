@@ -86,7 +86,7 @@ export default class ListingView extends React.PureComponent {
                           Listed by {this.state.listing.listedBy.account.name}
                         </Text>
                         <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark, paddingTop: 1}}>
-                          In {`${this.state.listing.address}, ${this.state.listing.district}`}
+                          {`${this.state.listing.address}, ${this.state.listing.district}`}
                         </Text>
                         <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.grey, paddingTop: 8}}>
                           {format(this.state.listing.createdAt, 'EEEE, LLLL do yyyy')}
