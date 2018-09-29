@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)'
+    backgroundColor: '#9C9C9C'
   },
   selectedImage: {
     flex: 1.2,

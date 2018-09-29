@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import Permissions from 'react-native-permissions';
 import { Button, Input, Icon } from 'react-native-elements';
 import ImagePicker  from 'react-native-image-picker';   
 import FastImage from 'react-native-fast-image';
@@ -54,7 +55,26 @@ export default class Post extends React.Component {
     }
   };
 
-  componentDidMount() {
+  requestPermission = (permission) => {
+    Permissions.request(permission).then(response => {
+    })
+  }
+
+  componentDidMount = () => {
+    // Check permissions for camera and photos
+    Permissions.checkMultiple(['camera', 'photo', 'location']).then(response => {
+      //response is an object mapping type to permission
+      if (response.camera == 'undetermined' || response.camera == 'denied') {
+        this.requestPermission('camera');
+      }
+      // if (response.photo == 'undetermined') {
+      //   this.requestPermission('photo');
+      // }
+      if (response.location == 'location' || response.location == 'denied') {
+        this.requestPermission('location');
+      }
+    })
+
     this.props.navigation.setParams({
       setImageFromCamera:this.setImageFromCamera
     });
@@ -179,8 +199,8 @@ export default class Post extends React.Component {
         <ActivityLoader
           loading={this.props.creatingListing} />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ backgroundColor: '#F7F7F7', height: 280 }}>
-            {this.state.images[0] && 
+          <View style={{ backgroundColor: '#CCC', height: 280 }}>
+            {this.state.images[0] != undefined && 
               <FastImage
                 style={StyleSheet.absoluteFill}
                 source={{ uri: this.state.images[0], priority: FastImage.priority.normal }}
@@ -244,7 +264,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.6)'
+    backgroundColor: '#9C9C9C'
   },
   selectedImage: {
     flex: 1.2,

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import Permissions from 'react-native-permissions';
 import { Icon } from 'react-native-elements';
 import FastImage from 'react-native-fast-image'
 import OneSignal from 'react-native-onesignal';
@@ -91,7 +92,21 @@ export default class Home extends React.PureComponent {
     }
   };
 
+  requestLocationPermission = () => {
+    Permissions.request('location').then(response => {
+      // Returns once the user has chosen to 'allow' or to 'not allow' access
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+    })
+  }
+
   componentDidMount = async () => {
+    Permissions.check('location').then(response => {
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      if (response == 'undetermined' || response == 'denied') {
+        this.requestLocationPermission();
+      }
+    })
+
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         //console.log("POSITION", position);
