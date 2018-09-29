@@ -41,43 +41,43 @@ export default class Filter extends React.Component {
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Nationwide")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Nationwide</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Nationwide</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Cayo District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Cayo District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Cayo District</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Belize District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Belize District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Belize District</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Stann Creek District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Stann Creek District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Stann Creek District</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Orange Walk District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Orange Walk District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Orange Walk District</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Corozal District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Corozal District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Corozal District</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Toledo District")}
                 >
-                    <Text style={{color: colors.altDark, fontSize: moderateScale(15, 2.5), fontFamily: fonts.robotoCondensed}}>Toledo District</Text>
+                    <Text style={{color: colors.altDark, fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>Toledo District</Text>
                 </TouchableOpacity>
             </View>
         );

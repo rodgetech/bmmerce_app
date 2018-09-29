@@ -35,14 +35,14 @@ export default class Account extends React.PureComponent {
         params ?      
           <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14}}>
             <FastImage
-              style={{height: 35, width: 35, borderRadius: 35/2}}
+              style={{height: 35, width: 35, borderRadius: 2}}
               source={{
                 uri: params.avatar || '',
                 priority: FastImage.priority.normal
               }}
               resizeMode={FastImage.resizeMode.cover}
             />
-            <Text style={{fontSize: moderateScale(17, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingLeft: 8}}>
+            <Text style={{fontSize: moderateScale(17, 1.7), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingLeft: 8}}>
               {params.name}
             </Text>
           </View>
@@ -91,7 +91,7 @@ export default class Account extends React.PureComponent {
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.body}>
             <TouchableOpacity 
-              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#F2F2F2", borderBottomWidth: 1, flexDirection: 'row'}}
+              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#fafafa", borderBottomWidth: 1, flexDirection: 'row'}}
               onPress={() => this.props.navigation.navigate('Post')}
             >
               <Icon
@@ -106,7 +106,7 @@ export default class Account extends React.PureComponent {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#F2F2F2", borderBottomWidth: 1, flexDirection: 'row' }}
+              style={{paddingVertical:24, paddingHorizontal: 14, borderColor: "#fafafa", borderBottomWidth: 1, flexDirection: 'row' }}
               onPress={() => this.props.navigation.navigate('AccountListings')}
             >
               <Icon
@@ -121,7 +121,7 @@ export default class Account extends React.PureComponent {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
+              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#fafafa", borderBottomWidth: 1, alignSelf: "stretch" }}
               onPress={() => this.props.navigation.navigate('Engagements')}
             >
               <Icon
@@ -136,7 +136,7 @@ export default class Account extends React.PureComponent {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 
-              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
+              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#fafafa", borderBottomWidth: 1, alignSelf: "stretch" }}
               onPress={() => this.props.navigation.navigate('SetAddress', {bakToMenu: true})}
             >
               <Icon

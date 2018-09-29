@@ -37,7 +37,7 @@ export default class Engagement extends React.Component {
       headerRight: (
         params.listingImage && (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingRight: 8}}>
+          <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.7), paddingRight: 8}}>
             ${parseFloat(params.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
           </Text>
           <FastImage

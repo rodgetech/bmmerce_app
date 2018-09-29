@@ -65,7 +65,7 @@ const EngagementsTabStack =  createStackNavigator(
                 color: colors.dark,
                 fontFamily: fonts.robotoCondensed,
                 fontWeight: 'normal',
-                fontSize: moderateScale(17, 2.5)
+                fontSize: moderateScale(17, 1.7)
             },
             headerTintColor: '#FFF',
         }
@@ -148,7 +148,7 @@ const TabNavigation =   createBottomTabNavigator(
             showLabel: true,
             labelStyle: {
                 fontFamily: fonts.robotoCondensed,
-                fontSize: moderateScale(12, 2.5),
+                fontSize: moderateScale(12, 2),
                 marginTop:-6, 
                 marginBottom: 6,
             },
@@ -284,7 +284,7 @@ const AppStack =  createStackNavigator(
                     color: colors.dark, 
                     fontFamily: fonts.robotoCondensed,
                     fontWeight: 'normal',
-                    fontSize: moderateScale(17, 2.5)
+                    fontSize: moderateScale(17, 1.7)
                 },
                 headerTintColor: colors.dark,
             },
@@ -324,7 +324,7 @@ const AppStack =  createStackNavigator(
                     color: colors.dark, 
                     fontFamily: fonts.robotoCondensed,
                     fontWeight: 'normal',
-                    fontSize: moderateScale(17, 2.5)
+                    fontSize: moderateScale(17, 1.7)
                 },
                 headerTintColor: colors.dark,
             },
@@ -344,7 +344,7 @@ const AppStack =  createStackNavigator(
                     color: colors.dark, 
                     fontFamily: fonts.robotoCondensed,
                     fontWeight: 'normal',
-                    fontSize: moderateScale(17, 2.5)
+                    fontSize: moderateScale(17, 1.7)
                 },
                 headerTintColor: colors.dark,
             },

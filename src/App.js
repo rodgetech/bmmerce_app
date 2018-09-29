@@ -13,6 +13,7 @@ export default class App extends React.Component {
     OneSignal.init("6e1f4645-71e3-469e-838a-16d2a3fdd1b1");
     OneSignal.enableVibrate(true);
     OneSignal.enableSound(true);
+    OneSignal.configure();
   }
 
   render() {

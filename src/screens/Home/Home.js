@@ -66,7 +66,7 @@ export default class Home extends React.PureComponent {
               <Text 
                 style={{
                   fontFamily: fonts.robotoCondensed, 
-                  fontSize: moderateScale(17, 2.5), 
+                  fontSize: moderateScale(17, 1.7), 
                   color: colors.dark,
                   marginLeft: 6
                 }} 
@@ -78,7 +78,7 @@ export default class Home extends React.PureComponent {
               <Text
                 style={{
                   fontFamily: fonts.robotoCondensed, 
-                  fontSize: moderateScale(17, 2.5), 
+                  fontSize: moderateScale(17, 2), 
                   color: colors.dark,
                   marginLeft: 6
                 }}   
@@ -141,7 +141,6 @@ export default class Home extends React.PureComponent {
   }
 
   componentWillMount() {
-    console.log("APP PUSH MOUNTED")
     OneSignal.setSubscription(true); // Enable notifications
   
     OneSignal.addEventListener('received', this.onReceived);
@@ -153,7 +152,6 @@ export default class Home extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    console.log("APP PUSH UNMOUNTED");
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', this.onOpened);
   }
@@ -213,13 +211,13 @@ export default class Home extends React.PureComponent {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 1}}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2), paddingTop: 1}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </Text>
-            <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2.5), paddingTop: 4}} numberOfLines={1}>
+            <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>
               Near {item.address}
             </Text>
           </View>

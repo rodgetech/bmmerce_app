@@ -30,9 +30,9 @@ class Auth extends React.Component {
   }
 
   componentWillMount() {
-    console.log("AUTH PUSH IS MOUNTING");
     OneSignal.setSubscription(false); // Disable notifications
     OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.configure();
   }
 
   componentWillUnmount() {

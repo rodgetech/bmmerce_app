@@ -94,13 +94,13 @@ export default class Search extends React.Component {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 1}}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2), paddingTop: 1}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2.5), paddingTop: 4}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>
               Near {item.address}
             </Text>
           </View>
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
       paddingLeft: 10,
       color: colors.dark,
-      fontSize: moderateScale(15, 2.5),
+      fontSize: moderateScale(16, 2),
       fontFamily: fonts.robotoCondensed,
   }
 });
