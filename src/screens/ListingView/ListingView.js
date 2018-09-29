@@ -54,7 +54,7 @@ export default class ListingView extends React.PureComponent {
               <View style={{backgroundColor: '#FFF', justifyContent: 'center', paddingVertical: 20}}>
                 <View style={{backgroundColor: "#FFF", flexDirection: "row", paddingBottom: 12, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: "#F7F7F7"}}>
                   <View style={{flex: 2}}>
-                    <Text style={{ fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), color: colors.dark}} numberOfLines={1}>
+                    <Text style={{ fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), color: colors.dark}}>
                       {this.state.listing.title}
                     </Text>
                   </View>

@@ -30,7 +30,7 @@ class EngagementsTabIcon extends React.Component {
                         justifyContent: 'center',
                         backgroundColor: colors.altGreen, 
                         textAlign: "center",  
-                        fontSize: moderateScale(10, 2.5),
+                        fontSize: moderateScale(9, 2.5),
                         fontFamily: fonts.robotoCondensed
                     }}
                 >

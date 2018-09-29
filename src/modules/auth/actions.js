@@ -49,6 +49,19 @@ const getAccountSuccess = (json) => ({
     account: json
 });
 
+const updateAddress = () => ({
+    type: types.UPDATE_ADDRESS
+});
+
+const updateAddressSuccess = (json) => ({
+    type: types.UPDATE_ADDRESS_SUCCESS,
+    address: json
+});
+
+const updateAddressFailure = () => ({
+    type: types.UPDATE_ADDRESS_FAILURE,
+});
+
 export default {
     authenticate,
     authenticateSuccess,
@@ -60,5 +73,8 @@ export default {
     registerSuccess,
     registerFailure,
     getAccount,
-    getAccountSuccess
+    getAccountSuccess,
+    updateAddress,
+    updateAddressSuccess,
+    updateAddressFailure
 };

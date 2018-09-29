@@ -22,10 +22,12 @@ const registerSuccessAction = Actions.registerSuccess;
 const registerFailureAction = Actions.registerFailure;
 const getAccountAction = Actions.getAccount;
 const getAccountSuccessAction = Actions.getAccountSuccess;
-
+const updateAddressAction = Actions.updateAddress;
+const updateAddressSuccessAction = Actions.updateAddressSuccess;
+const updateAddressFailureAction = Actions.updateAddressFailure;
 
 const authenticate = (user) => {
-  const url = user.hasOwnProperty('provider') ? `${API_ROOT}/auth/authenticate/${user.provider}` : `${API_ROOT}/auth/authenticate` ;
+  const url = user.hasOwnProperty('provider') ? `${API_ROOT}/auth/authenticate/${user.provider}` : `${API_ROOT}/auth/authenticate`;
   return dispatch => {
     dispatch(authenticateAction());
     axios.post(url, user)
@@ -55,7 +57,7 @@ const register = (newUser) => {
         // Apply token to request headers
         setAuthorizationToken(authToken);
         dispatch(registerSuccessAction());
-        navigationService.navigate('App', {
+        navigationService.navigate('Address', {
           authToken: authToken
         });
       })
@@ -95,6 +97,7 @@ const getAccount = () => {
           avatar: responseData.avatar,
           name: responseData.name,
           email: responseData.email,
+          address: responseData.address,
         };
         console.log("MY GET ACCOUNT FAY", account);
         dispatch(getAccountSuccessAction(account))
@@ -105,9 +108,30 @@ const getAccount = () => {
   }
 }
 
+const updateAddress = (newAddress, bakToMenu = false) => {
+  return async dispatch => {
+    dispatch(updateAddressAction());
+    await setAuthorizationToken('authToken');
+    axios.put(`${API_ROOT}/admin/account/address`, newAddress)
+      .then(async (response) => {
+        // Apply token to request headers
+        dispatch(updateAddressSuccessAction());
+        redirectLocation = bakToMenu ? 'Menu' : 'App';
+        navigationService.navigate(redirectLocation, {
+          temp: {}
+        });
+      })
+      .catch((error) => {
+        console.log(error.response.data.data);
+        dispatch(updateAddressFailureAction());
+      });
+  }
+};
+
 export default {
   authenticate,
   register,
   verifyToken,
-  getAccount
+  getAccount,
+  updateAddress
 };

@@ -24,28 +24,32 @@ export default class Account extends React.PureComponent {
     return {
       headerRight: (
         <Icon
-          name='settings'
-          type='octicon'
-          color='#737373'
+          name='cog'
+          type='entypo'
+          color={colors.dark}
           iconStyle={{marginRight: 14}}
           containerStyle={{justifyContent: 'center'}}
         />
       ),
       headerLeft: (
-        params &&      
+        params ?      
           <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14}}>
-              <FastImage
-                style={{height: 35, width: 35, borderRadius: 35/2}}
-                source={{
-                  uri: params.avatar || '',
-                  priority: FastImage.priority.normal
-                }}
-                resizeMode={FastImage.resizeMode.cover}
-              />
-              <Text style={{fontSize: moderateScale(17, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingLeft: 8}}>
-                {params.name}
-              </Text>
+            <FastImage
+              style={{height: 35, width: 35, borderRadius: 35/2}}
+              source={{
+                uri: params.avatar || '',
+                priority: FastImage.priority.normal
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+            <Text style={{fontSize: moderateScale(17, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingLeft: 8}}>
+              {params.name}
+            </Text>
           </View>
+        :
+          <Text style={{fontSize: moderateScale(20, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingHorizontal: 14}}>
+            ...
+          </Text>
       ),
     }
   };
@@ -129,6 +133,21 @@ export default class Account extends React.PureComponent {
                 style={styles.bodyLabel}
               >
                 Engagements
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={{paddingVertical:24, paddingHorizontal: 14, flexDirection: 'row', borderColor: "#F2F2F2", borderBottomWidth: 1, alignSelf: "stretch" }}
+              onPress={() => this.props.navigation.navigate('SetAddress', {bakToMenu: true})}
+            >
+              <Icon
+                name='md-pin'
+                type='ionicon'
+                color={colors.altGreen}
+              />
+              <Text 
+                style={styles.bodyLabel}
+              >
+                Update Your Address
               </Text>
             </TouchableOpacity>
             <TouchableOpacity 

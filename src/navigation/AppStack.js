@@ -22,7 +22,8 @@ import {
     AccountListings,
     EditListing,
     Search,
-    Filter
+    Filter,
+    SetAddress
 } from '../screens';
 
 import EngagementsTabIcon from './EngagementsTabIcon';
@@ -313,6 +314,26 @@ const AppStack =  createStackNavigator(
             navigationOptions: {
                 header: (props) => <Header {...props} />,
                 title: "Change Location",
+                headerStyle: {
+                    elevation: 0,
+                    backgroundColor: '#FFF',
+                    borderColor: '#e9eced',
+                    borderBottomWidth: 1
+                },
+                headerTitleStyle: {
+                    color: colors.dark, 
+                    fontFamily: fonts.robotoCondensed,
+                    fontWeight: 'normal',
+                    fontSize: moderateScale(17, 2.5)
+                },
+                headerTintColor: colors.dark,
+            },
+        },
+        SetAddress: {
+            screen: SetAddress,
+            navigationOptions: {
+                title: "Specify Your Address",
+                header: (props) => <Header {...props} />,
                 headerStyle: {
                     elevation: 0,
                     backgroundColor: '#FFF',

@@ -8,7 +8,8 @@ const STATE = {
   registering: false,
   registerErrors: {},
   gettingAccount: false,
-  account: {}
+  account: {},
+  updatingAddress: false
 }
 
 const authReducer = (state = STATE, action) => {
@@ -117,6 +118,36 @@ const authReducer = (state = STATE, action) => {
           ...state,
           account,
           gettingAccount: false,
+        }
+      }
+
+      case types.UPDATE_ADDRESS:
+      {
+        return {
+          ...state,
+          updatingAddress: true,
+        }
+      }
+
+    case types.UPDATE_ADDRESS_SUCCESS:
+      {
+        // const {
+        //   account
+        // } = action;
+        return {
+          ...state,
+          updatingAddress: false,
+        }
+      }
+
+      case types.UPDATE_ADDRESS_FAILURE:
+      {
+        // const {
+        //   account
+        // } = action;
+        return {
+          ...state,
+          updatingAddress: false,
         }
       }
 

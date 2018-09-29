@@ -112,7 +112,12 @@ export default class Home extends React.PureComponent {
         this.props.getListings(latitude, longitude, null, this.state.page);
       },
       (error) => {
-          return error
+        // Current location unavailable, fetch all listings
+        this.props.navigation.setParams({
+          address: 'Nationwide',
+        });
+        this.props.getListings(null, null, null, 1);
+        return error
       }, {
           enableHighAccuracy: true,
           timeout: 10000
@@ -202,7 +207,6 @@ export default class Home extends React.PureComponent {
             <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2.5), paddingTop: 4}} numberOfLines={1}>
               Near {item.address}
             </Text>
-            
           </View>
         </TouchableOpacity>
       </View>

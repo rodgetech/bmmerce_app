@@ -41,7 +41,7 @@ export default class Engagements extends React.PureComponent {
     return (
       <ListItem
         title={
-          <View style={{marginBottom: 6}}>
+          <View style={{marginBottom: 2}}>
             <Text
               style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
             >
@@ -60,7 +60,7 @@ export default class Engagements extends React.PureComponent {
         }
         leftAvatar={
           <FastImage
-            style={{width: 70, height: 70, marginRight: 14}}
+            style={{width: 70, height: 70}}
             source={{
               uri: item.listing.images[0].listing_image.url,
               priority: FastImage.priority.normal

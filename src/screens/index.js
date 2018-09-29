@@ -16,6 +16,7 @@ import AccountListings from './AccountListings';
 import EditListing from './EditListing';
 import Search from './Search';
 import Filter from './Filter';
+import SetAddress from './SetAddress';
 
 export {
     Home,
@@ -33,5 +34,6 @@ export {
     AccountListings,
     EditListing,
     Search,
-    Filter
+    Filter,
+    SetAddress
 }

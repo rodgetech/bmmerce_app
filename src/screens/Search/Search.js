@@ -80,7 +80,7 @@ export default class Search extends React.Component {
           onPress={() => this.onSelectListing(item)}
           activeOpacity={0.8}
         >
-          <Text  style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(13, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
+          <Text style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(13, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
             {formatDistance(item.createdAt, new Date(), {addSuffix: true})}
           </Text>
           <View style={styles.imageContainer}>
@@ -94,11 +94,14 @@ export default class Search extends React.Component {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text allowFontScaling={false} style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 6}}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2.5), paddingTop: 1}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+            </Text>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2.5), paddingTop: 4}} numberOfLines={1}>
+              Near {item.address}
             </Text>
           </View>
         </TouchableOpacity>
@@ -141,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fafafa",
     alignItems: 'center',
     justifyContent: 'center',
-    height: 120, // approximate a square
+    height: 130, // approximate a square
   },
   itemContainer: {
     flex: 1,
