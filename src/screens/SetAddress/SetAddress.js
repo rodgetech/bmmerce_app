@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF'
     },
     image: {
-        height: 200,
+        height: 160,
         backgroundColor: '#f7f7f7'
     },
 })

@@ -22,15 +22,15 @@ export default class Account extends React.PureComponent {
     const { params } = navigation.state;
     console.log("Something went wrong", params);
     return {
-      headerRight: (
-        <Icon
-          name='cog'
-          type='entypo'
-          color={colors.dark}
-          iconStyle={{marginRight: 14}}
-          containerStyle={{justifyContent: 'center'}}
-        />
-      ),
+      // headerRight: (
+      //   <Icon
+      //     name='cog'
+      //     type='entypo'
+      //     color={colors.dark}
+      //     iconStyle={{marginRight: 14}}
+      //     containerStyle={{justifyContent: 'center'}}
+      //   />
+      // ),
       headerLeft: (
         params ?      
           <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14}}>

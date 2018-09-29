@@ -199,8 +199,8 @@ export default class Post extends React.Component {
         <ActivityLoader
           loading={this.props.creatingListing} />
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ backgroundColor: '#CCC', height: 280 }}>
-            {this.state.images[0] != undefined && 
+          <View style={{ backgroundColor: '#F7F7F7', height: 280}}>
+            {this.state.images[0] && 
               <FastImage
                 style={StyleSheet.absoluteFill}
                 source={{ uri: this.state.images[0], priority: FastImage.priority.normal }}
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    backgroundColor: '#9C9C9C'
+    backgroundColor: '#rgba(0, 0, 0, 0.5)'
   },
   selectedImage: {
     flex: 1.2,
