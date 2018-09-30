@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {
+  showMessage
+} from "react-native-flash-message";
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import navigationService from '../../utils/navigationService';
 
@@ -212,9 +215,23 @@ const createListing = (newListing) => {
         navigationService.navigate('Home', {
           listing: listing
         });
+        showMessage({
+          message: "Listing created successfully",
+          type: "success",
+          backgroundColor: "#27ae60",
+          duration: 2000,
+          floating: true
+        });
       })
       .catch((error) => {
         console.log("CREATE ERRROR:", error);
+        showMessage({
+          message: "Listing could not be created",
+          type: "danger",
+          backgroundColor: "#e74c3c",
+          duration: 2500,
+          floating: true
+        });
         // dispatch(createListingFailureAction(error.response.data.errors));
         // dispatch(authenticateFailureAction(error.response.data.error.user_authentication[0]));
       });
@@ -246,7 +263,6 @@ const updateListing = (listing) => {
     dispatch(updateListingAction());
     axios.put(`${API_ROOT}/admin/listings/${listing.id}`, formData)
       .then(async (response) => {
-        console.log("UPDATE SUCCESSSSSS", response.data.listing);
         let responseData = response.data.listing;
         const listing = {
           id: responseData.id,
@@ -257,9 +273,23 @@ const updateListing = (listing) => {
           images: responseData.images,
         };
         dispatch(updateListingSuccessAction(listing));
+        showMessage({
+          message: "Listing updated successfully",
+          type: "success",
+          backgroundColor: "#27ae60",
+          duration: 2500,
+          floating: true
+        });
       })
       .catch((error) => {
         console.log("UPDATE ERRROR:", error);
+        showMessage({
+          message: "Listing could not be updated",
+          type: "danger",
+          backgroundColor: "#e74c3c",
+          duration: 2500,
+          floating: true
+        });
         // dispatch(createListingFailureAction(error.response.data.errors));
         // dispatch(authenticateFailureAction(error.response.data.error.user_authentication[0]));
       });
@@ -277,9 +307,23 @@ const deleteListing = (id) => {
         navigationService.navigate('AccountListings', {
           id: id
         });
+        showMessage({
+          message: "Listing deleted successfully",
+          type: "success",
+          backgroundColor: "#27ae60",
+          duration: 2500,
+          floating: true
+        });
       })
       .catch((error) => {
         console.log("DELETE ERRROR:", error);
+        showMessage({
+          message: "Listing could not be deleted",
+          type: "danger",
+          backgroundColor: "#e74c3c",
+          duration: 2500,
+          floating: true
+        });
         // dispatch(createListingFailureAction(error.response.data.errors));
         // dispatch(authenticateFailureAction(error.response.data.error.user_authentication[0]));
       });

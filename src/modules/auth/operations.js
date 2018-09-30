@@ -2,6 +2,9 @@ import {
   AsyncStorage
 } from 'react-native';
 import axios from 'axios';
+import {
+  showMessage
+} from "react-native-flash-message";
 
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
 import navigationService from '../../utils/navigationService';
@@ -41,8 +44,15 @@ const authenticate = (user) => {
         });
       })
       .catch((error) => {
-        console.log("WTF:", error);
         dispatch(authenticateFailureAction("Invalid email or password"));
+        showMessage({
+          message: "Sign in failed",
+          description: "Make sure you are entering the right credentials",
+          type: "danger",
+          backgroundColor: "#e74c3c",
+          duration: 3000,
+          floating: true
+        });
       });
   }
 };
@@ -64,6 +74,14 @@ const register = (newUser) => {
       .catch((error) => {
         console.log(error.response.data.data);
         dispatch(registerFailureAction(error.response.data.data));
+        showMessage({
+          message: "Registration failed",
+          description: "Make sure you are entering all required values",
+          type: "danger",
+          backgroundColor: "#e74c3c",
+          duration: 3000,
+          floating: true
+        });
       });
   }
 };

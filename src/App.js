@@ -1,6 +1,7 @@
 import React from 'react';
-import { YellowBox } from 'react-native';
+import { YellowBox, View } from 'react-native';
 import OneSignal from 'react-native-onesignal';
+import FlashMessage from "react-native-flash-message";
 import Navigation from './navigation';
 import navigationService from './utils/navigationService';
 
@@ -18,11 +19,14 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Navigation 
-        ref={navigatorRef => {
-          navigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
+      <View style={{ flex: 1 }}>
+        <Navigation 
+          ref={navigatorRef => {
+            navigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+        <FlashMessage position="top" />
+      </View>
     );
   }
 }

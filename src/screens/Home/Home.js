@@ -152,17 +152,6 @@ export default class Home extends React.PureComponent {
     );
   }
 
-  // componentWillMount() {
-  //   OneSignal.setSubscription(true); // Enable notifications
-  
-  //   OneSignal.addEventListener('received', this.onReceived);
-  //   OneSignal.addEventListener('opened', this.onOpened);
-    
-  //   // Disbale push notification if app is focused
-  //   OneSignal.inFocusDisplaying(0);
-  //   OneSignal.configure();
-  // }
-
   componentWillUnmount() {
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', this.onOpened);
