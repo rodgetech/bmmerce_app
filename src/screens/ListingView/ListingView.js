@@ -9,8 +9,8 @@ import { format } from 'date-fns';
 import { Button, Icon } from 'react-native-elements';
 import FastImage from 'react-native-fast-image';
 import { moderateScale } from '../../utils/scaling';
-
 import { colors, fonts } from '../../styles';
+import Slider from './Slider';
 
 export default class ListingView extends React.PureComponent {
   state = {
@@ -42,7 +42,7 @@ export default class ListingView extends React.PureComponent {
         <View style={{flex: 1}}>
           <View style={{flex:1, backgroundColor: "#FFF"}}>
             <ScrollView showsVerticalScrollIndicator={false} >
-              <View style={{ backgroundColor: '#FAFAFA', height: 350}}>
+              {/* <View style={{ backgroundColor: '#FAFAFA', height: 350}}>
                 {this.state.listing.images &&
                   <FastImage
                     style={StyleSheet.absoluteFill}
@@ -50,7 +50,10 @@ export default class ListingView extends React.PureComponent {
                     resizeMode={FastImage.resizeMode.cover}
                   />
                 }
-              </View>
+              </View> */}
+              {this.state.listing.images &&
+                <Slider images={this.state.listing.images} />
+              }
               <View style={{backgroundColor: '#FFF', justifyContent: 'center', paddingVertical: 20}}>
                 <View style={{backgroundColor: "#FFF", flexDirection: "row", paddingBottom: 12, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: "#F7F7F7"}}>
                   <View style={{flex: 2}}>
