@@ -7,7 +7,6 @@ import {
 //import SplashScreen from 'react-native-splash-screen';
 import { colors } from '../../styles';
 
-
 export default class AuthLoading extends React.PureComponent {
 
   constructor(props) {

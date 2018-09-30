@@ -39,7 +39,8 @@ const authenticate = (user) => {
         // Store the token on device
         await AsyncStorage.setItem('authToken', authToken);
         dispatch(authenticateSuccessAction());
-        navigationService.navigate('App', {
+        let navigatePath = response.data.has_address ? 'App' : 'Address';
+        navigationService.navigate(navigatePath, {
           authToken: authToken
         });
       })

@@ -45,7 +45,10 @@ class SetAddress extends React.Component {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <FastImage
                         style={styles.image}
-                        source={{ uri: 'https://ssl.c.photoshelter.com/img-get2/I0000jH39T3rHDFk/fit=1000x750/TR-060908-XM2S7985.jpg', priority: FastImage.priority.normal }}
+                        source={{ 
+                            uri: 'https://res.cloudinary.com/bmmerce/image/upload/q_60/v1538335223/home.jpg',
+                            priority: FastImage.priority.normal 
+                        }}
                         resizeMode={FastImage.resizeMode.cover}
                     />
                     <View style={{paddingBottom: 10, paddingHorizontal: 12, marginBottom: 10}}>
@@ -53,7 +56,7 @@ class SetAddress extends React.Component {
                             Where do you live?
                         </Text>
                         <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), color: colors.dark}}>
-                            Specify where you live. This allows us to notify you when new listings are posted nearby.
+                            This allows us to notify you when new listings are posted nearby.
                         </Text>
                     </View>
                     {this.props.updatingAddress &&
