@@ -26,7 +26,8 @@ import { moderateScale } from '../../utils/scaling';
 class Auth extends React.Component {
 
   state = {
-    playerId: ''
+    playerId: '',
+    loading: true
   }
 
   componentWillMount() {
@@ -41,8 +42,10 @@ class Auth extends React.Component {
   }
 
   onIds = (device) => {
-    this.setState({playerId: device.userId});
-    console.log('Device USer: ', device.userId);
+    this.setState({
+      playerId: device.userId,
+      loading: false
+    });
   }
 
   facebookLogin = () => {
@@ -145,6 +148,7 @@ class Auth extends React.Component {
           onPress={this.facebookLogin}
           titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
           buttonStyle={{ backgroundColor: "#3B5998", marginTop: 20, paddingVertical: 6, elevation: 0}} 
+          disabled={this.state.loading}
         />
         {/* <Button 
           title="Continue with Google"
@@ -164,7 +168,7 @@ class Auth extends React.Component {
             <View style={{flex: 1, marginRight: 10}}>
               <Button 
                 title="Sign up"
-                onPress={() => this.props.navigation.navigate('Register', {playerId: this.state.playerId})}
+                onPress={() => this.props.navigation.navigate('Register')}
                 titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
                 buttonStyle={{backgroundColor: colors.altGreen, marginTop: 20, paddingVertical: 6, elevation: 0}} 
               />

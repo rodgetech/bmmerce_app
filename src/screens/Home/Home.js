@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { Icon } from 'react-native-elements';
-import FastImage from 'react-native-fast-image'
+import FastImage from 'react-native-fast-image';
 import OneSignal from 'react-native-onesignal';
 import { formatDistance } from 'date-fns';
 import {
@@ -28,6 +28,7 @@ export default class Home extends React.PureComponent {
     bounds: null,
     latitude: null,
     longitude: null,
+    userId: null
   }
 
   static navigationOptions = ({navigation}) => {
@@ -100,6 +101,17 @@ export default class Home extends React.PureComponent {
   }
 
   componentDidMount = async () => {
+    OneSignal.setSubscription(true); // Enable notifications
+  
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+    
+    // Disbale push notification if app is focused
+    OneSignal.inFocusDisplaying(0);
+    OneSignal.configure();
+
+    this.props.getAccount();
+
     Permissions.check('location').then(response => {
       // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       if (response == 'undetermined' || response == 'denied') {
@@ -140,24 +152,39 @@ export default class Home extends React.PureComponent {
     );
   }
 
-  componentWillMount() {
-    OneSignal.setSubscription(true); // Enable notifications
+  // componentWillMount() {
+  //   OneSignal.setSubscription(true); // Enable notifications
   
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
-
-    // Disbale push notification if app is focused
-    OneSignal.inFocusDisplaying(0);
-    OneSignal.configure();
-  }
+  //   OneSignal.addEventListener('received', this.onReceived);
+  //   OneSignal.addEventListener('opened', this.onOpened);
+    
+  //   // Disbale push notification if app is focused
+  //   OneSignal.inFocusDisplaying(0);
+  //   OneSignal.configure();
+  // }
 
   componentWillUnmount() {
     OneSignal.removeEventListener('received', this.onReceived);
     OneSignal.removeEventListener('opened', this.onOpened);
   }
 
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.account.id !== prevState.userId){
+      // setState equivalent, updates the state
+      return { userId: nextProps.account.id};
+    }
+    else return null;
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps.account.id !== this.props.account.id){
+      //Perform some operation here
+      console.log("ONE TAG", this.state.userId);
+      OneSignal.sendTag("userId", this.state.userId.toString());
+    }
+  }
+
   onReceived = (notification) => {
-    console.log("Notification received: ", notification);
     this.props.getUnreadCount();
   }
 
@@ -197,7 +224,7 @@ export default class Home extends React.PureComponent {
           onPress={() => this.onSelectListing(item)}
           activeOpacity={0.8}
         >
-          <Text style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(13, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
+          <Text style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(14, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
             {formatDistance(item.createdAt, new Date(), {addSuffix: true})}
           </Text>
           <View style={styles.imageContainer}>
@@ -211,10 +238,10 @@ export default class Home extends React.PureComponent {
             />
           </View>
           <View style={styles.infoContainer}>
-            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2), color: colors.dark}} numberOfLines={1}>
+            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.5), color: colors.dark}} numberOfLines={1}>
               {item.title}
             </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(15, 2), paddingTop: 1}}>
+            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.5), paddingTop: 1}}>
               ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
             </Text>
             <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>

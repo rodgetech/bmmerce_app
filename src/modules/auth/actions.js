@@ -13,10 +13,9 @@ const authenticateFailure = (json) => ({
     signInError: json
 });
 
-const unauthenticate = () => ({
-    type: types.UNAUTHENTICATE,
+const logout = () => ({
+    type: types.USER_LOGOUT,
 });
-
 
 const verifyTokenSuccess = () => ({
     type: types.VERIFY_TOKEN_SUCCESS,
@@ -66,7 +65,7 @@ export default {
     authenticate,
     authenticateSuccess,
     authenticateFailure,
-    unauthenticate,
+    logout,
     verifyTokenSuccess,
     verifyTokenFailure,
     register,

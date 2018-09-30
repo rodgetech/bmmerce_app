@@ -3,8 +3,10 @@ import {
   StyleSheet, 
   View,
   Text,
+  ScrollView
 } from 'react-native';
 import { Input, Button, Icon } from 'react-native-elements'
+import OneSignal from 'react-native-onesignal';
 import { connect } from 'react-redux';
 import ActivityLoader from '../../components/ActivityLoader';
 import { authOperations } from '../../modules/auth';
@@ -13,27 +15,38 @@ import { moderateScale } from '../../utils/scaling';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#FFF',
     justifyContent: 'center',
+    paddingVertical: 40
   },
 });
 
 class Register extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        name: '',
-        email: '',
-        password: '',
-        playerId: ''
-    }
+  state = {
+    name: '',
+    email: '',
+    password: '',
+    playerId: '',
+    loading: true
   }
-  componentDidMount() {
-    const { navigation } = this.props;
-    const playerId = navigation.getParam('playerId', '');
-    console.log("PLAYER", playerId);
-    this.setState({playerId: playerId});
+
+  componentWillMount() {
+    OneSignal.setSubscription(false); // Disable notifications
+    OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.configure();
+  }
+
+  componentWillUnmount() {
+    console.log("AUTH PUSH UNMOUNTED");
+    OneSignal.removeEventListener('ids', this.onIds);
+  }
+
+  onIds = (device) => {
+    this.setState({
+      playerId: device.userId,
+      loading: false
+    });
   }
 
   register = () => {
@@ -47,7 +60,11 @@ class Register extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView
+          contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps='always'
+          showsVerticalScrollIndicator={false}
+      >
         <ActivityLoader
           loading={this.props.registering} />
         <Text
@@ -115,11 +132,11 @@ class Register extends React.Component {
             title="Create Account"
             onPress={this.register}
             buttonStyle={{ backgroundColor: colors.altGreen, paddingVertical: 4, elevation: 0}} 
-            disabled={!this.state.email || !this.state.email || !this.state.password}
+            disabled={this.state.loading || !this.state.email || !this.state.email || !this.state.password}
             titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
           />
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

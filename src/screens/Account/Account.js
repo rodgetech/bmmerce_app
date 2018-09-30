@@ -5,10 +5,12 @@ import {
   Text,
   AsyncStorage,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
+import OneSignal from 'react-native-onesignal';
 import FastImage from 'react-native-fast-image'
-import { Icon, Avatar } from 'react-native-elements'
+import { Icon } from 'react-native-elements'
 import { fonts, colors } from '../../styles';
 import { moderateScale } from '../../utils/scaling';
 
@@ -75,10 +77,24 @@ export default class Account extends React.PureComponent {
     else return null;
   }
 
+  onSignOut = () => {
+    Alert.alert(
+      'Sign Out?',
+      'Are you sure you want to sign out?',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Continue', onPress: () => this.signOut()},
+      ],
+      { cancelable: true }
+    )
+  }
+
   signOut = async() => {
     try {
-        await AsyncStorage.removeItem('authToken', (err) => {
+      await AsyncStorage.removeItem('authToken', (err) => {
+        OneSignal.deleteTag("userId");
         this.props.navigation.navigate('Auth');
+        this.props.logout();
       });
     } catch(error) {
         console.log("Something went wrong", error);
@@ -152,7 +168,7 @@ export default class Account extends React.PureComponent {
             </TouchableOpacity>
             <TouchableOpacity 
               style={{paddingVertical: 24, paddingHorizontal: 14, flexDirection: 'row'}}
-              onPress={this.signOut}
+              onPress={this.onSignOut}
             >
               <Icon
                   name='log-out'

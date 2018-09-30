@@ -3,8 +3,10 @@ import {
   StyleSheet, 
   View,
   Text,
+  ScrollView
 } from 'react-native';
-import { Input, Button, Icon } from 'react-native-elements'
+import { Input, Button, Icon } from 'react-native-elements';
+import OneSignal from 'react-native-onesignal';
 import { connect } from 'react-redux';
 import ActivityLoader from '../../components/ActivityLoader';
 import { moderateScale } from '../../utils/scaling';
@@ -13,9 +15,10 @@ import { fonts, colors } from '../../styles'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#FFF',
     justifyContent: 'center',
+    paddingVertical: 40
   },
 });
 
@@ -24,22 +27,42 @@ class SignIn extends React.Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      playerId: ''
     }
+  }
+
+  componentWillMount() {
+    OneSignal.setSubscription(false); // Disable notifications
+    OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.configure();
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('ids', this.onIds);
+  }
+
+  onIds = (device) => {
+    this.setState({playerId: device.userId});
   }
 
   authenticate = () => {
     console.log(this.state.email, this.state.password);
     this.props.authenticate({
       email: this.state.email, 
-      password: this.state.password
+      password: this.state.password,
+      player_id: this.state.playerId
     })
   }
 
 
   render() {
     return (
-      <View style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          keyboardShouldPersistTaps='always'
+          showsVerticalScrollIndicator={false}
+        >
         <ActivityLoader
           loading={this.props.authenticating} />
         <Text 
@@ -96,7 +119,7 @@ class SignIn extends React.Component {
             titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
           />
         </View>
-      </View>
+        </ScrollView>
     );
   }
 }

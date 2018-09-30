@@ -8,12 +8,19 @@ import messagesReducer from './modules/messages/reducers';
 import engagementsReducer from './modules/engagements/reducers';
 import imagesReducer from './modules/images/reducers';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     listings: listingssReducer,
     auth: authsReducer,
     messages: messagesReducer,
     engagements: engagementsReducer,
     images: imagesReducer
 });
+
+const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        state = undefined;
+    }
+    return appReducer(state, action);
+}
 
 export default rootReducer;

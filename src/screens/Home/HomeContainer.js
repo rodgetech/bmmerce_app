@@ -8,6 +8,9 @@ import {
 import {
     engagementsOperations
 } from '../../modules/engagements';
+import {
+    authOperations
+} from '../../modules/auth';
 import listingsActions from '../../modules/listings/actions';
 
 const mapStateToProps = (state) => {
@@ -18,12 +21,16 @@ const mapStateToProps = (state) => {
         totalPages,
         refreshing
     } = state.listings.default;
+    const {
+        account
+    } = state.auth;
     return {
         listings,
         gettingListings,
         searching,
         totalPages,
-        refreshing
+        refreshing,
+        account
     };
 };
 
@@ -40,11 +47,15 @@ const mapDispatchToProps = (dispatch) => {
     const getUnreadCount = () => {
         dispatch(engagementsOperations.getUnreadCount());
     };
+    const getAccount = () => {
+        dispatch(authOperations.getAccount());
+    };
     return {
         getListings,
         search,
         clearListings,
-        getUnreadCount
+        getUnreadCount,
+        getAccount
     };
 };
 

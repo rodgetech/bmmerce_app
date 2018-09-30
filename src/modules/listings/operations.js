@@ -169,6 +169,7 @@ const createListing = (newListing) => {
     let formData = new FormData();
     formData.append('title', newListing.title);
     formData.append('price', newListing.price);
+    formData.append('description', newListing.description);
     formData.append('address', address);
     formData.append('district', district);
     formData.append('latitude', newListing.latitude);

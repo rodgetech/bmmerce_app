@@ -109,6 +109,7 @@ export default class Engagements extends React.PureComponent {
               renderItem={this.renderItem}
               keyExtractor={item => item.id.toString()}
               ItemSeparatorComponent={this.renderSeparator}
+              showsVerticalScrollIndicator={false}
             />
         ) : (
           <Loader

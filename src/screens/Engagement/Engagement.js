@@ -6,7 +6,7 @@ import {
   Text,
   AppState
 } from 'react-native';
-import { GiftedChat, Bubble, InputToolbar, Composer, Send, LoadEarlier } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble, InputToolbar, Composer, Send, LoadEarlier, Day } from 'react-native-gifted-chat';
 import FastImage from 'react-native-fast-image'
 import io from 'socket.io-client';
 
@@ -185,13 +185,25 @@ export default class Engagement extends React.Component {
           right: {
             color: "#FFF",
             fontFamily: fonts.robotoCondensed,
-            fontSize: moderateScale(15, 2.5)
+            fontSize: moderateScale(15, 2)
           },
           left: {
               color: colors.dark,
               fontFamily: fonts.robotoCondensed,
-              fontSize: moderateScale(15, 2.5)
+              fontSize: moderateScale(15, 2)
           }
+        }}
+      />
+    );
+  }
+
+  renderDay = (props) => {
+    return (
+      <Day
+        {...props}
+        textStyle={{
+          fontFamily: fonts.robotoCondensed,
+          fontSize: moderateScale(12, 2),
         }}
       />
     );
@@ -267,7 +279,7 @@ export default class Engagement extends React.Component {
     const recipientName = navigation.getParam('recipientName', '');
     if (this.state.showIsTyping && this.state.appState === 'active') {
       return (
-          <Text style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 16, fontSize: moderateScale(15, 2.5), color: colors.green}}>
+          <Text style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 8, fontSize: moderateScale(15, 2.5), color: '#CCC'}}>
             {recipientName} is typing....
           </Text>
       );
@@ -319,6 +331,7 @@ export default class Engagement extends React.Component {
               loadEarlier={this.props.totalPages > 1 && this.state.currentPage != this.props.totalPages}
               onLoadEarlier={this.loadEarlierMessages}
               renderLoadEarlier={this.renderLoader}
+              renderDay={this.renderDay}
               renderComposer={this.renderComposer}
               renderSend={this.renderSend}
               renderBubble={this.renderBubble}
