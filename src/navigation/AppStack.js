@@ -23,7 +23,8 @@ import {
     EditListing,
     Search,
     Filter,
-    SetAddress
+    SetAddress,
+    ImageView
 } from '../screens';
 
 import EngagementsTabIcon from './EngagementsTabIcon';
@@ -347,6 +348,20 @@ const AppStack =  createStackNavigator(
                     fontSize: moderateScale(17, 1.7)
                 },
                 headerTintColor: colors.dark,
+            },
+        },
+        ImageView: {
+            screen: ImageView,
+            navigationOptions: {
+                header: (props) => <Header {...props} />,
+                headerTransparent: true,
+                headerTitleStyle: {
+                    color: '#FFF', 
+                },
+                headerStyle: {
+                    elevation: 0
+                },
+                headerTintColor: "#FFF"
             },
         },
     },

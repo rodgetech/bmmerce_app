@@ -42,17 +42,14 @@ export default class ListingView extends React.PureComponent {
         <View style={{flex: 1}}>
           <View style={{flex:1, backgroundColor: "#FFF"}}>
             <ScrollView showsVerticalScrollIndicator={false} >
-              {/* <View style={{ backgroundColor: '#FAFAFA', height: 350}}>
-                {this.state.listing.images &&
-                  <FastImage
-                    style={StyleSheet.absoluteFill}
-                    source={{ uri: this.state.listing.images[0]['listing_image']['url'] }}
-                    resizeMode={FastImage.resizeMode.cover}
-                  />
-                }
-              </View> */}
-              {this.state.listing.images &&
-                <Slider images={this.state.listing.images} />
+              {this.state.listing.images ? 
+                <Slider 
+                  images={this.state.listing.images} 
+                  onImagePress={(image) => this.props.navigation.navigate('ImageView', {image: image})}
+                />
+              :
+                <View style={{backgroundColor: '#f7f7f7', height: 350}}>
+                </View>
               }
               <View style={{backgroundColor: '#FFF', justifyContent: 'center', paddingVertical: 20}}>
                 <View style={{backgroundColor: "#FFF", flexDirection: "row", paddingBottom: 12, paddingHorizontal: 12, borderBottomWidth: 1, borderBottomColor: "#F7F7F7"}}>

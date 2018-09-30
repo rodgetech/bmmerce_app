@@ -17,6 +17,7 @@ import EditListing from './EditListing';
 import Search from './Search';
 import Filter from './Filter';
 import SetAddress from './SetAddress';
+import ImageView from './ImageView';
 
 export {
     Home,
@@ -35,5 +36,6 @@ export {
     EditListing,
     Search,
     Filter,
-    SetAddress
+    SetAddress,
+    ImageView
 }
