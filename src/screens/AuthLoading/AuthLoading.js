@@ -2,10 +2,9 @@ import React from 'react';
 import { 
   StyleSheet, 
   View,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
-//import SplashScreen from 'react-native-splash-screen';
-import { colors } from '../../styles';
+import SplashScreen from 'react-native-splash-screen';
 
 export default class AuthLoading extends React.PureComponent {
 
@@ -17,7 +16,7 @@ export default class AuthLoading extends React.PureComponent {
   authFlow = async () => {
     const authToken = await AsyncStorage.getItem('authToken');
 
-    //SplashScreen.hide();
+    SplashScreen.hide();
     if (authToken) {
       this.props.navigation.navigate('App');
     } else {

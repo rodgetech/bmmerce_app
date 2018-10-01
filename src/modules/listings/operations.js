@@ -52,6 +52,8 @@ const getListing = (id) => {
           price: responseData.price,
           address: responseData.address,
           description: responseData.description,
+          district: responseData.district,
+          userId: responseData.account_id,
           listedBy: responseData.business ? {
             account: responseData.business,
             business: true
@@ -59,6 +61,8 @@ const getListing = (id) => {
             account: responseData.account
           },
           images: responseData.images,
+          latitude: responseData.latitude,
+          longitude: responseData.longitude,
           createdAt: responseData.created_at
         };
         dispatch(getListingSuccessAction(listing))
@@ -107,7 +111,7 @@ const getUserListings = () => {
 }
 
 const getListings = (latitude = null, longitude = null, bounds = null, page, refreshing = false) => {
-  console.log("GET LISTINGS, CURRENT PAGE", page);
+  // console.log("GET LISTINGS, CURRENT PAGE", page);
   let query = null;
   if (bounds) {
     query = `swlat=${bounds.southwest.lat}&swlong=${bounds.southwest.lng}&nelat=${bounds.northeast.lat}&nelong=${bounds.northeast.lng}`;
@@ -120,7 +124,7 @@ const getListings = (latitude = null, longitude = null, bounds = null, page, ref
     refreshing ? dispatch(refreshAction()) : dispatch(getListingsAction());
     axios.get(`${API_ROOT}/listing_type/listings?${query}`)
       .then(function (response) {
-        console.log("LISTINGS", response.data.listings);
+        // console.log("LISTINGS", response.data.listings);
         const responseData = response.data.listings;
         let listings = [];
         responseData.map(child => {

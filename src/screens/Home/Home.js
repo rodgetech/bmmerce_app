@@ -9,18 +9,17 @@ import {
 } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { Icon } from 'react-native-elements';
-import FastImage from 'react-native-fast-image';
 import OneSignal from 'react-native-onesignal';
-import { formatDistance } from 'date-fns';
 import {
   reverseGeocode,
 } from '../../utils/geocode';
 import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles'
+import ListingItem from '../../common/ListingItem';
 
 const numColumns = 2;
 
-export default class Home extends React.PureComponent {
+export default class Home extends React.Component {
 
   state = {
     loading: true,
@@ -101,6 +100,7 @@ export default class Home extends React.PureComponent {
   }
 
   componentDidMount = async () => {
+    console.log("YAYAYYAYAYAYYA");
     OneSignal.setSubscription(true); // Enable notifications
   
     OneSignal.addEventListener('received', this.onReceived);
@@ -177,11 +177,17 @@ export default class Home extends React.PureComponent {
     this.props.getUnreadCount();
   }
 
-  onOpened(openResult) {
-    console.log('Message: ', openResult.notification.payload.body);
-    console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
-    console.log('openResult: ', openResult);
+  onOpened = (openResult) => {
+    // console.log('Message: ', openResult.notification.payload.body);
+    // console.log('Data: ', openResult.notification.payload.additionalData);
+    // console.log('isActive: ', openResult.notification.isAppInFocus);
+    // console.log('openResult: ', openResult);
+    // let additionalData = openResult.notification.payload.additionalData;
+    // console.log("HERE I AM");
+    // this.props.navigation.navigate('ListingView')
+    // if (additionalData.hasOwnProperty('listingId')) {
+    //   this.props.navigation.navigate('ListingView', {listingId: additionalData.listingId})
+    // }
   }
 
   changeLocation = (district, bounds = null) => {
@@ -203,42 +209,15 @@ export default class Home extends React.PureComponent {
   }
 
   onSelectListing = (listing) => {
-    this.props.navigation.navigate('ListingView', {listing, hideTabBar: true });
+    this.props.navigation.navigate('ListingView', {listingId: listing.id, hideTabBar: true });
   }
 
   renderItem = ({ item, index }) => {
     return (
-      <View style={styles.itemContainer}>
-        <TouchableOpacity 
-          onPress={() => this.onSelectListing(item)}
-          activeOpacity={0.8}
-        >
-          <Text style={{fontFamily: fonts.robotoCondensed, color: '#E3E3E3', fontSize: moderateScale(14, 2.5), paddingBottom: 2, textAlign: 'right'}} numberOfLines={1}>
-            {formatDistance(item.createdAt, new Date(), {addSuffix: true})}
-          </Text>
-          <View style={styles.imageContainer}>
-            <FastImage
-              style={StyleSheet.absoluteFill}
-              source={{
-                uri: item.images[0]['listing_image']['url'],
-                priority: FastImage.priority.normal
-              }}
-              resizeMode={FastImage.resizeMode.cover}
-            />
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.5), color: colors.dark}} numberOfLines={1}>
-              {item.title}
-            </Text>
-            <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.5), paddingTop: 1}}>
-              ${parseFloat(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-            </Text>
-            <Text  style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>
-              Near {item.address}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <ListingItem 
+        listing={item}
+        onSelectListing={(listingId) => this.props.navigation.navigate('ListingView', {listingId: listingId, hideTabBar: true })}
+      />
     );
   };
 
