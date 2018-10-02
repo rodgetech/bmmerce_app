@@ -17,17 +17,14 @@ let timeout = undefined;
 
 export default class Engagement extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      messages: [],
-      inputText: '',
-      userId: null,
-      senderTyping: false,
-      showIsTyping: false,
-      appState: AppState.currentState,
-      currentPage: 1,
-    }
+  state = {
+    messages: [],
+    inputText: '',
+    userId: null,
+    senderTyping: false,
+    showIsTyping: false,
+    appState: AppState.currentState,
+    currentPage: 1,
   }
 
   // Stack Header Override
@@ -54,7 +51,6 @@ export default class Engagement extends React.Component {
     }
   };
 
-
   componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
 
@@ -80,7 +76,7 @@ export default class Engagement extends React.Component {
 
     //http://178.128.79.228
     // Socket.IO initialize
-    this.socket = io('http://178.128.79.228:6060', {
+    this.socket = io('http://192.168.0.12:6060', {
       transports: ['websocket'],
     });
 
@@ -101,7 +97,7 @@ export default class Engagement extends React.Component {
       // On typing event, show typing indicator to recipient
       this.socket.on(`onTyping`, (isTyping) => {
         if (this.state.appState === 'active' && this.socket.connected) {
-          console.log("IS TYPINF: ", isTyping);
+          console.log("IS TYPING: ", isTyping);
           this.setState({showIsTyping: isTyping});
         }
       })
@@ -113,7 +109,6 @@ export default class Engagement extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log("UNMOUNTING");
     AppState.removeEventListener('change', this.handleAppStateChange);
 
     const { navigation } = this.props;

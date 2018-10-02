@@ -12,8 +12,14 @@ import FastImage from 'react-native-fast-image';
 import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles';
 import Slider from './Slider';
+import MessageModal from './MessageModal';
 
 export default class ListingView extends React.PureComponent {
+
+  state = {
+    message: 'Hello, is this still available?',
+    showMessageModal: false
+  }
 
   componentDidMount = () => {
     const listingId = this.props.navigation.getParam('listingId', null);
@@ -24,19 +30,21 @@ export default class ListingView extends React.PureComponent {
     this.props.navigation.navigate('Message');
   }
 
+  sendMessage = () => {
+    const newMessage = {
+      body: this.state.message,
+      recipientId: this.props.listing.listedBy.account.id,
+      listingId: this.props.listing.id
+    }
+    this.props.createEngagementMessage(newMessage);
+    this.setState({
+      showMessageModal: false,
+      message: ''
+    });
+  }
+
   render() {
     const {navigate} = this.props.navigation;
-    if (this.props.gettingListing) {
-      return (
-        <View style={{flex: 1, justifyContent: "center", backgroundColor: '#FFF'}}>
-          <ActivityIndicator 
-            animating
-            size="large"
-            color={colors.green}
-          />
-        </View>
-      )
-    }
     return (
         this.props.gettingListing ? 
           <View style={{flex: 1, justifyContent: "center", backgroundColor: '#F7F7F7'}}>
@@ -48,6 +56,14 @@ export default class ListingView extends React.PureComponent {
           </View>
         :
           <View style={{flex: 1}}>
+            <MessageModal 
+              showMessageModal={this.state.showMessageModal}
+              hideMessageModal={() => this.setState({showMessageModal: false})}
+              listing = {this.props.listing}
+              message = {this.state.message}
+              onMessageChange = {(message) => this.setState({message})}
+              onSendMessage = {this.sendMessage}
+            />
             <View style={{flex:1, backgroundColor: "#FFF"}}>
               <ScrollView showsVerticalScrollIndicator={false} >
                 {this.props.listing.images ? 
@@ -98,34 +114,35 @@ export default class ListingView extends React.PureComponent {
                           <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.dark, paddingTop: 1}}>
                             {`${this.props.listing.address}, ${this.props.listing.district}`}
                           </Text>
-                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey, paddingTop: 8}}>
+                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey, paddingTop: 1}}>
                             {format(this.props.listing.createdAt, 'EEEE, LLLL do yyyy')}
                           </Text>
                         </View>
                     </View>
                   }
+                  <Button
+                  containerViewStyle={{width: '100%', marginLeft: 0, alignSelf: 'stretch', marginHorizontal: 12}}
+                  buttonStyle={{backgroundColor: colors.green, marginHorizontal: 12, marginTop: 20, paddingVertical: 2, elevation: 0}}
+                  title='Message Seller' 
+                  titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: moderateScale(18, 1.9)}}
+                  icon={{name: 'md-text', type: 'ionicon', color: "#FFF", size: 20}}
+                  onPress={() => this.setState({showMessageModal: true})}
+                  // onPress={
+                  //   () => navigate('Engagement', {
+                  //       listingId: this.props.listing.id, 
+                  //       recipientId: this.props.listing.listedBy.account.id,
+                  //       image: this.props.listing.images[0]['listing_image']['url'],
+                  //       price: this.props.listing.price,
+                  //       recipientName: this.props.listing.listedBy.account.name
+                  //     }
+                  //   )}
+                
+                />
                 </View>
               </ScrollView>
             </View>
           <View>
-            <Button
-              containerViewStyle={{width: '100%', marginLeft: 0, alignSelf: 'stretch'}}
-              buttonStyle={{backgroundColor: colors.green}}
-              title='Message' 
-              titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: moderateScale(18, 1.9)}}
-              icon={{name: 'md-text', type: 'ionicon', color: "#FFF", size: 20}}
-              //onPress={() => this.setState({modalVisible: true})}
-              onPress={
-                () => navigate('Engagement', {
-                    listingId: this.props.listing.id, 
-                    recipientId: this.props.listing.listedBy.account.id,
-                    image: this.props.listing.images[0]['listing_image']['url'],
-                    price: this.props.listing.price,
-                    recipientName: this.props.listing.listedBy.account.name
-                  }
-                )}
             
-            />
           </View>
         </View>
     );

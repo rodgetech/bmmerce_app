@@ -124,7 +124,6 @@ const getListings = (latitude = null, longitude = null, bounds = null, page, ref
     refreshing ? dispatch(refreshAction()) : dispatch(getListingsAction());
     axios.get(`${API_ROOT}/listing_type/listings?${query}`)
       .then(function (response) {
-        // console.log("LISTINGS", response.data.listings);
         const responseData = response.data.listings;
         let listings = [];
         responseData.map(child => {

@@ -66,7 +66,7 @@ class SignIn extends React.Component {
         <ActivityLoader
           loading={this.props.authenticating} />
         <Text 
-          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 40}}
+          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, paddingHorizontal: 16, paddingBottom: 40}}
         >
           Sign in to continue
         </Text>

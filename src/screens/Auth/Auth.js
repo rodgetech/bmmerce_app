@@ -128,20 +128,20 @@ class Auth extends React.Component {
         <ActivityLoader
           loading={this.state.loading} />
         <Text 
-          style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(35, 2.5), color: colors.green, textAlign: 'center'}}
+          style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(36, 2.5), color: colors.green}}
         >
           bmmerce
         </Text>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+        <View style={{flexDirection: 'row'}}>
           <Icon
               name='shopping-bag'
               type='font-awesome'
-              color='#CCC'
-              iconStyle={{marginRight: 10}}
+              color={colors.dark}
+              iconStyle={{marginRight: 8}}
               size={20}
             />
           <Text 
-            style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(17, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 60}}
+            style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(17, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 20}}
           >
             Sell & buy stuff near you
           </Text>
@@ -162,7 +162,7 @@ class Auth extends React.Component {
           titleProps={{allowFontScaling: false}}
           buttonStyle={{ backgroundColor: "#3498db", marginTop: 16, borderRadius: 6, paddingVertical: 6}} 
         /> */}
-        <View style={{marginTop: 28}}>
+        <View style={{marginTop: 20}}>
           <Text 
             style={{fontFamily: fonts.robotoCondensed, color: colors.dark, textAlign: "center", fontSize: moderateScale(16, 2.5)}}
           >

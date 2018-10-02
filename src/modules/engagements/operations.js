@@ -1,5 +1,7 @@
 import axios from 'axios';
-
+import {
+  showMessage
+} from "react-native-flash-message";
 import Actions from './actions';
 import {
   API_ROOT
@@ -114,7 +116,7 @@ const getEngagementMessages = (recipientId, listingId, page, showLoading = true)
   }
 }
 
-const createEngagementMessage = (newMessage) => {
+const createEngagementMessage = (newMessage, displayMessage = false) => {
   return async dispatch => {
     await setAuthorizationToken('authToken');
     dispatch(createEngagementMessageAction());
@@ -135,6 +137,16 @@ const createEngagementMessage = (newMessage) => {
           }
         };
         dispatch(createEngagementMessageSuccessAction(message));
+        console.log("SHOW MESSAGE", showMessage);
+        if (displayMessage) {
+          showMessage({
+            message: "Message sent successfully",
+            type: "success",
+            backgroundColor: "#27ae60",
+            duration: 1400,
+            floating: true
+          });
+        }
       })
       .catch((error) => {
         console.log("Error:", error.response);

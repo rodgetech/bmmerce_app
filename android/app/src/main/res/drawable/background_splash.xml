@@ -4,8 +4,8 @@
     <item
         android:drawable="@color/white"/>
 
-    <item
+    <!-- <item
         android:drawable="@drawable/screen"
-        android:gravity="center" />
+        android:gravity="center" /> -->
 
 </layer-list>

@@ -35,8 +35,10 @@ export default class Filter extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ActivityLoader
-                    loading={this.state.loading} />
+                {this.state.loading && 
+                    <ActivityLoader
+                        loading={this.state.loading} />
+                }
                 <TouchableOpacity 
                     style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 1, borderColor: colors.gray, alignSelf: 'stretch'}}
                     onPress={() => this.selectLocation("Nationwide")}

@@ -66,7 +66,7 @@ export default class Camera extends React.Component {
   takePicture = async () => {
     if (this.camera) {
       this.setState({takingPicture: true})
-      const options = { quality: 0.3, fixOrientation: true };
+      const options = { base64: false, fixOrientation: true, skipProcessing: true, };
       const data = await this.camera.takePictureAsync(options);
       this.setState({
         takingPicture: false,

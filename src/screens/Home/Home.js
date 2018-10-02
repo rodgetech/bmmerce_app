@@ -111,11 +111,12 @@ export default class Home extends React.Component {
     this.props.getAccount();
 
     Permissions.check('location').then(response => {
+      console.log("PERMISION", response)
       // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
       if (response == 'undetermined' || response == 'denied') {
         this.requestLocationPermission();
       }
-    })
+    });
 
     navigator.geolocation.getCurrentPosition(
       async (position) => {
@@ -137,11 +138,12 @@ export default class Home extends React.Component {
         this.props.getListings(latitude, longitude, null, this.state.page);
       },
       (error) => {
+        console.log("GEO ERROR:", error);
         // Current location unavailable, fetch all listings
+        this.changeLocation("Nationwide");
         this.props.navigation.setParams({
-          address: 'Nationwide',
+          changeLocation: this.changeLocation
         });
-        this.props.getListings(null, null, null, 1);
         return error
       }, {
           enableHighAccuracy: true,
@@ -209,7 +211,7 @@ export default class Home extends React.Component {
       page: 1,
       longitude: null,
       latitude: null,
-      bounds: bounds
+      bounds: bounds,
     });
   }
 
@@ -251,7 +253,7 @@ export default class Home extends React.Component {
   }
 
   renderFooter = () => {
-    if (this.props.gettingListings || this.state.loading) {
+    if (this.props.gettingListings) {
       return (
         <View style={{paddingVertical: 20}}>
           <ActivityIndicator 
@@ -283,6 +285,7 @@ export default class Home extends React.Component {
           onEndReachedThreshold={0.5}
           onEndReached={({ distanceFromEnd }) => {
             if (this.state.page != this.props.totalPages && this.totalPages !== 1) {
+              console.log("PAGE: ", this.state.page)
               this.handleLoadMore();
             }
           }}

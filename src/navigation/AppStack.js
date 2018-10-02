@@ -150,8 +150,8 @@ const TabNavigation =   createBottomTabNavigator(
             labelStyle: {
                 fontFamily: fonts.robotoCondensed,
                 fontSize: moderateScale(12, 2),
-                marginTop:-6, 
-                marginBottom: 6,
+                marginTop:-4, 
+                marginBottom: 4,
             },
             iconStyle: {
                 padding: 0
