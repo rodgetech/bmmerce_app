@@ -41,8 +41,8 @@ const refreshSuccessAction = Actions.refreshSuccess;
 
 const getListing = (id) => {
   return async dispatch => {
-    await setAuthorizationToken('authToken');
     dispatch(getListingAction());
+    await setAuthorizationToken('authToken');
     axios.get(`${API_ROOT}/listing_type/listings/${id}`)
       .then(function (response) {
         const responseData = response.data.listing;
@@ -216,7 +216,7 @@ const createListing = (newListing) => {
           createdAt: responseData.created_at
         };
         dispatch(createListingSuccessAction(listing));
-        navigationService.navigate('Home', {
+        navigationService.navigate('AccountListings', {
           listing: listing
         });
         showMessage({

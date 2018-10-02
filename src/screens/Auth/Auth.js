@@ -20,6 +20,8 @@ import { connect } from 'react-redux';
 import { authOperations } from '../../modules/auth';
 import { fonts, colors } from '../../styles'
 import { moderateScale } from '../../utils/scaling';
+import ActivityLoader from '../../components/ActivityLoader';
+
 
 // GoogleSignin.configure();
 
@@ -123,6 +125,8 @@ class Auth extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <ActivityLoader
+          loading={this.state.loading} />
         <Text 
           style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(35, 2.5), color: colors.green, textAlign: 'center'}}
         >

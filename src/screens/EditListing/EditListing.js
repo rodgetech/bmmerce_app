@@ -205,7 +205,10 @@ export default class EditListing extends React.Component {
             <View style={{flex:1, backgroundColor: "#FFF"}}>
                 <ActivityLoader
                     loading={this.props.updatingListing} />
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps='always'
+                >
                     <View style={{ backgroundColor: '#F7F7F7', height: 280 }}>
                         <FastImage
                             style={StyleSheet.absoluteFill}

@@ -60,7 +60,7 @@ export default class Engagements extends React.PureComponent {
         }
         leftAvatar={
           <FastImage
-            style={{width: 70, height: 70}}
+            style={{width: 70, height: 70, backgroundColor: '#f7f7f7'}}
             source={{
               uri: item.listing.images[0].listing_image.url,
               priority: FastImage.priority.normal

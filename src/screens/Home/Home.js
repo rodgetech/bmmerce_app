@@ -100,9 +100,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount = async () => {
-    console.log("YAYAYYAYAYAYYA");
     OneSignal.setSubscription(true); // Enable notifications
-  
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
     
@@ -175,6 +173,13 @@ export default class Home extends React.Component {
 
   onReceived = (notification) => {
     this.props.getUnreadCount();
+    console.log("NOTIFDSS", notification.payload);
+    if (notification.payload.hasOwnProperty('additionalData')) {
+      let additionalData = notification.payload.additionalData;
+      if (additionalData.hasOwnProperty('listingId')) {
+        this.handleRefresh();
+      }
+    }
   }
 
   onOpened = (openResult) => {

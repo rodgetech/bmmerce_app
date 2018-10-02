@@ -78,8 +78,9 @@ export default class Engagement extends React.Component {
     this.props.getEngagementMessages(recipientId, listingId, 1);
     this.props.markMessagesRead(engagementId);
 
+    //http://178.128.79.228
     // Socket.IO initialize
-    this.socket = io('http://192.168.0.12:6060', {
+    this.socket = io('http://178.128.79.228:6060', {
       transports: ['websocket'],
     });
 
@@ -262,14 +263,14 @@ export default class Engagement extends React.Component {
         timeout = setTimeout(() => {
           this.setState({senderTyping: false});
           this.socket.emit('senderTyping', {indicateScope: indicateScope, typing: false});
-        }, 3000);
+        }, 1500);
       } else {
         this.setState({senderTyping: true});
         this.socket.emit('senderTyping', {indicateScope: indicateScope, typing: true});
         timeout = setTimeout(() => {
           this.setState({senderTyping: false})
           this.socket.emit('senderTyping', {indicateScope: indicateScope, typing: false});
-        }, 3000);
+        }, 1500);
       }
     }
   }
@@ -279,7 +280,7 @@ export default class Engagement extends React.Component {
     const recipientName = navigation.getParam('recipientName', '');
     if (this.state.showIsTyping && this.state.appState === 'active') {
       return (
-          <Text style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 8, fontSize: moderateScale(15, 2.5), color: '#CCC'}}>
+          <Text numberOfLines={1} style={{fontFamily: fonts.robotoCondensed, marginHorizontal: 10, marginBottom: 8, fontSize: moderateScale(15, 2.5), color: '#CCC'}}>
             {recipientName} is typing....
           </Text>
       );

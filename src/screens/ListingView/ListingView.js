@@ -83,7 +83,7 @@ export default class ListingView extends React.PureComponent {
                     <View style={{flexDirection: 'row', paddingTop: 10, marginHorizontal: 12}}>
                         <View >
                         <FastImage
-                          style={{width: 35, height: 35, borderRadius: 35/2, marginRight: 12}}
+                          style={{width: 35, height: 35, borderRadius: 35/2, marginRight: 12, backgroundColor: '#f7f7f7'}}
                           source={{
                             uri: this.props.listing.listedBy.account.avatar,
                             priority: FastImage.priority.normal
