@@ -5,8 +5,8 @@ import {
   Text,
   ScrollView
 } from 'react-native';
-import { Input, Button, Icon } from 'react-native-elements';
 import OneSignal from 'react-native-onesignal';
+import { Input, Button, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import ActivityLoader from '../../components/ActivityLoader';
 import { moderateScale } from '../../utils/scaling';
@@ -28,22 +28,11 @@ class SignIn extends React.Component {
     this.state = {
       email: '',
       password: '',
-      playerId: ''
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     OneSignal.setSubscription(false); // Disable notifications
-    OneSignal.addEventListener('ids', this.onIds);
-    OneSignal.configure();
-  }
-
-  componentWillUnmount() {
-    OneSignal.removeEventListener('ids', this.onIds);
-  }
-
-  onIds = (device) => {
-    this.setState({playerId: device.userId});
   }
 
   authenticate = () => {
@@ -51,10 +40,8 @@ class SignIn extends React.Component {
     this.props.authenticate({
       email: this.state.email, 
       password: this.state.password,
-      player_id: this.state.playerId
     })
   }
-
 
   render() {
     return (
@@ -66,11 +53,11 @@ class SignIn extends React.Component {
         <ActivityLoader
           loading={this.props.authenticating} />
         <Text 
-          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, paddingHorizontal: 16, paddingBottom: 40}}
+          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, paddingHorizontal: 20, paddingBottom: 40}}
         >
           Sign in to continue
         </Text>
-        <View style={{paddingHorizontal: 16}}>
+        <View style={{paddingHorizontal: 20}}>
           <Input 
             autoCapitalize="none" 
             autoCorrect={false}

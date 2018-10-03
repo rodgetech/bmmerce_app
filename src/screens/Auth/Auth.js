@@ -20,34 +20,13 @@ import { connect } from 'react-redux';
 import { authOperations } from '../../modules/auth';
 import { fonts, colors } from '../../styles'
 import { moderateScale } from '../../utils/scaling';
-import ActivityLoader from '../../components/ActivityLoader';
-
 
 // GoogleSignin.configure();
 
 class Auth extends React.Component {
 
-  state = {
-    playerId: '',
-    loading: true
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     OneSignal.setSubscription(false); // Disable notifications
-    OneSignal.addEventListener('ids', this.onIds);
-    OneSignal.configure();
-  }
-
-  componentWillUnmount() {
-    console.log("AUTH PUSH UNMOUNTED");
-    OneSignal.removeEventListener('ids', this.onIds);
-  }
-
-  onIds = (device) => {
-    this.setState({
-      playerId: device.userId,
-      loading: false
-    });
   }
 
   facebookLogin = () => {
@@ -88,7 +67,6 @@ class Auth extends React.Component {
         name: result.name,
         avatar: result.picture.data.url,
         provider: "facebook",
-        player_id: this.state.playerId
       });
     }
   }
@@ -106,7 +84,6 @@ class Auth extends React.Component {
         name: `${result.user.givenName} ${result.user.familyName}`,
         provider_image: result.user.photo,
         provider: "google",
-        player_id: this.state.playerId
       });
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -125,8 +102,6 @@ class Auth extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActivityLoader
-          loading={this.state.loading} />
         <Text 
           style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(36, 2.5), color: colors.green}}
         >
@@ -152,7 +127,6 @@ class Auth extends React.Component {
           onPress={this.facebookLogin}
           titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 2.5), fontWeight: 'normal'}}
           buttonStyle={{ backgroundColor: "#3B5998", marginTop: 20, paddingVertical: 6, elevation: 0}} 
-          disabled={this.state.loading}
         />
         {/* <Button 
           title="Continue with Google"

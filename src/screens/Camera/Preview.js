@@ -11,10 +11,6 @@ import FastImage from 'react-native-fast-image';
 const Preview = props => {
     return (
         <View style={styles.container}>
-            {/* <Image
-                style={styles.image}
-                source={{ uri: props.image }}
-            /> */}
             <FastImage
               style={styles.image}
               source={{ uri: props.image, priority: FastImage.priority.normal }}
@@ -44,7 +40,8 @@ const styles = StyleSheet.create({
         alignItems: 'stretch'
     },
     image: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#000'
     },
     touchStyles: {
         flex: 1, 

@@ -76,7 +76,7 @@ export default class Engagement extends React.Component {
 
     //http://178.128.79.228
     // Socket.IO initialize
-    this.socket = io('http://192.168.0.12:6060', {
+    this.socket = io('http://178.128.79.228:6060', {
       transports: ['websocket'],
     });
 

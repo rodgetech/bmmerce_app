@@ -39,9 +39,7 @@ export default class Post extends React.Component {
     return {
       headerRight: (
         <TouchableOpacity
-          onPress={
-            () => navigation.navigate('Camera', {onSetImageFromCamera: params.setImageFromCamera})
-          }
+          onPress={ params ? params.openCamera : null }
         >
           <Icon
             name='md-camera'
@@ -57,30 +55,37 @@ export default class Post extends React.Component {
 
   requestPermission = (permission) => {
     Permissions.request(permission).then(response => {
-    })
+      if (permission == 'location' && response == "denied") {
+        this.props.navigation.navigate('Home');
+      }
+    });
+  }
+
+  openCamera = () => {
+    Permissions.check('camera').then(response => {
+      if (response == 'undetermined' || response == 'denied') {
+        this.requestPermission('camera');
+      } else {
+        this.props.navigation.navigate('Camera', {
+          onSetImageFromCamera: this.setImageFromCamera
+        });
+      }
+    });
   }
 
   componentDidMount = () => {
-    // Check permissions for camera and photos
-    Permissions.checkMultiple(['camera', 'photo', 'location']).then(response => {
-      //response is an object mapping type to permission
-      if (response.camera == 'undetermined' || response.camera == 'denied') {
-        this.requestPermission('camera');
-      }
-      // if (response.photo == 'undetermined') {
-      //   this.requestPermission('photo');
-      // }
-      if (response.location == 'location' || response.location == 'denied') {
+    Permissions.check('location').then(response => {
+      if (response == 'undetermined' || response == 'denied') {
         this.requestPermission('location');
       }
-    })
+    });
 
     this.props.navigation.setParams({
-      setImageFromCamera:this.setImageFromCamera
+      openCamera: this.openCamera
     });
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        console.log(position);
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
@@ -115,6 +120,16 @@ export default class Post extends React.Component {
         resizedImage
       ]
     })
+  }
+
+  onOpenImagePicker = () => {
+    Permissions.check('photo').then(response => {
+      if (response == 'undetermined' || response == 'denied') {
+        this.requestPermission('photo');
+      } else {
+        this.openImagePicker();
+      }
+    });
   }
 
   openImagePicker = async () => {
@@ -153,7 +168,7 @@ export default class Post extends React.Component {
       selectedImages.push (
           i == currentIndex ? (
               <TouchableOpacity 
-                onPress={this.openImagePicker}
+                onPress={this.onOpenImagePicker}
                 style={styles.selectedImage}
                 key={i}
                 activeOpacity={0.8}
@@ -248,7 +263,7 @@ export default class Post extends React.Component {
               titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
               onPress={this.createListing}
               buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
-              disabled={this.state.loading || this.state.images.length == 0}
+              disabled={this.state.images.length == 0 || !this.state.title || !this.state.price}
             />
           </View>
         </ScrollView>

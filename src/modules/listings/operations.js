@@ -218,13 +218,6 @@ const createListing = (newListing) => {
         navigationService.navigate('AccountListings', {
           listing: listing
         });
-        showMessage({
-          message: "Listing created successfully",
-          type: "success",
-          backgroundColor: "#27ae60",
-          duration: 2000,
-          floating: true
-        });
       })
       .catch((error) => {
         console.log("CREATE ERRROR:", error);

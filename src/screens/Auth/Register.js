@@ -27,26 +27,10 @@ class Register extends React.Component {
     name: '',
     email: '',
     password: '',
-    playerId: '',
-    loading: true
   }
 
   componentWillMount() {
     OneSignal.setSubscription(false); // Disable notifications
-    OneSignal.addEventListener('ids', this.onIds);
-    OneSignal.configure();
-  }
-
-  componentWillUnmount() {
-    console.log("AUTH PUSH UNMOUNTED");
-    OneSignal.removeEventListener('ids', this.onIds);
-  }
-
-  onIds = (device) => {
-    this.setState({
-      playerId: device.userId,
-      loading: false
-    });
   }
 
   register = () => {
@@ -54,7 +38,6 @@ class Register extends React.Component {
         name: this.state.name,
         email: this.state.email, 
         password: this.state.password,
-        player_id: this.state.playerId
     })
   }
 
@@ -68,11 +51,11 @@ class Register extends React.Component {
         <ActivityLoader
           loading={this.props.registering} />
         <Text
-          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, paddingHorizontal: 16, paddingBottom: 40}}
+          style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(25, 2.5), color: colors.dark, paddingHorizontal: 20, paddingBottom: 40}}
         >
           Sign up
         </Text>
-        <View style={{paddingHorizontal: 16}}>
+        <View style={{paddingHorizontal: 20}}>
             <Input
               placeholderTextColor='#CCC'
               underlineColorAndroid='transparent'
@@ -132,7 +115,7 @@ class Register extends React.Component {
             title="Create Account"
             onPress={this.register}
             buttonStyle={{ backgroundColor: colors.altGreen, paddingVertical: 4, elevation: 0}} 
-            disabled={this.state.loading || !this.state.email || !this.state.email || !this.state.password}
+            disabled={!this.state.email || !this.state.email || !this.state.password}
             titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
           />
         </View>

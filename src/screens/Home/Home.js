@@ -284,7 +284,7 @@ export default class Home extends React.Component {
           ListFooterComponent={this.renderFooter}
           onEndReachedThreshold={0.5}
           onEndReached={({ distanceFromEnd }) => {
-            if (this.state.page != this.props.totalPages && this.totalPages !== 1) {
+            if (this.state.page != this.props.totalPages && this.props.totalPages !== 1) {
               console.log("PAGE: ", this.state.page)
               this.handleLoadMore();
             }

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         paddingRight: 8,
-        fontSize: moderateScale(16, 2.5),
+        fontSize: moderateScale(16, 1.5),
         fontFamily: fonts.robotoCondensed,
         color: colors.blue,
         flex: 1,

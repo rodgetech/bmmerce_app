@@ -37,7 +37,7 @@ export default class Account extends React.PureComponent {
         params ?      
           <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 14}}>
             <FastImage
-              style={{height: 35, width: 35, borderRadius: 2, backgroundColor: '#f7f7f7'}}
+              style={{height: 35, width: 35, borderRadius: 1, backgroundColor: '#f7f7f7'}}
               source={{
                 uri: params.avatar || '',
                 priority: FastImage.priority.normal

@@ -60,7 +60,7 @@ export default class AccountListings extends React.Component {
                                   }
                                 leftAvatar={
                                     <FastImage
-                                        style={{width: 80, height: 80, marginRight: 20}}
+                                        style={{width: 80, height: 80, marginRight: 20, backgroundColor: '#f7f7f7'}}
                                         source={{
                                             uri: item.images[0]['listing_image']['url'],
                                             priority: FastImage.priority.normal
