@@ -23,11 +23,13 @@ const MessageModal = props => {
                 <View>
                     <View style={styles.modalContent}>
                         {props.listing.listedBy &&
-                        <Text style={{fontSize: moderateScale(18, 1.2), fontFamily: fonts.robotoCondensed, color: colors.dark}}>
-                            Message {props.listing.listedBy.account.name}
-                        </Text>
+                            <View style={{borderBottomWidth: 1, borderColor: '#f7f7f7'}}>
+                                <Text style={{fontSize: moderateScale(17, 1.8), fontFamily: fonts.robotoCondensed, color: colors.dark, paddingBottom: 8}} numberOfLines={1}>
+                                    Message {props.listing.listedBy.account.name}
+                                </Text>
+                            </View>
                         }
-                        <View style={{flexDirection: 'row',  borderBottomWidth: 1, borderColor: '#F0F0F0', marginTop: 22, marginBottom: 10}}>
+                        <View style={{flexDirection: 'row', marginTop: 10}}>
                             <AutoGrowingTextInput
                                 style={styles.textInput}
                                 placeholder='Type your message...'
@@ -39,16 +41,16 @@ const MessageModal = props => {
                                 value={props.message}
                                 onChange={(event) => props.onMessageChange(event.nativeEvent.text)}
                             />
-                            {/* {this.state.body.length > 0 && */}
-                            <Icon
-                                name='md-send'
-                                type='ionicon'
-                                color={colors.green}
-                                containerStyle={{justifyContent:'center', backgroundColor: '#FFF'}}
-                                onPress={props.onSendMessage}
-                                size={24}
-                            />
-                            {/* } */}
+                            {props.message.length > 0 &&
+                                <Icon
+                                    name='md-send'
+                                    type='ionicon'
+                                    color={colors.green}
+                                    containerStyle={{justifyContent:'center', backgroundColor: '#FFF'}}
+                                    onPress={props.onSendMessage}
+                                    size={28}
+                                />
+                            }
                         </View> 
                     </View>
                 </View>
@@ -65,18 +67,20 @@ const styles = StyleSheet.create({
     },
     modalContent: {
         backgroundColor: '#FFF',
-        borderRadius: 3,
-        paddingHorizontal: 16,
+        borderRadius: 2,
         paddingVertical: 25,
         marginHorizontal: 20,
         justifyContent: "center",
-        borderColor: "rgba(0, 0, 0, 0.1)"
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        borderBottomColor: colors.green,
+        borderBottomWidth: 2
+
     },
     textInput: {
         paddingRight: 8,
-        fontSize: moderateScale(16, 1.5),
+        fontSize: moderateScale(16, 1.6),
         fontFamily: fonts.robotoCondensed,
-        color: colors.blue,
+        color: '#000',
         flex: 1,
         backgroundColor: "#FFF",
       },

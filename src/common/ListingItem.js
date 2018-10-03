@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
       overflow: 'hidden',
       elevation: 0,
       borderBottomWidth: 1,
-      borderColor: '#E3E3E3'
+      borderColor: '#F5F5F5'
     },
     infoContainer: {
       paddingVertical: 10,

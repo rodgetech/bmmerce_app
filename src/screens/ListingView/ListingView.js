@@ -121,23 +121,13 @@ export default class ListingView extends React.PureComponent {
                     </View>
                   }
                   <Button
-                  containerViewStyle={{width: '100%', marginLeft: 0, alignSelf: 'stretch', marginHorizontal: 12}}
-                  buttonStyle={{backgroundColor: colors.green, marginHorizontal: 12, marginTop: 20, paddingVertical: 2, elevation: 0}}
-                  title='Message Seller' 
-                  titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: moderateScale(18, 1.9)}}
-                  icon={{name: 'md-text', type: 'ionicon', color: "#FFF", size: 20}}
-                  onPress={() => this.setState({showMessageModal: true})}
-                  // onPress={
-                  //   () => navigate('Engagement', {
-                  //       listingId: this.props.listing.id, 
-                  //       recipientId: this.props.listing.listedBy.account.id,
-                  //       image: this.props.listing.images[0]['listing_image']['url'],
-                  //       price: this.props.listing.price,
-                  //       recipientName: this.props.listing.listedBy.account.name
-                  //     }
-                  //   )}
-                
-                />
+                    containerViewStyle={{width: '100%', marginLeft: 0, alignSelf: 'stretch', marginHorizontal: 12}}
+                    buttonStyle={{backgroundColor: colors.green, marginHorizontal: 12, marginTop: 20, marginBottom: 9, paddingVertical: 2, elevation: 0}}
+                    title='Message Seller' 
+                    titleStyle={{fontFamily: fonts.robotoCondensed, fontWeight: 'normal', fontSize: moderateScale(18, 1.9)}}
+                    icon={{name: 'md-text', type: 'ionicon', color: "#FFF", size: 20}}
+                    onPress={() => this.setState({showMessageModal: true})}
+                  />
                 </View>
               </ScrollView>
             </View>
