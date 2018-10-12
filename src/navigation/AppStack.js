@@ -38,10 +38,10 @@ const HomeTabStack =  createStackNavigator(
     {
         navigationOptions: {
             headerStyle: {
-                elevation: 0,
+                elevation: 2,
                 backgroundColor: '#FFF',
                 borderColor: '#e9eced',
-                borderBottomWidth: 1
+                borderBottomWidth: 0
             },
         }
     }
@@ -57,10 +57,10 @@ const EngagementsTabStack =  createStackNavigator(
         navigationOptions: {
             title: "Engagements",
             headerStyle: {
-                elevation: 0,
+                elevation: 2,
                 backgroundColor: '#FFF',
                 borderColor: '#e9eced',
-                borderBottomWidth: 1
+                borderBottomWidth: 0
             },
             headerTitleStyle: {
                 color: colors.dark,
@@ -84,10 +84,10 @@ const MenuTabStack =  createStackNavigator(
     {
         navigationOptions: {
             headerStyle: {
-                elevation: 0,
+                elevation: 2,
                 backgroundColor: '#FFF',
                 borderColor: '#e9eced',
-                borderBottomWidth: 1
+                borderBottomWidth: 0
             },
             headerTintColor: '#FFF',
         }
@@ -158,7 +158,7 @@ const TabNavigation =   createBottomTabNavigator(
             },
             style: {
                 borderTopWidth: 1,
-                borderTopColor: '#f7f7f7',
+                borderTopColor: '#E3E3E3',
                 elevation: 0,
                 backgroundColor: '#FFF',
             },
@@ -258,10 +258,10 @@ const AppStack =  createStackNavigator(
             navigationOptions: {
                 header: (props) => <Header {...props} />,
                 headerStyle: {
-                    elevation: 0,
+                    elevation: 2,
                     backgroundColor: '#FFF',
                     borderColor: '#e9eced',
-                    borderBottomWidth: 1
+                    borderBottomWidth: 0
                 },
                 headerTitleStyle: {
                     color: colors.dark, 
@@ -276,10 +276,10 @@ const AppStack =  createStackNavigator(
                 title: "Your Listings",
                 header: (props) => <Header {...props} />,
                 headerStyle: {
-                    elevation: 0,
+                    elevation: 2,
                     backgroundColor: '#FFF',
                     borderColor: '#e9eced',
-                    borderBottomWidth: 1
+                    borderBottomWidth: 0
                 },
                 headerTitleStyle: {
                     color: colors.dark, 
@@ -314,12 +314,12 @@ const AppStack =  createStackNavigator(
             screen: Filter,
             navigationOptions: {
                 header: (props) => <Header {...props} />,
-                title: "Change Location",
+                title: "Filter By District",
                 headerStyle: {
-                    elevation: 0,
+                    elevation: 2,
                     backgroundColor: '#FFF',
                     borderColor: '#e9eced',
-                    borderBottomWidth: 1
+                    borderBottomWidth: 0
                 },
                 headerTitleStyle: {
                     color: colors.dark, 
@@ -336,10 +336,10 @@ const AppStack =  createStackNavigator(
                 title: "Specify Your Address",
                 header: (props) => <Header {...props} />,
                 headerStyle: {
-                    elevation: 0,
+                    elevation: 2,
                     backgroundColor: '#FFF',
                     borderColor: '#e9eced',
-                    borderBottomWidth: 1
+                    borderBottomWidth: 0
                 },
                 headerTitleStyle: {
                     color: colors.dark, 

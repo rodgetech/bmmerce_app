@@ -3,7 +3,7 @@ import {
   StyleSheet, 
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { colors, fonts } from '../../styles';
 import { geocode } from '../../utils/geocode';

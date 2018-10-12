@@ -137,10 +137,9 @@ const createEngagementMessage = (newMessage, displayMessage = false) => {
           }
         };
         dispatch(createEngagementMessageSuccessAction(message));
-        console.log("SHOW MESSAGE", showMessage);
         if (displayMessage) {
           showMessage({
-            message: "Message sent successfully",
+            message: "Message sent",
             type: "success",
             backgroundColor: "#27ae60",
             duration: 1400,

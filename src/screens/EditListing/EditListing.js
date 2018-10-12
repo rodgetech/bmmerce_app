@@ -71,7 +71,7 @@ export default class EditListing extends React.Component {
     onDeleteImage = (image) => {
         Alert.alert(
             'Delete Image',
-            'Are you sure you want to this?',
+            'Are you sure you want to do this?',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
               {text: 'Continue', onPress: () => this.deleteImage(image)},
@@ -139,7 +139,7 @@ export default class EditListing extends React.Component {
     deleteListing = () => {
         Alert.alert(
             'Delete Listing',
-            'Are you sure you want to this?',
+            'Are you sure you want to do this?',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
               {text: 'Continue', onPress: () => this.props.deleteListing(this.state.id)},

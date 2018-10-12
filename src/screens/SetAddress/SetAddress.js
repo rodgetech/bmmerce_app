@@ -85,7 +85,7 @@ class SetAddress extends React.Component {
                         
                         query={{
                             // available options: https://developers.google.com/places/web-service/autocomplete
-                            key: 'AIzaSyD3kW1MKxA-HyUanywrHGuaYHTfr74mqMU',
+                            key: 'AIzaSyA9ZhG7CEG04TrkNaAtje2CiqJiM1MoLhc',
                             language: 'en', // language of the results
                             //types: '(cities)', // default: 'geocode',
                             components: 'country:bz'

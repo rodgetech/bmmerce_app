@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
     bottomModal: {
         flex: 1,
         justifyContent: 'center',
-        margin: 0
+        margin: 0,
     },
     modalContent: {
         backgroundColor: '#FFF',
         borderRadius: 2,
         paddingVertical: 25,
         marginHorizontal: 20,
+        paddingHorizontal: 16,
         justifyContent: "center",
         borderColor: "rgba(0, 0, 0, 0.1)",
         borderBottomColor: colors.green,

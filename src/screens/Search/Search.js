@@ -147,8 +147,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     marginTop: Platform.OS == "ios" ? 20 : 0,
     paddingHorizontal: 12,
-    borderColor: '#e9eced',
-    borderBottomWidth: 1
+    elevation: 2
   },
   searchIcon: {
       padding: 10,

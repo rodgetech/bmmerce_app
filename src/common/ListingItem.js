@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     infoContainer: {
       paddingVertical: 10,
       backgroundColor: "#FFF",
-      borderTopWidth: 3,
+      borderTopWidth: 2,
       borderColor: "#27ae60"
     },
     itemInvisible: {

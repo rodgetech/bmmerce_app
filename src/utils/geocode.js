@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = 'AIzaSyD3kW1MKxA-HyUanywrHGuaYHTfr74mqMU';
+const API_KEY = 'AIzaSyA9ZhG7CEG04TrkNaAtje2CiqJiM1MoLhc';
 
 const API_URL = 'https://maps.googleapis.com/maps/api/geocode/json';
 
