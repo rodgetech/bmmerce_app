@@ -105,12 +105,8 @@ const defaultReducer = (state = STATE, action) => {
 
     case types.CREATE_LISTING_FAILURE:
       {
-        const {
-          createListingErrors
-        } = action;
         return {
           ...state,
-          createListingErrors,
           creatingListing: false,
         }
       }

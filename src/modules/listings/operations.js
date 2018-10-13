@@ -13,7 +13,6 @@ import {
   reverseGeocode,
 } from '../../utils/geocode';
 
-
 const getListingAction = Actions.getListing;
 const getListingSuccessAction = Actions.getListingSuccess;
 
@@ -167,17 +166,30 @@ const createListing = (newListing) => {
     dispatch(createListingAction());
     // Reverse geocode current location
     const geoResponse = await reverseGeocode(newListing.latitude, newListing.longitude);
-    console.log("GEO RESPONSE", geoResponse);
-    const address = geoResponse.data.results[0].address_components[1].short_name;
-    const district = geoResponse.data.results[0].address_components[2].short_name
+    let results = geoResponse.data.results;
+
+    let level_1; // state
+    let level_2; // city
+    for (let x = 0, length_1 = results.length; x < length_1; x++) {
+      for (let y = 0, length_2 = results[x].address_components.length; y < length_2; y++) {
+        let type = results[x].address_components[y].types[0];
+        if (type === "administrative_area_level_1") {
+          level_1 = results[x].address_components[y].long_name;
+          if (level_2) break;
+        } else if (type === "locality") {
+          level_2 = results[x].address_components[y].long_name;
+          if (level_1) break;
+        }
+      }
+    }
+
     // Format post data
-    console.log(newListing);
     let formData = new FormData();
     formData.append('title', newListing.title);
     formData.append('price', newListing.price);
     formData.append('description', newListing.description);
-    formData.append('address', address);
-    formData.append('district', district);
+    formData.append('address', level_2);
+    // formData.append('district', district);
     formData.append('latitude', newListing.latitude);
     formData.append('longitude', newListing.longitude);
     // Format images for posting
@@ -194,7 +206,6 @@ const createListing = (newListing) => {
 
     axios.post(`${API_ROOT}/admin/listings`, formData)
       .then(async (response) => {
-        console.log("CREATE SUCCESSSSSS", response);
         let responseData = response.data.listing;
         const listing = {
           id: responseData.id,
@@ -215,12 +226,11 @@ const createListing = (newListing) => {
           createdAt: responseData.created_at
         };
         dispatch(createListingSuccessAction(listing));
-        navigationService.navigate('AccountListings', {
+        navigationService.navigate('Home', {
           listing: listing
         });
       })
       .catch((error) => {
-        console.log("CREATE ERRROR:", error);
         showMessage({
           message: "Listing could not be created",
           type: "danger",
@@ -228,7 +238,7 @@ const createListing = (newListing) => {
           duration: 2500,
           floating: true
         });
-        // dispatch(createListingFailureAction(error.response.data.errors));
+        dispatch(createListingFailureAction());
         // dispatch(authenticateFailureAction(error.response.data.error.user_authentication[0]));
       });
   }

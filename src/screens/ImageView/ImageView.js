@@ -14,7 +14,7 @@ export default class ImageView extends React.PureComponent {
         <FastImage
             style={{flex: 1, backgroundColor: '#000'}}
             source={{ uri: image, priority: FastImage.priority.high }}
-            resizeMode={FastImage.resizeMode.contain}
+            resizeMode={FastImage.resizeMode.center}
         />
       </View>
     );

@@ -5,18 +5,22 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Text
 } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { Button, Input, Icon } from 'react-native-elements';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import ImagePicker  from 'react-native-image-picker';   
 import FastImage from 'react-native-fast-image';
 import { colors, fonts } from '../../styles'
 import ActivityLoader from '../../components/ActivityLoader';
 import {
-  currentPosition
+  currentPosition,
+  reverseGeocode
 } from '../../utils/geocode';
 import resizeImage from '../../utils/image';
 import { moderateScale } from '../../utils/scaling';
+import SearchAddress from './SearchAddress';
 
 export default class Post extends React.Component {
 
@@ -29,7 +33,9 @@ export default class Post extends React.Component {
       description: '',
       latitude: '',
       longitude: '',
-      loading: true
+      loading: true,
+      address: '',
+      enableSearchAddress: false
     }
   }
 
@@ -73,7 +79,7 @@ export default class Post extends React.Component {
     });
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     Permissions.check('location').then(response => {
       if (response == 'undetermined' || response == 'denied') {
         this.requestPermission('location');
@@ -85,18 +91,23 @@ export default class Post extends React.Component {
     });
 
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      async (position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        const geoResponse = await reverseGeocode(latitude, longitude);
         this.setState({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           loading: false,
+          address: `${geoResponse.data.results[0].address_components[1].short_name}, ${geoResponse.data.results[0].address_components[2].short_name}`,
         });
       },
       (error) => {
-          return error
+          this.setState({enableSearchAddress: true});
+          return error;
       }, {
-          enableHighAccuracy: false,
-          timeout: 10000
+        enableHighAccuracy: true,
+        timeout: 10000
       },
     );
   }
@@ -243,7 +254,7 @@ export default class Post extends React.Component {
                 placeholder="Price"
                 underlineColorAndroid='transparent'
                 containerStyle={{marginBottom: 20, width: '100%'}}
-                inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(18, 2.5), height: '100%'}}
+                inputStyle={{fontFamily: fonts.robotoCondensed, color: colors.dark, paddingHorizontal: 0, fontSize: moderateScale(18, 2.5), height: '100%'}}
                 inputContainerStyle={{borderColor: "#CCC", borderBottomWidth: 1}}
                 onChangeText={(price) => this.setState({price})} 
                 value={this.state.price}
@@ -258,11 +269,42 @@ export default class Post extends React.Component {
                 onChangeText={(description) => this.setState({description})} 
                 value={this.state.description}
             />
+
+            {this.state.enableSearchAddress && 
+              <SearchAddress 
+                onPress = {(address, latitude, longitude) => this.setState({address, latitude, longitude})}
+              />
+            }
+            {!this.state.enableSearchAddress &&
+              <TouchableOpacity 
+                style={{flexDirection: 'row', marginTop: 6, borderBottomWidth: 1, borderColor: '#CCC', paddingBottom: 12, paddingHorizontal: 10}}
+                activeOpacity={0.8}
+                onPress={() => this.setState({enableSearchAddress: true})}
+              >
+                <View style={{flex: 1}}>
+                  <Text 
+                    style={{
+                      color: colors.dark,
+                      fontFamily: fonts.robotoCondensed,
+                      fontSize: moderateScale(17, 2.5),
+                      paddingRight: 10
+                    }}
+                  >
+                    {this.state.address}
+                  </Text>
+                </View>
+                <Icon
+                  name='square-edit-outline'
+                  type='material-community'
+                  color={colors.green}
+                />
+              </TouchableOpacity> 
+            } 
             <Button 
-              title="Post Listing"
+              title="Post"
               titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
               onPress={this.createListing}
-              buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
+              buttonStyle={{marginTop: 30, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
               disabled={this.state.images.length == 0 || !this.state.title || !this.state.price}
             />
           </View>

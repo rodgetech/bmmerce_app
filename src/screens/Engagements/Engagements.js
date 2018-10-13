@@ -13,7 +13,6 @@ import { moderateScale } from '../../utils/scaling';
 
 export default class Engagements extends React.PureComponent {
 
-
   componentDidMount() {
     this.navListener = this.props.navigation.addListener('willFocus', () => {
       //console.log("I AM NOW FOCUSED");
@@ -70,6 +69,14 @@ export default class Engagements extends React.PureComponent {
         }
         rightIcon={
           <View>
+            <FastImage
+              style={{width: 45, height: 45, backgroundColor: '#f7f7f7', marginBottom: 2}}
+              source={{
+                uri: item.recipient.avatar,
+                priority: FastImage.priority.normal
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
             {item.unreadMessagesCount > 0 &&
               <Badge
                 containerStyle={{ backgroundColor: colors.green, marginTop: 4}}
@@ -90,6 +97,7 @@ export default class Engagements extends React.PureComponent {
               engagementId: item.id, 
               recipientId: item.recipient.id, 
               recipientName: item.recipient.name,
+              recipientAvatar: item.recipient.avatar,
               senderId: item.senderId,
               listingId: item.listing.id,
               image: item.listing.images[0].listing_image.url,

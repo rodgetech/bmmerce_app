@@ -112,7 +112,7 @@ export default class ListingView extends React.PureComponent {
                             Listed by {this.props.listing.listedBy.account.name}
                           </Text>
                           <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.dark, paddingTop: 1}}>
-                            {`${this.props.listing.address}, ${this.props.listing.district}`}
+                            {`Near ${this.props.listing.address}`}
                           </Text>
                           <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey, paddingTop: 1}}>
                             {format(this.props.listing.createdAt, 'EEEE, LLLL do yyyy')}

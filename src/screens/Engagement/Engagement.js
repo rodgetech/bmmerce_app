@@ -4,7 +4,8 @@ import {
   View,
   ActivityIndicator,
   Text,
-  AppState
+  AppState,
+  TouchableOpacity
 } from 'react-native';
 import { GiftedChat, Bubble, InputToolbar, Composer, Send, LoadEarlier, Day } from 'react-native-gifted-chat';
 import FastImage from 'react-native-fast-image'
@@ -37,14 +38,32 @@ export default class Engagement extends React.Component {
           <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.7), paddingRight: 8}}>
             ${parseFloat(params.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
           </Text>
-          <FastImage
-            style={{height: 35, width: 35, marginRight: 18}}
-            source={{
-              uri: params.listingImage,
-              priority: FastImage.priority.normal
-            }}
-            resizeMode={FastImage.resizeMode.cover}
-          />
+          <TouchableOpacity 
+            onPress={() =>navigation.navigate('ImageView', {image: params.listingImage})}
+            activeOpacity={0.7}
+          >
+            <FastImage
+              style={{height: 35, width: 35, marginRight: 10}}
+              source={{
+                uri: params.listingImage,
+                priority: FastImage.priority.normal
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() =>navigation.navigate('ImageView', {image: params.avatar})}
+            activeOpacity={0.7}
+          >
+            <FastImage
+              style={{height: 35, width: 35, marginRight: 18}}
+              source={{
+                uri: params.avatar,
+                priority: FastImage.priority.normal
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </TouchableOpacity>
         </View>
         )
       ),
@@ -60,11 +79,13 @@ export default class Engagement extends React.Component {
     const engagementId = navigation.getParam('engagementId', 'NO-ID');
     const listingId = navigation.getParam('listingId', 'NO-ID');
     const recipientId = navigation.getParam('recipientId', 'NO-ID');
+    const recipientAvatar = navigation.getParam('recipientAvatar', '');
     const listingImage = navigation.getParam('image', null);
     const price = navigation.getParam('price', null);
 
     this.props.navigation.setParams({
       listingImage: listingImage,
+      avatar: recipientAvatar,
       price: price,
     });
 

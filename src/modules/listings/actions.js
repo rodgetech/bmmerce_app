@@ -54,9 +54,8 @@ const createListingSuccess = (listing) => ({
     listing: listing
 });
 
-const createListingFailure = (json) => ({
+const createListingFailure = () => ({
     type: types.CREATE_LISTING_FAILURE,
-    createListingErrors: json
 });
 
 const updateListing = () => ({
