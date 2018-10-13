@@ -30,7 +30,7 @@ const SearchAddress = props => {
                 // available options: https://developers.google.com/places/web-service/autocomplete
                 key: 'AIzaSyA9ZhG7CEG04TrkNaAtje2CiqJiM1MoLhc',
                 language: 'en', // language of the results
-                //types: '(cities)', // default: 'geocode',
+                // types: '(regions)', // default: 'geocode',
                 components: 'country:bz'
             }}
             

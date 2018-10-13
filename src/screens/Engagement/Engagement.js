@@ -43,7 +43,7 @@ export default class Engagement extends React.Component {
             activeOpacity={0.7}
           >
             <FastImage
-              style={{height: 35, width: 35, marginRight: 10}}
+              style={{height: 35, width: 35, marginRight: 10, borderRadius: 1}}
               source={{
                 uri: params.listingImage,
                 priority: FastImage.priority.normal
@@ -56,7 +56,7 @@ export default class Engagement extends React.Component {
             activeOpacity={0.7}
           >
             <FastImage
-              style={{height: 35, width: 35, marginRight: 18}}
+              style={{height: 35, width: 35, marginRight: 18, borderRadius: 1}}
               source={{
                 uri: params.avatar,
                 priority: FastImage.priority.normal

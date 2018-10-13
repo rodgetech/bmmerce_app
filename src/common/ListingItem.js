@@ -35,11 +35,11 @@ export default class ListingItem extends React.PureComponent {
                 <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.5), color: colors.dark}} numberOfLines={1}>
                     {this.props.listing.title}
                 </Text>
-                <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.5), paddingTop: 1}}>
+                <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(16, 1.5)}}>
                     ${parseFloat(this.props.listing.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                 </Text>
                 <Text style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>
-                    Near {this.props.listing.address}
+                    {this.props.listing.address}
                 </Text>
             </View>
             </TouchableOpacity>

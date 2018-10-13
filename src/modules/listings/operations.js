@@ -9,9 +9,6 @@ import Actions from './actions';
 import {
   API_ROOT
 } from '../../utils/apiConfig';
-import {
-  reverseGeocode,
-} from '../../utils/geocode';
 
 const getListingAction = Actions.getListing;
 const getListingSuccessAction = Actions.getListingSuccess;
@@ -164,31 +161,13 @@ const createListing = (newListing) => {
   return async dispatch => {
     await setAuthorizationToken('authToken');
     dispatch(createListingAction());
-    // Reverse geocode current location
-    const geoResponse = await reverseGeocode(newListing.latitude, newListing.longitude);
-    let results = geoResponse.data.results;
-
-    let level_1; // state
-    let level_2; // city
-    for (let x = 0, length_1 = results.length; x < length_1; x++) {
-      for (let y = 0, length_2 = results[x].address_components.length; y < length_2; y++) {
-        let type = results[x].address_components[y].types[0];
-        if (type === "administrative_area_level_1") {
-          level_1 = results[x].address_components[y].long_name;
-          if (level_2) break;
-        } else if (type === "locality") {
-          level_2 = results[x].address_components[y].long_name;
-          if (level_1) break;
-        }
-      }
-    }
 
     // Format post data
     let formData = new FormData();
     formData.append('title', newListing.title);
     formData.append('price', newListing.price);
     formData.append('description', newListing.description);
-    formData.append('address', level_2);
+    formData.append('address', newListing.address);
     // formData.append('district', district);
     formData.append('latitude', newListing.latitude);
     formData.append('longitude', newListing.longitude);

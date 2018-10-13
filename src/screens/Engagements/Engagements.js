@@ -59,7 +59,7 @@ export default class Engagements extends React.PureComponent {
         }
         leftAvatar={
           <FastImage
-            style={{width: 70, height: 70, backgroundColor: '#f7f7f7'}}
+            style={{width: 70, height: 70, backgroundColor: '#f7f7f7', borderRadius: 1}}
             source={{
               uri: item.listing.images[0].listing_image.url,
               priority: FastImage.priority.normal
@@ -70,7 +70,7 @@ export default class Engagements extends React.PureComponent {
         rightIcon={
           <View>
             <FastImage
-              style={{width: 45, height: 45, backgroundColor: '#f7f7f7', marginBottom: 2}}
+              style={{width: 45, height: 45, backgroundColor: '#f7f7f7', marginBottom: 2, borderRadius: 1}}
               source={{
                 uri: item.recipient.avatar,
                 priority: FastImage.priority.normal
