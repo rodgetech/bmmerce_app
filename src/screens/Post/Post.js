@@ -62,7 +62,6 @@ export default class Post extends React.Component {
   requestPermission = (permission) => {
     Permissions.request(permission).then(response => {
       if (permission == 'location' && response == "denied") {
-        this.props.navigation.navigate('Home');
       }
     });
   }
