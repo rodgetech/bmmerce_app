@@ -118,7 +118,7 @@ class Auth extends React.Component {
           <Text 
             style={{fontFamily: fonts.robotoCondensed,fontSize: moderateScale(17, 2.5), color: colors.dark, textAlign: 'center', paddingBottom: 20}}
           >
-            Sell & buy stuff near you
+            Buy & sell stuff near you
           </Text>
         </View>
         <Button 
