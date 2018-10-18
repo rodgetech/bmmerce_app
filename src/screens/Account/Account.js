@@ -49,8 +49,8 @@ export default class Account extends React.PureComponent {
             </Text>
           </View>
         :
-          <Text style={{fontSize: moderateScale(20, 2.5), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingHorizontal: 14}}>
-            ...
+          <Text style={{fontSize: moderateScale(17, 1.7), color: colors.dark, fontFamily: fonts.robotoCondensed, paddingHorizontal: 14}}>
+            Loading...
           </Text>
       ),
     }

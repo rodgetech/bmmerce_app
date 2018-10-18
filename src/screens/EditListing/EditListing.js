@@ -209,7 +209,7 @@ export default class EditListing extends React.Component {
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps='always'
                 >
-                    <View style={{ backgroundColor: '#F7F7F7', height: 280 }}>
+                    <View style={{ backgroundColor: '#F7F7F7', height: 250 }}>
                         <FastImage
                             style={StyleSheet.absoluteFill}
                             source={{

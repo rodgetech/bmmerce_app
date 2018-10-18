@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import { Header } from 'react-navigation';
 import Permissions from 'react-native-permissions';
 import { Icon } from 'react-native-elements';
 import OneSignal from 'react-native-onesignal';
@@ -34,26 +35,10 @@ export default class Home extends React.Component {
     const { params } = navigation.state;
     const address = params ? params.address : ''
     return {
-      headerRight: (
-        <View style={styles.headerContainer}>
+      header: (
+        <View style={{flexDirection: 'row', height: Header.HEIGHT,  backgroundColor: '#FFF', elevation: 2, alignItems: 'center'}}>
           <TouchableOpacity 
-            style={{alignSelf: 'stretch', justifyContent: 'center', marginRight: 10}}
-            activeOpacity={0.4}
-            onPress={() => navigation.navigate('Search')}
-          >
-            <Icon
-              name='magnifying-glass'
-              type='entypo'
-              color={colors.dark}
-            />
-          </TouchableOpacity>
-        </View>
-      ),
-
-      headerLeft: (
-        <View style={styles.headerContainer}>
-          <TouchableOpacity 
-            style={{flexDirection: 'row', justifyContent: 'center', marginLeft: 10}}
+            style={{flex: 1, flexDirection: 'row', marginLeft: 10}}
             activeOpacity={0.4}
             onPress={() => navigation.navigate('Filter', {changeLocation: params.changeLocation})}
           >
@@ -68,7 +53,8 @@ export default class Home extends React.Component {
                   fontFamily: fonts.robotoCondensed, 
                   fontSize: moderateScale(17, 1.7), 
                   color: colors.dark,
-                  marginLeft: 6
+                  marginLeft: 6,
+                  flex: 1, 
                 }} 
                 numberOfLines={1}
               >
@@ -78,14 +64,25 @@ export default class Home extends React.Component {
               <Text
                 style={{
                   fontFamily: fonts.robotoCondensed, 
-                  fontSize: moderateScale(17, 2), 
+                  fontSize: moderateScale(17, 1.7), 
                   color: colors.dark,
                   marginLeft: 6
                 }}   
               >
-                ...
+                Loading...
               </Text>
             }
+          </TouchableOpacity>
+          <TouchableOpacity 
+            style={{marginRight: 10}}
+            activeOpacity={0.4}
+            onPress={() => navigation.navigate('Search')}
+          >
+            <Icon
+              name='magnifying-glass'
+              type='entypo'
+              color={colors.dark}
+            />
           </TouchableOpacity>
         </View>
       ),
@@ -126,7 +123,7 @@ export default class Home extends React.Component {
         const geoResponse = await reverseGeocode(latitude, longitude);
         //console.log("GEOCODE", geoResponse);
         this.props.navigation.setParams({
-          address: geoResponse.data.results[0].address_components[1].short_name,
+          address: geoResponse.data.results[0].formatted_address,
           changeLocation: this.changeLocation
         });
         this.setState({

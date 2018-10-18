@@ -99,7 +99,7 @@ export default class ListingView extends React.PureComponent {
                     <View style={{flexDirection: 'row', paddingTop: 10, marginHorizontal: 12}}>
                         <View >
                         <FastImage
-                          style={{width: 35, height: 35, borderRadius: 35/2, marginRight: 12, backgroundColor: '#f7f7f7'}}
+                          style={{width: 40, height: 40, borderRadius: 1, marginRight: 12, backgroundColor: '#f7f7f7'}}
                           source={{
                             uri: this.props.listing.listedBy.account.avatar,
                             priority: FastImage.priority.normal
@@ -111,10 +111,10 @@ export default class ListingView extends React.PureComponent {
                           <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.dark, marginVertical: 0}}>
                             Listed by {this.props.listing.listedBy.account.name}
                           </Text>
-                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.dark, paddingTop: 1}}>
-                            {this.props.listing.address}
+                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey, paddingTop: 4}}>
+                            Located near {this.props.listing.address}
                           </Text>
-                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey, paddingTop: 1}}>
+                          <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.grey}}>
                             {format(this.props.listing.createdAt, 'EEEE, LLLL do yyyy')}
                           </Text>
                         </View>

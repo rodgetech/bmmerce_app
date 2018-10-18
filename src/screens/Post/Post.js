@@ -98,7 +98,7 @@ export default class Post extends React.Component {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           loading: false,
-          address: `${geoResponse.data.results[0].address_components[1].short_name}, ${geoResponse.data.results[0].address_components[2].short_name}`,
+          address: geoResponse.data.results[0].formatted_address,
         });
       },
       (error) => {
@@ -227,7 +227,7 @@ export default class Post extends React.Component {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps='always'
         >
-          <View style={{ backgroundColor: '#F7F7F7', height: 280}}>
+          <View style={{ backgroundColor: '#F7F7F7', height: 250}}>
             {this.state.images[0] && 
               <FastImage
                 style={StyleSheet.absoluteFill}

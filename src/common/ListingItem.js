@@ -39,7 +39,7 @@ export default class ListingItem extends React.PureComponent {
                     ${parseFloat(this.props.listing.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                 </Text>
                 <Text style={{fontFamily: fonts.robotoCondensed, color: colors.grey, fontSize: moderateScale(15, 2), paddingTop: 4}} numberOfLines={1}>
-                    {this.props.listing.address}
+                    Near {this.props.listing.address}
                 </Text>
             </View>
             </TouchableOpacity>

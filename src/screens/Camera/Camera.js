@@ -10,7 +10,7 @@ import { Icon } from 'react-native-elements'
 
 import Preview from './Preview';
 import ActivityLoader from '../../components/ActivityLoader';
-
+import { colors } from '../../styles';
 
 export default class Camera extends React.Component {
 
@@ -18,8 +18,29 @@ export default class Camera extends React.Component {
     image: '',
     showPreview: false,
     cameraLoading: true,
-    takingPicture: false
+    takingPicture: false,
+    flashOn: false,
   }
+
+  static navigationOptions = ({navigation}) => {
+    const { params } = navigation.state;
+    const flashOn = params ? params.flashOn : false
+    return {
+      headerRight: (
+        <TouchableOpacity
+          activeOpacity={0.9}
+          style={{alignItems: 'center', marginRight: 18, backgroundColor: '#FFF', paddingVertical: 4, paddingHorizontal: 14, borderRadius: 2}}
+          onPress={params.toggleFlash}
+        >
+          <Icon
+            type='ionicon'
+            name={`${flashOn ? 'ios-flash' : 'ios-flash-off'}`}
+            color={colors.dark}
+          />
+        </TouchableOpacity>
+      ),
+    }
+  };
 
   constructor (props) {
     super(props)
@@ -34,10 +55,25 @@ export default class Camera extends React.Component {
   componentDidMount() {
     const { navigation } = this.props;
     this.onSetImageFromCamera = navigation.getParam('onSetImageFromCamera', null);
+    this.props.navigation.setParams({
+      flashOn: this.state.flashOn,
+      toggleFlash: this.toggleFlash
+    });
   }
 
   componentWillUnmount() { 
     this.navListener.remove();
+  }
+
+  toggleFlash = () => {
+    this.setState({
+      flashOn: !this.state.flashOn
+    }, () => {
+      this.props.navigation.setParams({
+        flashOn: this.state.flashOn,
+      });
+    });
+    
   }
 
   retake = () => {
@@ -99,7 +135,7 @@ export default class Camera extends React.Component {
           }}
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
-          flashMode={RNCamera.Constants.FlashMode.off}
+          flashMode={this.state.flashOn ? RNCamera.Constants.FlashMode.on : RNCamera.Constants.FlashMode.off}
           permissionDialogTitle={'Permission to use camera'}
           permissionDialogMessage={'We need your permission to use your camera phone'}
         >
@@ -107,12 +143,13 @@ export default class Camera extends React.Component {
                 <TouchableOpacity
                     onPress={this.takePicture}
                     style = {styles.capture}
+                    activeOpacity={0.9}
                 >
                   
                     <Icon
                       name='photo-camera'
-                      color='#000'
-                      size={40}
+                      color={colors.dark}
+                      size={50}
                     />
                 </TouchableOpacity>
             </View>
@@ -136,10 +173,12 @@ const styles = StyleSheet.create({
   capture: {
     flex: 0,
     backgroundColor: '#fff',
-    borderRadius: 50,
-    padding: 10,
-    paddingHorizontal: 20,
+    borderRadius: 2,
     alignSelf: 'center',
-    margin: 20
+    height: 85,
+    width: 85,
+    margin: 20,
+    borderRadius: 85/2,
+    justifyContent: 'center'
   }
 });
