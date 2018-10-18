@@ -12,7 +12,8 @@ const STATE = {
   createListingErrors: {},
   totalPages: 0,
   currentPage: 0,
-  refreshing: false
+  refreshing: false,
+  empty: false
 }
 
 const USER_LISTINGS_STATE = {
@@ -71,6 +72,7 @@ const defaultReducer = (state = STATE, action) => {
           currentPage,
           listings: currentPage === 1 ? listings : [...state.listings, ...listings],
           gettingListings: false,
+          empty: listings.length > 0 ? false : true
         }
       }
 
@@ -111,7 +113,7 @@ const defaultReducer = (state = STATE, action) => {
         }
       }
 
-      case types.REFRESH:
+    case types.REFRESH:
       {
         return {
           ...state,

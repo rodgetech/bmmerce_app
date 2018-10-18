@@ -32,8 +32,7 @@ export default class Home extends React.Component {
   }
 
   static navigationOptions = ({navigation}) => {
-    const { params } = navigation.state;
-    const address = params ? params.address : ''
+    const { params = {} } = navigation.state;
     return {
       header: (
         <View style={{flexDirection: 'row', height: Header.HEIGHT,  backgroundColor: '#FFF', elevation: 2, alignItems: 'center'}}>
@@ -47,7 +46,7 @@ export default class Home extends React.Component {
               type='entypo'
               color={colors.dark}
             />
-            {params ? 
+            {!params.loading ? 
               <Text 
                 style={{
                   fontFamily: fonts.robotoCondensed, 
@@ -58,7 +57,7 @@ export default class Home extends React.Component {
                 }} 
                 numberOfLines={1}
               >
-                {address}
+                {params.address}
               </Text>
             :
               <Text
@@ -97,6 +96,11 @@ export default class Home extends React.Component {
   }
 
   componentDidMount = async () => {
+    this.props.navigation.setParams({
+      changeLocation: this.changeLocation,
+      loading: true
+    });
+
     OneSignal.setSubscription(true); // Enable notifications
     OneSignal.addEventListener('received', this.onReceived);
     OneSignal.addEventListener('opened', this.onOpened);
@@ -124,7 +128,7 @@ export default class Home extends React.Component {
         //console.log("GEOCODE", geoResponse);
         this.props.navigation.setParams({
           address: geoResponse.data.results[0].formatted_address,
-          changeLocation: this.changeLocation
+          loading: false
         });
         this.setState({
           loading: false,
@@ -265,6 +269,27 @@ export default class Home extends React.Component {
     }
   }
 
+  renderListEmpty = () => {
+    if (this.props.empty && !this.props.gettingListings) {
+      return (
+        <View style={{paddingHorizontal: 10,backgroundColor: '#fafafa', paddingVertical: 18}}>
+          <Icon
+            name='ios-sad'
+            type='ionicon'
+            color={colors.dark}
+            size={40}
+            iconStyle={{marginBottom: 10}}
+          />
+          <Text style={{fontSize: moderateScale(16, 1.5), fontFamily: fonts.robotoCondensed, color: colors.dark}}>
+            We're sorry, but nothing has been posted near this location...But as soon as someone does, you'll be notified. So stay tuned.
+          </Text>
+        </View>
+      )
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -286,6 +311,7 @@ export default class Home extends React.Component {
               this.handleLoadMore();
             }
           }}
+          ListEmptyComponent={this.renderListEmpty}
         />
       </View>
     );

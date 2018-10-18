@@ -19,7 +19,8 @@ const mapStateToProps = (state) => {
         gettingListings,
         searching,
         totalPages,
-        refreshing
+        refreshing,
+        empty
     } = state.listings.default;
     const {
         account
@@ -30,7 +31,8 @@ const mapStateToProps = (state) => {
         searching,
         totalPages,
         refreshing,
-        account
+        account,
+        empty
     };
 };
 
