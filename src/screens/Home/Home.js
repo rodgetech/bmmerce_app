@@ -281,7 +281,7 @@ export default class Home extends React.Component {
             iconStyle={{marginBottom: 10}}
           />
           <Text style={{fontSize: moderateScale(16, 1.5), fontFamily: fonts.robotoCondensed, color: colors.dark}}>
-            We're sorry, but nothing has been posted near this location...But as soon as someone does, you'll be notified. So stay tuned.
+            We're sorry, but nothing has been posted near this location. As soon as someone does, you'll be notified. So stay tuned.
           </Text>
         </View>
       )

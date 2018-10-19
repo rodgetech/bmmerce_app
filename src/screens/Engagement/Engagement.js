@@ -118,21 +118,23 @@ export default class Engagement extends React.Component {
       // On typing event, show typing indicator to recipient
       this.socket.on(`onTyping`, (isTyping) => {
         if (this.state.appState === 'active' && this.socket.connected) {
-          console.log("IS TYPING: ", isTyping);
           this.setState({showIsTyping: isTyping});
         }
       })
     });
 
     this.socket.on('disconnect', () => {
-      console.log("React Native App Disconnected")
+      // console.log("React Native App Disconnected")
     });
   }
 
   componentWillUnmount() {
-    AppState.removeEventListener('change', this.handleAppStateChange);
-
     const { navigation } = this.props;
+    AppState.removeEventListener('change', this.handleAppStateChange);
+    const engagementId = navigation.getParam('engagementId', 'NO-ID');
+    this.props.markMessagesRead(engagementId);
+
+
     const listingId = navigation.getParam('listingId', 'NO-ID');
     const recipientId = navigation.getParam('recipientId', 'NO-ID');
     const indicateScope = `${listingId}-${recipientId}`;
@@ -144,10 +146,8 @@ export default class Engagement extends React.Component {
     const { navigation } = this.props;
     const recipientId = navigation.getParam('recipientId', 'NO-ID');
     const listingId = navigation.getParam('listingId', 'NO-ID');
-    const engagementId = navigation.getParam('engagementId', 'NO-ID');
     if (nextAppState === 'active') {
       this.props.getEngagementMessages(recipientId, listingId, 1, false);
-      this.props.markMessagesRead(engagementId);
     } else {
       const indicateScope = `${listingId}-${recipientId}`;
       this.socket.emit('senderTyping', {indicateScope: indicateScope, typing: false});
@@ -158,10 +158,10 @@ export default class Engagement extends React.Component {
 
   // New message emitted, update messages state
   onNewMessage = (newMessage) => {
-    console.log("IM STILL CALLED");
+    // console.log("IM STILL CALLED");
     const { navigation } = this.props;
     const engagementId = navigation.getParam('engagementId', 'NO-ID');
-    console.log("GOT NEW MESSAGE");
+    // console.log("GOT NEW MESSAGE");
     const message = {
       _id: newMessage.id,
       text: newMessage.body,

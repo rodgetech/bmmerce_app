@@ -14,7 +14,7 @@ import { moderateScale } from '../../utils/scaling';
 export default class Engagements extends React.PureComponent {
 
   componentDidMount() {
-    this.navListener = this.props.navigation.addListener('willFocus', () => {
+    this.navListener = this.props.navigation.addListener('didFocus', () => {
       //console.log("I AM NOW FOCUSED");
       this.props.getEngagements();
     });
