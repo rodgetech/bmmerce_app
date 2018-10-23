@@ -5,11 +5,9 @@ import {
   FlatList,
   Text
 } from 'react-native';
-import FastImage from 'react-native-fast-image'
-import { ListItem } from 'react-native-elements'
 import Loader from '../../components/Loader';
-import { fonts, colors } from '../../styles';
-import { moderateScale } from '../../utils/scaling';
+import { colors } from '../../styles';
+import { UserItem } from '../../common';
 
 export default class AccountListings extends React.Component {
 
@@ -37,38 +35,7 @@ export default class AccountListings extends React.Component {
                         showsVerticalScrollIndicator={false}
                         data={this.props.users}
                         renderItem={({item}) => (
-                            <ListItem
-                                onPress={() => this.props.navigation.navigate("EditListing", {listing: item})}
-                                containerStyle={{borderBottomWidth: 0}}
-                                title={
-                                    <View style={{marginBottom: 6}}>
-                                        <Text
-                                            style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
-                                        >
-                                            {item.name}
-                                        </Text>
-                                    </View>
-                                }
-                                subtitle={
-                                    <View>
-                                      <Text
-                                        style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
-                                      >
-                                        {item.address}
-                                      </Text>
-                                    </View>
-                                  }
-                                leftAvatar={
-                                    <FastImage
-                                        style={{width: 80, height: 80, marginRight: 20, backgroundColor: '#f7f7f7'}}
-                                        source={{
-                                            uri: item.avatar,
-                                            priority: FastImage.priority.normal
-                                        }}
-                                        resizeMode={FastImage.resizeMode.cover}
-                                    />
-                                }
-                            />
+                            <UserItem user={item} />
                         )}
                         keyExtractor={(item) => item.id.toString()}
                         ItemSeparatorComponent={this.renderSeparator}

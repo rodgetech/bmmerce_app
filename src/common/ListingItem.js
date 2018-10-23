@@ -73,5 +73,5 @@ const styles = StyleSheet.create({
     itemInvisible: {
       backgroundColor: 'transparent',
     },
-  });
+});
   
