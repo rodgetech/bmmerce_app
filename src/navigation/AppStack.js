@@ -114,7 +114,7 @@ const TabNavigation =   createBottomTabNavigator(
                 tabBarOnPress: ({navigation}) => {
                     navigation.navigate('Post')
                 },
-                tabBarLabel: 'Post'
+                tabBarLabel: 'Sell'
             }),
         },
         Engagements : {
@@ -142,7 +142,7 @@ const TabNavigation =   createBottomTabNavigator(
         animationEnabled: false,
         tabBarOptions: {
             activeTintColor: colors.green,
-            inactiveTintColor: '#454545',
+            inactiveTintColor: '#7B8285',
             activeBackgroundColor: '#FFF',
             inactiveBackgroundColor: '#FFF',
             showIcon: true,

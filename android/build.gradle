@@ -31,15 +31,28 @@ buildscript {
     }
 }
 
+ext {
+    googlePlayServicesVersion   = "15.0.1"
+}
+
+
 allprojects {
     repositories {
         mavenLocal()
-        jcenter()
+        maven { url 'http://maven.google.com' }
+        jcenter { url "http://jcenter.bintray.com/" }
+        google()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
-        google()
+
+        configurations.all {
+            resolutionStrategy {
+                force "com.google.android.gms:play-services-basement:$googlePlayServicesVersion"
+                force "com.google.android.gms:play-services-tasks:$googlePlayServicesVersion"
+            }
+        }
     }
 }
 

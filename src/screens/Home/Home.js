@@ -16,7 +16,7 @@ import {
 } from '../../utils/geocode';
 import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles'
-import ListingItem from '../../common/ListingItem';
+import { ListingItem, LatestUsers } from '../../common';
 
 const numColumns = 2;
 
@@ -290,6 +290,10 @@ export default class Home extends React.Component {
     }
   }
 
+  renderListingHeader = () => {
+    return <LatestUsers />
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -312,6 +316,7 @@ export default class Home extends React.Component {
             }
           }}
           ListEmptyComponent={this.renderListEmpty}
+          ListHeaderComponent={this.renderListingHeader}
         />
       </View>
     );

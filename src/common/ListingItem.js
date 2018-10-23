@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#F7F7F7",
       alignItems: 'center',
       justifyContent: 'center',
-      height: 130, // approximate a square
+      height: 150, // approximate a square
     },
     itemContainer: {
       flex: 1,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
       overflow: 'hidden',
       elevation: 0,
       borderBottomWidth: 1,
-      borderColor: '#F5F5F5'
+      borderColor: '#CCD9DE'
     },
     infoContainer: {
       paddingVertical: 10,
