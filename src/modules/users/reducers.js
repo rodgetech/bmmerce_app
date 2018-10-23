@@ -11,7 +11,12 @@ const STATE = {
   empty: false
 }
 
-const usersReducer = (state = STATE, action) => {
+const LATEST_USERS_STATE = {
+  gettingUsers: false,
+  users: [],
+}
+
+const defaultReducer = (state = STATE, action) => {
   switch (action.type) {
     case types.GET_USERS:
       {
@@ -42,5 +47,37 @@ const usersReducer = (state = STATE, action) => {
       return state;
   }
 }
+
+const latestUsersReducer = (state = LATEST_USERS_STATE, action) => {
+  switch (action.type) {
+    case types.GET_LATEST_USERS:
+      {
+        return {
+          ...state,
+          gettingUsers: true,
+        }
+      }
+
+    case types.GET_LATEST_USERS_SUCCESS:
+      {
+        const {
+          users,
+        } = action;
+        return {
+          ...state,
+          users,
+          gettingUsers: false,
+        }
+      }
+
+    default:
+      return state;
+  }
+}
+
+const usersReducer = combineReducers({
+  default: defaultReducer,
+  latestUsers: latestUsersReducer,
+});
 
 export default usersReducer;

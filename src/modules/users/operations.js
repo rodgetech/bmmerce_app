@@ -12,6 +12,8 @@ import {
 
 const getUsersAction = Actions.getUsers;
 const getUsersSuccessAction = Actions.getUsersSuccess;
+const getLatestUsersAction = Actions.getLatestUsers;
+const getLatestUsersSuccessAction = Actions.getLatestUsersSuccess;
 
 const getListing = (id) => {
   return async dispatch => {
@@ -64,6 +66,23 @@ const getUsers = (page, per) => {
   }
 }
 
+const getLatestUsers = () => {
+  let query = `page=${1}&per=${4}`;
+  return async dispatch => {
+    dispatch(getLatestUsersAction());
+    await setAuthorizationToken('authToken');
+    axios.get(`${API_ROOT}/users?${query}`)
+      .then(function (response) {
+        const users = response.data.users;
+        dispatch(getLatestUsersSuccessAction(users));
+      })
+      .catch(function (error) {
+        //dispatch(getUsersFailureAction(error.response.data.data));
+      });
+  }
+}
+
 export default {
-  getUsers
+  getUsers,
+  getLatestUsers
 };

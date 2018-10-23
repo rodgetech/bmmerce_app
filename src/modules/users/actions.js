@@ -15,8 +15,24 @@ const getUsersFailure = (json) => ({
     type: types.GET_USERS_FAILURE,
 });
 
+const getLatestUsers = () => ({
+    type: types.GET_LATEST_USERS
+});
+
+const getLatestUsersSuccess = (json) => ({
+    type: types.GET_LATEST_USERS_SUCCESS,
+    users: json,
+});
+
+const getLatestUsersFailure = (json) => ({
+    type: types.GET_LATEST_USERS_FAILURE,
+});
+
 export default {
     getUsers,
     getUsersSuccess,
-    getUsersFailure
+    getUsersFailure,
+    getLatestUsers,
+    getLatestUsersSuccess,
+    getLatestUsersFailure
 };

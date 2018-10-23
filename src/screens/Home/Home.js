@@ -291,7 +291,7 @@ export default class Home extends React.Component {
   }
 
   renderListingHeader = () => {
-    return <LatestUsers />
+    return <LatestUsers navigate={this.props.navigation.navigate} />
   }
 
   render() {

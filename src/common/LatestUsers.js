@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 
 class LatestUsers extends React.PureComponent {
     componentDidMount () {
-        this.props.getUsers(1, 4);
+        this.props.getLatestUsers();
     }
 
     renderLoadingImages = () => {
@@ -59,7 +59,10 @@ class LatestUsers extends React.PureComponent {
                             Latest users
                         </Text>
                     </View>
-                    <TouchableOpacity style={{justifyContent: 'flex-end'}}>
+                    <TouchableOpacity 
+                        style={{justifyContent: 'flex-end'}}
+                        onPress={() => this.props.navigate('Users')}
+                    >
                         <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(17, 1.5)}}>
                             See all
                         </Text>
@@ -91,7 +94,7 @@ const mapStateToProps = (state) => {
     const {
         users,
         gettingUsers,
-    } = state.users;
+    } = state.users.latestUsers;
     return {
         users,
         gettingUsers,
@@ -99,11 +102,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    const getUsers = (page, per) => {
-        dispatch(usersOperations.getUsers(page, per));
+    const getLatestUsers = () => {
+        dispatch(usersOperations.getLatestUsers());
     };
     return {
-        getUsers
+        getLatestUsers
     };
 };
 
