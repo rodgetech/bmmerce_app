@@ -112,8 +112,8 @@ android {
         applicationId "com.bmmerce"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7.1
-        versionName "7.1"
+        versionCode 8
+        versionName "8.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
