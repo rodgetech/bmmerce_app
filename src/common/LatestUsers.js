@@ -56,7 +56,7 @@ class LatestUsers extends React.PureComponent {
                 <View style={{marginHorizontal: 8, marginBottom: 10, flexDirection: 'row'}}>
                     <View style={{flex: 1}}>
                         <Text style={{fontFamily: fonts.robotoCondensed, color: colors.dark, fontSize: moderateScale(17, 1.5)}}>
-                            Latest users
+                            Latest Users
                         </Text>
                     </View>
                     <TouchableOpacity 
@@ -64,7 +64,7 @@ class LatestUsers extends React.PureComponent {
                         onPress={() => this.props.navigate('Users')}
                     >
                         <Text style={{fontFamily: fonts.robotoCondensed, color: colors.green, fontSize: moderateScale(17, 1.5)}}>
-                            See all
+                            See All
                         </Text>
                     </TouchableOpacity>
                 </View>

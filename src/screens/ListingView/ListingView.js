@@ -19,12 +19,28 @@ export default class ListingView extends React.PureComponent {
 
   state = {
     message: 'Hello, is this still available?',
-    showMessageModal: false
+    showMessageModal: false,
+    listingId: null
   }
 
   componentDidMount = () => {
     const listingId = this.props.navigation.getParam('listingId', null);
     this.props.getListing(listingId);
+    this.setState({listingId})
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.navigation.state.params.listingId !== this.props.navigation.state.params.listingId) {
+      let listingId = this.props.navigation.state.params.listingId;
+      this.props.getListing(listingId);
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.navigation.state.params.listingId !== prevState.listingId){
+      return { listingId: nextProps.navigation.state.params.listingId};
+    }
+    else return null;
   }
 
   onMessage = () => {
