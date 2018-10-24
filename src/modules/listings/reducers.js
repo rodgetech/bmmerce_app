@@ -144,7 +144,7 @@ const defaultReducer = (state = STATE, action) => {
 
 const userListingsReducer = (state = USER_LISTINGS_STATE, action) => {
   switch (action.type) {
-    case types.GET_USER_LISTINGS:
+    case types.GET_CURRENT_USER_LISTINGS:
       {
         return {
           ...state,
@@ -152,7 +152,7 @@ const userListingsReducer = (state = USER_LISTINGS_STATE, action) => {
         }
       }
 
-    case types.GET_USER_LISTINGS_SUCCESS:
+    case types.GET_CURRENT_USER_LISTINGS_SUCCESS:
       {
         const {
           userListings
@@ -164,7 +164,7 @@ const userListingsReducer = (state = USER_LISTINGS_STATE, action) => {
         }
       }
 
-    case types.UPDATE_LISTING:
+    case types.GET_CURRENT_USER_LISTINGS_FAILURE:
       {
         return {
           ...state,

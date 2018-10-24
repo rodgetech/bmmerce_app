@@ -19,6 +19,7 @@ import Filter from './Filter';
 import SetAddress from './SetAddress';
 import ImageView from './ImageView';
 import Users from './Users';
+import User from './User';
 
 export {
     Home,
@@ -39,5 +40,6 @@ export {
     Filter,
     SetAddress,
     ImageView,
-    Users
+    Users,
+    User
 }

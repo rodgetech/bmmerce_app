@@ -113,7 +113,7 @@ export default class Account extends React.PureComponent {
               <Icon
                 name='camera'
                 type='entypo'
-                color={colors.dark}
+                color='#7B8285'
               />
               <Text 
                 style={styles.bodyLabel}
@@ -128,7 +128,7 @@ export default class Account extends React.PureComponent {
               <Icon
                 name='list'
                 type='entypo'
-                color={colors.dark}
+                color='#7B8285'
               />
               <Text 
                 style={styles.bodyLabel}
@@ -143,7 +143,7 @@ export default class Account extends React.PureComponent {
               <Icon
                 name='md-text'
                 type='ionicon'
-                color={colors.dark}
+                color='#7B8285'
               />
               <Text 
                 style={styles.bodyLabel}
@@ -158,7 +158,7 @@ export default class Account extends React.PureComponent {
               <Icon
                 name='md-pin'
                 type='ionicon'
-                color={colors.dark}
+                color='#7B8285'
               />
               <Text 
                 style={styles.bodyLabel}
@@ -173,7 +173,7 @@ export default class Account extends React.PureComponent {
               <Icon
                   name='log-out'
                   type='entypo'
-                  color={colors.dark}
+                  color='#7B8285'
                 />
               <Text 
                 style={styles.bodyLabel}

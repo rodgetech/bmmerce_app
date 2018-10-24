@@ -73,15 +73,21 @@ class LatestUsers extends React.PureComponent {
                         this.renderLoadingImages()
                     ) : (
                         this.props.users.map((user, index) => 
-                            <FastImage
-                                key={index}
-                                style={styles.imageContainer}
-                                source={{
-                                    uri: user.avatar,
-                                    priority: FastImage.priority.normal
-                                }}
-                                resizeMode={FastImage.resizeMode.cover}
-                            />
+                            <TouchableOpacity
+                                key={user.id}
+                                activeOpacity={0.8}
+                                onPress={() => this.props.navigate('User', {user: user})}
+                            >
+                                <FastImage
+                                    key={user.id}
+                                    style={styles.imageContainer}
+                                    source={{
+                                        uri: user.avatar,
+                                        priority: FastImage.priority.normal
+                                    }}
+                                    resizeMode={FastImage.resizeMode.cover}
+                                />
+                            </TouchableOpacity>
                         )
                     )}
                 </View>

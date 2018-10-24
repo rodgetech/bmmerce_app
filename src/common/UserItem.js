@@ -12,7 +12,7 @@ export default class UserItem extends React.PureComponent {
   render() {
     return (
         <ListItem
-            // onPress={() => this.props.navigation.navigate("EditListing", {listing: item})}
+            onPress={() => this.props.navigate("User", {user: this.props.user})}
             containerStyle={{borderBottomWidth: 0}}
             title={
                 <View style={{marginBottom: 6}}>
@@ -26,7 +26,7 @@ export default class UserItem extends React.PureComponent {
             subtitle={
                 <View>
                     <Text
-                    style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
+                        style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
                     >
                     {this.props.user.address}
                     </Text>

@@ -25,7 +25,8 @@ import {
     Filter,
     SetAddress,
     ImageView,
-    Users
+    Users,
+    User
 } from '../screens';
 
 import EngagementsTabIcon from './EngagementsTabIcon';
@@ -369,6 +370,25 @@ const AppStack =  createStackNavigator(
             screen: Users,
             navigationOptions: {
                 title: "Buyers & Sellers",
+                header: (props) => <Header {...props} />,
+                headerStyle: {
+                    elevation: 2,
+                    backgroundColor: '#FFF',
+                    borderColor: '#e9eced',
+                    borderBottomWidth: 0
+                },
+                headerTitleStyle: {
+                    color: colors.dark, 
+                    fontFamily: fonts.robotoCondensed,
+                    fontWeight: 'normal',
+                    fontSize: moderateScale(17, 1.7)
+                },
+                headerTintColor: colors.dark,
+            },
+        },
+        User: {
+            screen: User,
+            navigationOptions: {
                 header: (props) => <Header {...props} />,
                 headerStyle: {
                     elevation: 2,

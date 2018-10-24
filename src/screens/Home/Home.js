@@ -44,7 +44,7 @@ export default class Home extends React.Component {
             <Icon
               name='location'
               type='entypo'
-              color={colors.dark}
+              color='#7B8285'
             />
             {!params.loading ? 
               <Text 
@@ -80,7 +80,7 @@ export default class Home extends React.Component {
             <Icon
               name='magnifying-glass'
               type='entypo'
-              color={colors.dark}
+              color='#7B8285'
             />
           </TouchableOpacity>
         </View>

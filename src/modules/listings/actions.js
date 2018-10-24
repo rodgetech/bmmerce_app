@@ -32,17 +32,17 @@ const getListingsFailure = (json) => ({
     type: types.GET_LISTINGS_FAILURE,
 });
 
-const getUserListings = () => ({
-    type: types.GET_USER_LISTINGS
+const getCurrentUserListings = () => ({
+    type: types.GET_CURRENT_USER_LISTINGS
 });
 
-const getUserListingsSuccess = (json) => ({
-    type: types.GET_USER_LISTINGS_SUCCESS,
+const getCurrentUserListingsSuccess = (json) => ({
+    type: types.GET_CURRENT_USER_LISTINGS_SUCCESS,
     userListings: json
 });
 
-const getUserListingsFailure = (json) => ({
-    type: types.GET_USER_LISTINGS_FAILURE,
+const getCurrentUserListingsFailure = (json) => ({
+    type: types.GET_CURRENT_USER_LISTINGS_FAILURE,
 });
 
 const createListing = () => ({
@@ -113,9 +113,9 @@ export default {
     getListingsSuccess,
     clearListings,
     getListingsFailure,
-    getUserListings,
-    getUserListingsSuccess,
-    getUserListingsFailure,
+    getCurrentUserListings,
+    getCurrentUserListingsSuccess,
+    getCurrentUserListingsFailure,
     createListing,
     createListingSuccess,
     createListingFailure,

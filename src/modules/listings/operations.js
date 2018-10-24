@@ -16,8 +16,8 @@ const getListingSuccessAction = Actions.getListingSuccess;
 const getListingsAction = Actions.getListings;
 const getListingsSuccessAction = Actions.getListingsSuccess;
 
-const getUserListingsAction = Actions.getUserListings;
-const getUserListingsSuccessAction = Actions.getUserListingsSuccess;
+const getCurrentUserListingsAction = Actions.getCurrentUserListings;
+const getCurrentUserListingsSuccessAction = Actions.getCurrentUserListingsSuccess;
 
 const createListingAction = Actions.createListing;
 const createListingSuccessAction = Actions.createListingSuccess;
@@ -72,8 +72,8 @@ const getListing = (id) => {
 const getUserListings = () => {
   return async dispatch => {
     await setAuthorizationToken('authToken');
-    dispatch(getUserListingsAction());
-    console.log("GET USER LISTINGS")
+    dispatch(getCurrentUserListingsAction());
+    console.log("GET ACCOUNT USER LISTINGS");
     axios.get(`${API_ROOT}/admin/listings`)
       .then(function (response) {
         const responseData = response.data.listings;
@@ -97,7 +97,8 @@ const getUserListings = () => {
           };
           data.push(childData);
         });
-        dispatch(getUserListingsSuccessAction(data))
+        console.log("GET ACCOUNT USER LISTINGS", data);
+        dispatch(getCurrentUserListingsSuccessAction(data))
       })
       .catch(function (error) {
         console.log(error)
@@ -322,6 +323,7 @@ const search = (query) => {
     axios.get(`${API_ROOT}/search?query=${query}`)
       .then(function (response) {
         const responseData = response.data.listings;
+        console.log("SEARCH RESULTS", responseData)
         if (response.data !== "") {
           let data = [];
           responseData.map(child => {

@@ -3,7 +3,8 @@ import {
   StyleSheet, 
   View,
   FlatList,
-  Text
+  Text,
+  ActivityIndicator
 } from 'react-native';
 import Loader from '../../components/Loader';
 import { colors } from '../../styles';
@@ -11,8 +12,12 @@ import { UserItem } from '../../common';
 
 export default class AccountListings extends React.Component {
 
+    state = {
+        page: 1,
+    }
+
     componentDidMount() {
-        this.props.getUsers(1, 20);
+        this.props.getUsers(1, 15);
     }
 
     renderSeparator = () => {
@@ -27,24 +32,56 @@ export default class AccountListings extends React.Component {
         )
     }
 
+    handleLoadMore = () => {
+        this.setState({
+          page: this.state.page + 1,
+        }, 
+        () => {
+          this.props.getUsers(
+            this.state.page,
+            15
+          )
+        });
+      }
+
+    renderFooter = () => {
+        if (this.props.gettingUsers) {
+            return (
+              <View style={{paddingVertical: 20}}>
+                <ActivityIndicator 
+                  animating
+                  size="large"
+                  color={colors.green}
+                />
+              </View>
+            )
+        } else {
+            return null;
+        }
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                {!this.props.gettingUsers ? (
-                    <FlatList
-                        showsVerticalScrollIndicator={false}
-                        data={this.props.users}
-                        renderItem={({item}) => (
-                            <UserItem user={item} />
-                        )}
-                        keyExtractor={(item) => item.id.toString()}
-                        ItemSeparatorComponent={this.renderSeparator}
-                    />
-                ) : (
-                    <Loader
-                        loading={this.props.gettingUserListings} 
-                    />
-                )}
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={this.props.users}
+                    renderItem={({item}) => (
+                        <UserItem 
+                            user={item} 
+                            navigate={this.props.navigation.navigate}
+                        />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                    ItemSeparatorComponent={this.renderSeparator}
+                    ListFooterComponent={this.renderFooter}
+                    onEndReachedThreshold={0.5}
+                    onEndReached={({ distanceFromEnd }) => {
+                        if (this.state.page != this.props.totalPages && this.props.totalPages !== 1) {
+                            this.handleLoadMore();
+                        }
+                    }}
+                />
             </View>
         );
     }

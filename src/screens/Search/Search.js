@@ -14,7 +14,7 @@ import FastImage from 'react-native-fast-image'
 import Loader from '../../components/Loader';
 import { moderateScale } from '../../utils/scaling';
 import { colors, fonts } from '../../styles'
-import ListingItem from '../../common/ListingItem';
+import { ListingItem } from '../../common/';
 
 
 const numColumns = 2;

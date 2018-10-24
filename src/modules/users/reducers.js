@@ -16,6 +16,14 @@ const LATEST_USERS_STATE = {
   users: [],
 }
 
+const USER_STATE = {
+  gettingUser: false,
+  user: {},
+  gettingListings: false,
+  listings: [],
+  empty: false
+}
+
 const defaultReducer = (state = STATE, action) => {
   switch (action.type) {
     case types.GET_USERS:
@@ -75,9 +83,62 @@ const latestUsersReducer = (state = LATEST_USERS_STATE, action) => {
   }
 }
 
+const userReducer = (state = USER_STATE, action) => {
+  switch (action.type) {
+    case types.GET_USER:
+      {
+        return {
+          ...state,
+          gettingUser: true,
+        }
+      }
+
+    case types.GET_USER_SUCCESS:
+      {
+        const {
+          user,
+        } = action;
+        return {
+          ...state,
+          user,
+          gettingUser: false,
+        }
+      }
+
+      case types.GET_USER_LISTINGS:
+      {
+        return {
+          ...state,
+          gettingListings: true,
+        }
+      }
+
+    case types.GET_USER_LISTINGS_SUCCESS:
+      {
+        const {
+          listings,
+          totalPages,
+          currentPage
+        } = action;
+        return {
+          ...state,
+          totalPages,
+          currentPage,
+          listings: currentPage === 1 ? listings : [...state.listings, ...listings],
+          gettingListings: false,
+          empty: listings.length > 0 ? false : true
+        }
+      }
+
+    default:
+      return state;
+  }
+}
+
 const usersReducer = combineReducers({
   default: defaultReducer,
   latestUsers: latestUsersReducer,
+  user: userReducer
 });
 
 export default usersReducer;

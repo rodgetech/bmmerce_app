@@ -3,7 +3,6 @@ import {
   showMessage
 } from "react-native-flash-message";
 import setAuthorizationToken from '../../utils/setAuthorizationToken';
-import navigationService from '../../utils/navigationService';
 
 import Actions from './actions';
 import {
@@ -14,6 +13,10 @@ const getUsersAction = Actions.getUsers;
 const getUsersSuccessAction = Actions.getUsersSuccess;
 const getLatestUsersAction = Actions.getLatestUsers;
 const getLatestUsersSuccessAction = Actions.getLatestUsersSuccess;
+const getUserAction = Actions.getUser;
+const getUserSuccessAction = Actions.getUserSuccess;
+const getUserListingsAction = Actions.getUserListings;
+const getUserListingsSuccessAction = Actions.getUserListingsSuccess;
 
 const getListing = (id) => {
   return async dispatch => {
@@ -82,7 +85,39 @@ const getLatestUsers = () => {
   }
 }
 
+const getUser = (id) => {
+  return async dispatch => {
+    dispatch(getUserAction());
+    await setAuthorizationToken('authToken');
+    axios.get(`${API_ROOT}/users/${id}`)
+      .then(function (response) {
+        const user = response.data.user;
+        dispatch(getUserSuccessAction(user))
+      })
+      .catch(function (error) {
+        //dispatch(getUsersFailureAction(error.response.data.data));
+      });
+  }
+}
+
+const getUserListings = (id, page) => {
+  return async dispatch => {
+    dispatch(getUserListingsAction());
+    await setAuthorizationToken('authToken');
+    axios.get(`${API_ROOT}/users/${id}/listings?page=${page}`)
+      .then(function (response) {
+        const listings = response.data.listings;
+        dispatch(getUserListingsSuccessAction(listings, response.data.meta.total_pages, page))
+      })
+      .catch(function (error) {
+        //dispatch(getUsersFailureAction(error.response.data.data));
+      });
+  }
+}
+
 export default {
   getUsers,
-  getLatestUsers
+  getLatestUsers,
+  getUser,
+  getUserListings
 };
