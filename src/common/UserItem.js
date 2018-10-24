@@ -15,7 +15,7 @@ export default class UserItem extends React.PureComponent {
             onPress={() => this.props.navigate("User", {user: this.props.user})}
             containerStyle={{borderBottomWidth: 0}}
             title={
-                <View style={{marginBottom: 6}}>
+                <View style={{marginBottom: 3}}>
                     <Text
                         style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
                     >
@@ -26,10 +26,17 @@ export default class UserItem extends React.PureComponent {
             subtitle={
                 <View>
                     <Text
-                        style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
+                        style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
                     >
-                    {this.props.user.address}
+                        {this.props.user.address}
                     </Text>
+                    {this.props.user.listings_count > 0 &&
+                        <Text
+                            style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green, paddingTop: 4}}
+                        >
+                            {this.props.user.listings_count > 1 ? `${this.props.user.listings_count} listings` : `${this.props.user.listings_count} listing`}
+                        </Text>
+                    }
                 </View>
                 }
             leftAvatar={

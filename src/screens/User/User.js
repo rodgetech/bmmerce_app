@@ -85,11 +85,13 @@ export default class User extends React.Component {
                         resizeMode={FastImage.resizeMode.cover}
                     />
                     <View style={{flex: 1, justifyContent: 'center'}}>
-                        <Text
-                            style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
-                        >
-                            From {user.address}
-                        </Text>
+                        {user.address && 
+                            <Text
+                                style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.green}}
+                            >
+                                From {user.address}
+                            </Text>
+                        }
                         <Text
                             style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 2.5), color: colors.dark}}
                         >

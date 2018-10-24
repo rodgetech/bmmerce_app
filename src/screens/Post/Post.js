@@ -186,7 +186,7 @@ export default class Post extends React.Component {
                   <Icon
                     name='image-plus'
                     type='material-community'
-                    color='#787878'
+                    color={colors.green}
                     size={35}
                   />
               </TouchableOpacity>
@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    backgroundColor: '#rgba(0, 0, 0, 0.5)'
+    backgroundColor: '#rgba(123, 130, 133, 0.5)'
   },
   selectedImage: {
     flex: 1.2,

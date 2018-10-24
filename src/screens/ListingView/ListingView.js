@@ -4,7 +4,8 @@ import {
   View,
   ScrollView,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 import { format } from 'date-fns';
 import { Button, Icon } from 'react-native-elements';
@@ -97,16 +98,19 @@ export default class ListingView extends React.PureComponent {
                   }
                   {this.props.listing.listedBy &&
                     <View style={{flexDirection: 'row', paddingTop: 10, marginHorizontal: 12}}>
-                        <View >
-                        <FastImage
-                          style={{width: 40, height: 40, borderRadius: 1, marginRight: 12, backgroundColor: '#f7f7f7'}}
-                          source={{
-                            uri: this.props.listing.listedBy.account.avatar,
-                            priority: FastImage.priority.normal
-                          }}
-                          resizeMode={FastImage.resizeMode.cover}
-                        />
-                        </View>
+                        <TouchableOpacity 
+                          activeOpacity={0.8}
+                          onPress={() => this.props.navigation.navigate('User',{ user: this.props.listing.listedBy.account })}
+                        >
+                          <FastImage
+                            style={{width: 45, height: 45, borderRadius: 1, marginRight: 12, backgroundColor: '#f7f7f7'}}
+                            source={{
+                              uri: this.props.listing.listedBy.account.avatar,
+                              priority: FastImage.priority.normal
+                            }}
+                            resizeMode={FastImage.resizeMode.cover}
+                          />
+                        </TouchableOpacity>
                         <View style={{flex: 1}}>
                           <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(16, 1.4), color: colors.dark, marginVertical: 0}}>
                             Listed by {this.props.listing.listedBy.account.name}

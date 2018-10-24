@@ -163,7 +163,7 @@ export default class EditListing extends React.Component {
                         <Icon
                             name='image-plus'
                             type='material-community'
-                            color='#787878'
+                            color={colors.green}
                             size={30}
                         />
                     </TouchableOpacity>
@@ -252,7 +252,7 @@ export default class EditListing extends React.Component {
                             value={this.state.description}
                         />
                         <Button 
-                            title="Update Listing"
+                            title="Update"
                             onPress={this.updateListing}
                             buttonStyle={{marginTop: 10, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}}
                             titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    backgroundColor: '#rgba(0, 0, 0, 0.5)'
+    backgroundColor: '#rgba(123, 130, 133, 0.5)'
   },
   selectedImage: {
     flex: 1.2,
