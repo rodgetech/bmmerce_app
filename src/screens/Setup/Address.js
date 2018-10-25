@@ -42,7 +42,10 @@ class Address extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView 
+                    showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps='always'
+                 >
                     <FastImage
                         style={styles.image}
                         source={{ 

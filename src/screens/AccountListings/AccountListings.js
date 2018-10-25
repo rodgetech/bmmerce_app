@@ -3,11 +3,11 @@ import {
   StyleSheet, 
   View,
   FlatList,
-  Text
+  Text,
+  ActivityIndicator
 } from 'react-native';
 import FastImage from 'react-native-fast-image'
 import { ListItem } from 'react-native-elements'
-import Loader from '../../components/Loader';
 import { fonts, colors } from '../../styles';
 import { moderateScale } from '../../utils/scaling';
 
@@ -74,9 +74,13 @@ export default class AccountListings extends React.Component {
                         ItemSeparatorComponent={this.renderSeparator}
                     />
                 ) : (
-                    <Loader
-                        loading={this.props.gettingUserListings} 
-                    />
+                    <View style={{paddingVertical: 20}}>
+                        <ActivityIndicator 
+                        animating
+                        size="large"
+                        color={colors.green}
+                        />
+                    </View>
                 )}
             </View>
         );

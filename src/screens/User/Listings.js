@@ -74,7 +74,7 @@ export default class Listings extends React.Component {
     if (this.props.empty && !this.props.gettingListings) {
       return (
         <View style={{flex: 1, paddingHorizontal: 10,  paddingVertical: 18, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontSize: moderateScale(16, 1.5), fontFamily: fonts.robotoCondensed, color: colors.dark}}>
+          <Text style={{fontSize: moderateScale(16, 1.5), fontFamily: fonts.robotoCondensed, color: colors.dark, textAlign: 'center'}}>
             This user has no listings at this time.
           </Text>
         </View>

@@ -4,10 +4,10 @@ import {
   View,
   Text,
   FlatList,
+  ActivityIndicator
 } from 'react-native';
 import { ListItem, Badge } from 'react-native-elements';
 import FastImage from 'react-native-fast-image'
-import Loader from '../../components/Loader';
 import { colors, fonts } from '../../styles';
 import { moderateScale } from '../../utils/scaling';
 
@@ -136,9 +136,13 @@ export default class Engagements extends React.PureComponent {
               ListEmptyComponent={this.renderListEmpty}
             />
         ) : (
-          <Loader
-            loading={this.props.gettingEngagements} 
-          />
+          <View style={{paddingVertical: 20}}>
+            <ActivityIndicator 
+              animating
+              size="large"
+              color={colors.green}
+            />
+          </View>
         )}
       </View>
     );

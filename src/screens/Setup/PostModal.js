@@ -4,7 +4,7 @@ import {
   Text,
   View,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import Modal from "react-native-modal";
 import { Button, Input, Icon } from 'react-native-elements';
@@ -56,14 +56,14 @@ const PostModal = props => {
                         title="Post & Continue"
                         titleStyle={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(18, 2.5), fontWeight: 'normal'}}
                         onPress={props.createListing}
-                        buttonStyle={{marginTop: 16, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
+                        buttonStyle={{marginTop: 40, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
                         disabled={props.values.images.length == 0 || !props.values.title || !props.values.price || !props.values.address}
                     />
                     <TouchableOpacity
                         activeOpacity={0.8}
                         onPress={props.skip}
                     >
-                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(17, 1.7), color: '#7B8285', textAlign: 'center', paddingTop: 17}}>
+                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(15, 1.7), color: '#7B8285', textAlign: 'center', paddingTop: 17}}>
                             Or Skip
                         </Text>
                     </TouchableOpacity>
