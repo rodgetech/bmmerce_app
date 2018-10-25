@@ -5,7 +5,8 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-
+import { colors, fonts } from '../../styles';
+import { moderateScale } from '../../utils/scaling';
 import FastImage from 'react-native-fast-image';
 
 const Preview = props => {
@@ -21,13 +22,17 @@ const Preview = props => {
                     style={styles.touchStyles}
                     onPress={props.onRetake}
                 >
-                    <Text style={{color: "#FFF"}}>Retake</Text>
+                    <Text style={{color: "#FFF", fontSize: moderateScale(16, 1.7), fontFamily: fonts.robotoCondensed}}>
+                        Retake
+                    </Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style={styles.touchStyles}
                     onPress={props.onContinue}
                 >
-                    <Text style={{color: "#FFF"}}>Continue</Text>
+                    <Text style={{color: "#FFF", fontSize: moderateScale(18, 1.7), color: colors.green, fontFamily: fonts.robotoCondensed}}>
+                        Continue
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>

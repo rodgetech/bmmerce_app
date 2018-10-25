@@ -68,7 +68,7 @@ const PostModal = props => {
 const styles = StyleSheet.create({
     bottomModal: {
         justifyContent: "flex-end",
-        margin: 0
+        margin: 0,
     },
     modalContent: {
         backgroundColor: '#FFF',
@@ -76,7 +76,12 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         // justifyContent: "center",
         // alignItems: "center",
-        borderColor: "rgba(0, 0, 0, 0.1)"
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        elevation: 10,
+        borderTopLeftRadius: 5,
+        borderTopRightRadius: 5,
+        borderBottomWidth: 2,
+        borderColor: colors.green
     },
 });
 
