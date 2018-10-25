@@ -135,7 +135,7 @@ const updateAddress = (newAddress, bakToMenu = false) => {
       .then(async (response) => {
         // Apply token to request headers
         dispatch(updateAddressSuccessAction());
-        redirectLocation = bakToMenu ? 'Menu' : 'App';
+        redirectLocation = bakToMenu ? 'Menu' : 'TryPosting';
         navigationService.navigate(redirectLocation, {
           temp: {}
         });

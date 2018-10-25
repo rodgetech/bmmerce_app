@@ -1,16 +1,17 @@
 import { createStackNavigator } from 'react-navigation';
 
 import { 
-    Address,
+    TryPosting,
+    TryCamera
 } from '../screens';
 
 import { colors } from '../styles';
 
 
-export default createStackNavigator(
+const MainStack = createStackNavigator(
     {
-        Address: {
-            screen: Address,
+        TryPosting: {
+            screen: TryPosting,
         },
     },
     {
@@ -22,6 +23,19 @@ export default createStackNavigator(
             headerTintColor: colors.dark
         }
     }
-);
-
-
+  );
+  
+  export default createStackNavigator(
+    {
+      TryPosting: {
+        screen: MainStack,
+      },
+      TryCamera: {
+        screen: TryCamera,
+      },
+    },
+    {
+      mode: 'modal',
+      headerMode: 'none',
+    }
+  );

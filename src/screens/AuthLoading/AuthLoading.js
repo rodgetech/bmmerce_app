@@ -19,6 +19,7 @@ export default class AuthLoading extends React.PureComponent {
     SplashScreen.hide();
     if (authToken) {
       this.props.navigation.navigate('App');
+      // this.props.navigation.navigate('TryPosting');
     } else {
       this.props.navigation.navigate('Auth');
     }

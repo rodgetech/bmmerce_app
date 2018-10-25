@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import Permissions from 'react-native-permissions';
 import { Button, Input, Icon } from 'react-native-elements';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import ImagePicker  from 'react-native-image-picker';   
 import FastImage from 'react-native-fast-image';
 import { colors, fonts } from '../../styles'

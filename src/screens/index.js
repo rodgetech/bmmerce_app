@@ -20,6 +20,11 @@ import SetAddress from './SetAddress';
 import ImageView from './ImageView';
 import Users from './Users';
 import User from './User';
+import {
+    TryPosting,
+    TryCamera,
+    Address
+ } from './Setup';
 
 export {
     Home,
@@ -41,5 +46,8 @@ export {
     SetAddress,
     ImageView,
     Users,
-    User
+    User,
+    TryPosting,
+    TryCamera,
+    Address
 }
