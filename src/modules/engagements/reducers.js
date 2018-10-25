@@ -8,6 +8,7 @@ const STATE = {
   engagements: [],
   gettingEngagement: false,
   engagement: {},
+  empty: false
 }
 
 const MESSAGES = {
@@ -37,6 +38,7 @@ const engagementsReducer = (state = STATE, action) => {
           ...state,
           engagements,
           gettingEngagements: false,
+          empty: engagements.length > 0 ? false : true
         }
       }
 

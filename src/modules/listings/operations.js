@@ -167,9 +167,10 @@ const createListing = (newListing) => {
     let formData = new FormData();
     formData.append('title', newListing.title);
     formData.append('price', newListing.price);
-    formData.append('description', newListing.description);
+    if (newListing.description) {
+      formData.append('description', newListing.description);
+    }
     formData.append('address', newListing.address);
-    // formData.append('district', district);
     formData.append('latitude', newListing.latitude);
     formData.append('longitude', newListing.longitude);
     // Format images for posting

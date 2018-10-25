@@ -50,6 +50,11 @@ class TryCamera extends React.Component {
     showModal: false,
   }
 
+  requestPermission = (permission) => {
+    Permissions.request(permission).then(response => {
+    });
+  }
+
   constructor (props) {
     super(props)
     this.navListener = this.props.navigation.addListener('didFocus', () => {
@@ -57,18 +62,16 @@ class TryCamera extends React.Component {
       //   this.setState({ cameraLoading: false });
       // }
       this.setState({ cameraLoading: false });
+      Permissions.check('camera').then(response => {
+        if (response == 'undetermined' || response == 'denied') {
+          this.requestPermission('camera');
+        } 
+      });
     });
   }
 
   componentWillUnmount() { 
     this.navListener.remove();
-  }
-
-  requestPermission = (permission) => {
-    Permissions.request(permission).then(response => {
-      if (permission == 'location' && response == "denied") {
-      }
-    });
   }
 
   toggleFlash = () => {
@@ -186,6 +189,7 @@ class TryCamera extends React.Component {
             handleInput={(key, value) => {this.setState({[key]:value})}}
             handleSetAddress={(address, latitude, longitude) => this.setState({address, latitude, longitude})}
             values={{title, price, address, latitude, longitude, images} = this.state}
+            skip={() => this.props.navigation.navigate('App')}
           />
         </View>
       )

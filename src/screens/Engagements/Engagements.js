@@ -108,6 +108,21 @@ export default class Engagements extends React.PureComponent {
     );
   }
 
+  renderListEmpty = () => {
+    if (this.props.empty && !this.props.gettingEngagements) {
+      return (
+        <View style={{paddingHorizontal: 10,backgroundColor: '#fafafa', paddingVertical: 18}}>
+         
+          <Text style={{fontSize: moderateScale(16, 1.5), fontFamily: fonts.robotoCondensed, color: colors.dark}}>
+            No engagements at this time. Post something to sell and connect with nearby buyers.
+          </Text>
+        </View>
+      )
+    } else {
+      return null;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -118,6 +133,7 @@ export default class Engagements extends React.PureComponent {
               keyExtractor={item => item.id.toString()}
               ItemSeparatorComponent={this.renderSeparator}
               showsVerticalScrollIndicator={false}
+              ListEmptyComponent={this.renderListEmpty}
             />
         ) : (
           <Loader

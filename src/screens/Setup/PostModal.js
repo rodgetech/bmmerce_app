@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 import Modal from "react-native-modal";
 import { Button, Input, Icon } from 'react-native-elements';
@@ -58,6 +59,14 @@ const PostModal = props => {
                         buttonStyle={{marginTop: 16, backgroundColor: colors.green, paddingVertical: 4, elevation: 0}} 
                         disabled={props.values.images.length == 0 || !props.values.title || !props.values.price || !props.values.address}
                     />
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={props.skip}
+                    >
+                        <Text style={{fontFamily: fonts.robotoCondensed, fontSize: moderateScale(17, 1.7), color: '#7B8285', textAlign: 'center', paddingTop: 17}}>
+                            Or Skip
+                        </Text>
+                    </TouchableOpacity>
                     </ScrollView>
                 </View>
             </Modal>
@@ -73,7 +82,8 @@ const styles = StyleSheet.create({
     modalContent: {
         backgroundColor: '#FFF',
         paddingHorizontal: 22,
-        paddingVertical: 30,
+        paddingTop: 30,
+        paddingBottom: 13,
         // justifyContent: "center",
         // alignItems: "center",
         borderColor: "rgba(0, 0, 0, 0.1)",

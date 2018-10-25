@@ -1,17 +1,31 @@
-import { connect } from 'react-redux';
+import {
+    connect
+} from 'react-redux';
 import Engagements from './Engagements';
-import { engagementsOperations } from '../../modules/engagements';
+import {
+    engagementsOperations
+} from '../../modules/engagements';
 
 const mapStateToProps = (state) => {
-    const { engagements, gettingEngagements } = state.engagements.engagements;
-    return { engagements, gettingEngagements };
+    const {
+        engagements,
+        gettingEngagements,
+        empty
+    } = state.engagements.engagements;
+    return {
+        engagements,
+        gettingEngagements,
+        empty
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     const getEngagements = () => {
         dispatch(engagementsOperations.getEngagements());
     };
-    return { getEngagements };
+    return {
+        getEngagements
+    };
 };
 
 const EngagementsContainer = connect(
