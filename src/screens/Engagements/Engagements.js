@@ -70,7 +70,7 @@ export default class Engagements extends React.PureComponent {
         rightIcon={
           <View>
             <FastImage
-              style={{width: 45, height: 45, backgroundColor: '#f7f7f7', marginBottom: 2, borderRadius: 1}}
+              style={{width: 45, height: 45, backgroundColor: '#f7f7f7', marginBottom: 2, borderRadius: 45/2}}
               source={{
                 uri: item.recipient.avatar,
                 priority: FastImage.priority.normal
